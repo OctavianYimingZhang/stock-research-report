@@ -24,15 +24,19 @@ Produce a single, cohesive deep research report that reads like it was written b
 
 ## Core Philosophy (Read This First)
 
-The output must be an **opinionated trade memo**, not a forensic audit. Four principles govern this:
+The output must be an **opinionated trade memo**, not a forensic audit. Six principles govern this:
 
 1. **PRESERVE ALL MATERIAL CONTENT** — Every specific data point, named customer, dated management quote, contract number, capacity figure, catalyst date, and valuation input from the four sub-reports **must survive** into the final report. The previous version of this skill "extracted top 3" items and destroyed most content. That is a BUG. The synthesis step is **reorganization**, not **reduction**.
 
 2. **THEMED STRUCTURE, NOT NUMBERED PARTS** — No "第一部分/第二部分/第三部分/第四部分" structure. No visible skill seams. Sub-skill outputs become content *blocks* that get woven into themed sections (业务逻辑 / 运营逻辑 / 客户与订单 / 财务数据 / 估值 / 技术 / 交易计划).
 
-3. **ONE CONVICTED VOICE** — Use "我们"/"我认为"/"从数据看" patterns. Take a side. Never use "概率加权公允价值", "数据充分性说明", "本报告不构成投资建议" mid-report, or matrix-style conclusions. End with a **trade plan** (entry / stop / first target / second target / position size), not a summary table.
+3. **FIRST-PERSON ANALYST VOICE** — Use "我"/"我认为"/"我觉得"/"我们" at least **6 times per report** (mostly in 业务逻辑 / 估值 / 交易计划). Analysts plant themselves in the report; third-person summaries have no alpha. See `references/voice-and-conviction.md` for the full voice rule set.
 
-4. **BOTTOM-UP QUANTIFICATION WHERE POSSIBLE** — For commodity, industrial, and capacity-driven companies, the report must include **unit-volume × price × cost** math and **operating leverage decomposition** (incremental margin walk). This is the single biggest gap vs. professional analyst reports.
+4. **TRADER DECISIVENESS, NOT ACADEMIC HEDGING** — Take a side and commit. Single-posture ratings (买入 / 观望 / 回避), single-number target with upside multiple (`目标市值 100 亿,~2.5 倍`), declarative sentences. **Banned**: hedged stacks ("中性偏负,非高确信多头"), "on one hand / on the other", multi-method triangulation in the closing line, "概率加权公允价值", "数据充分性说明", mid-report disclaimers.
+
+5. **BOTTOM-UP QUANTIFICATION WHERE POSSIBLE** — For commodity, industrial, and capacity-driven companies, the report must include **unit-volume × price × cost** math and **operating leverage decomposition** (incremental margin walk). Inline prose arithmetic ("390MW → 1700MW = 4.36×, 3200 万 × 4.36 = 1.36 亿/季度, 全年约 5.5 亿") wins over cold `Step 1 / Step 2 / Step 3` structured tables.
+
+6. **ONE NON-CONSENSUS TAKE** — Every report must contain a `我与市场的分歧 (Where I Differ from Consensus)` paragraph (1-2 sentences): what the market is missing or mis-weighting. Reports that could be replaced by "market has priced it correctly" contain no alpha. See `references/voice-and-conviction.md` §Non-Consensus Discipline.
 
 ## When to Use
 
@@ -42,9 +46,12 @@ Activate when the user asks for a comprehensive research report, deep dive, or a
 
 - `references/report-format.md` — Section-by-section depth guidance (themed structure, not numbered parts)
 - `references/style-guide.md` — Tone, voice, anti-patterns, and formatting rules
+- `references/voice-and-conviction.md` — **NEW** First-person analyst voice rules, banned/encouraged phrase inventory, non-consensus discipline, "我与市场的分歧" protocol (read this before writing)
 - `references/commodity-math-template.md` — Bottom-up unit-economics template for mining/energy/industrial names
 - `references/trade-plan-template.md` — Required end-of-report trade plan format
-- `references/companion-skills.md` — How to invoke 6 complementary Claude Skills from `anthropics/financial-services-plugins` (catalyst-calendar, thesis-tracker, earnings-preview, earnings-analysis, comps-analysis, dcf-model)
+- `references/thesis-cot-template.md` — **NEW** Three-layer Data-CoT → Concept-CoT → Thesis-CoT synthesis pattern (lifted from FinRobot, AI4Finance-Foundation)
+- `references/debate-loop.md` — **NEW** Bull/bear/risk-manager adversarial resolution pattern (lifted from TauricResearch/TradingAgents v0.2)
+- `references/companion-skills.md` — How to invoke 6 complementary Claude Skills from `anthropics/financial-services-plugins` (catalyst-calendar, thesis-tracker, earnings-preview, earnings-analysis, comps-analysis, dcf-model) + 3 newly added MIT skills (macro-regime-overlay, institutional-flow-tracker, pead-screener)
 - `references/investor-council.md` — Optional multi-persona bull/bear debate phase (7 investor personas ported from `virattt/ai-hedge-fund`)
 
 ---
@@ -161,16 +168,18 @@ Run the valuation-calculator skill on [TICKER]. CRITICAL RULES:
    - Semiconductor cyclical → mid-cycle EPS × 10-year average P/E (TER pattern)
    - Growth foundry / specialty semi → forward EV/EBITDA with multiple-expansion thesis (TSEM pattern)
    - Mining/commodity → lb/ton × commodity price × margin → EBITDA × peer EV/EBITDA (UUUU/UAMY pattern)
+   - Pipeline biotech / pre-revenue pharma / E&P reserves → risk-adjusted NPV (rNPV) with stage-specific PoS (see `references/rnpv-calculator.md` in valuation skill)
    - Turnaround → P/FCF or replacement value
    - High-growth SaaS → EV/Revenue with Rule-of-40 check
-2. Show every input of the primary method with sources.
+2. Show every input of the primary method with sources, with MATH DONE INLINE IN PROSE ("2027E EPS $X × 29x = $Y") not just in tables.
 3. Other methods are at most a 2-line sanity check, NOT equal citizens.
 4. Do NOT produce a "probability-weighted fair value" average across 9 methods.
-5. State the catalyst that re-rates the multiple from current to target (earnings beat, contract win, capacity milestone, rate cut).
+5. State the catalyst that re-rates the multiple from current to target (earnings beat, contract win, capacity milestone, rate cut) with a SPECIFIC date or quarter.
 6. For commodity companies, bottom-up unit math comes BEFORE any multiple work.
 7. For multi-segment companies, do SOTP with geographic/political risk discounts where relevant.
+8. **FINAL LINE REQUIREMENT**: Your output must end with a single-number target + upside multiple. Format: "目标价 $X (约 Y.Zx,对应 [method + input])。" or "目标市值 $X 亿,~Y 倍空间。" **Banned**: "三法收敛区间", "综合公允价值", "概率加权", any range-only closing line.
 
-Output: primary method derivation, bull/base/bear in prose (one sentence each), target price with explicit method label, peer comparison table (3-5 peers).
+Output: primary method derivation with inline arithmetic, bull/base/bear in prose (one sentence each), single-number target, peer comparison table (3-5 peers), explicit multiple re-rating catalyst with date.
 ```
 
 ---
@@ -226,33 +235,52 @@ Compose the final report using the **themed structure** in `references/report-fo
 
 **Weaving rules:**
 
-1. **ONE narrative voice throughout.** The report reads as if one analyst with conviction wrote all of it.
+1. **ONE narrative voice throughout.** The report reads as if one analyst with conviction wrote all of it. First-person "我"/"我认为"/"我觉得"/"我们" must appear at least **6 times** across the report — mostly in 业务逻辑, 估值情况, 交易计划.
 
 2. **Story-first structure.** Lead with the business logic transformation — this is what makes the report interesting. Financial tables support the story; they do not replace it.
 
-3. **Embed, don't append.** Short-seller findings, technical analysis, and valuation are WOVEN INTO the narrative. They do NOT appear as separate appendices with "第一部分/第二部分" labels.
+3. **Narrative-tension opening (公司简介).** Open the report with the *narrative tension* in one sentence — the pivot, the inflection, the mispricing. Corporate genealogy (founding date, HQ, ticker) moves to sentence 3+. **Forbidden opener**: "XYZ 成立于 1912 年,总部位于..." **Required opener**: "这家源自澳洲的比特币矿工,正在把算力卖给 AI 客户" / "从车规 MCU 向 AI 电源转型中的 IDM" / similar.
+
+4. **Inline prose arithmetic.** Valuation and operating leverage math must appear **inside prose sentences** with explicit operators and parenthetical asides:
+   - GOOD: *"50 × 0.62 = 31 亿。然后因为现在这个 31 亿是按照 688472 当下市值计算的... 我们保守计算,直接把 31 亿的股权价值砍到 15 亿。(我认为这已经很保守了。)"*
+   - BAD: `| 项目 | 计算 | 结果 |` (cold ledger table with no reasoning)
+   
+   Free-standing valuation tables are allowed ONLY with a prose paragraph that walks through the numbers inline. Operating leverage chains must be **inline sentences**, NOT `Step 1 / Step 2 / Step 3 / Step 4 / Step 5` structured enumerations.
+
+5. **Embed, don't append.** Short-seller findings, technical analysis, and valuation are WOVEN INTO the narrative. They do NOT appear as separate appendices with "第一部分/第二部分" labels.
    - Short-seller risk becomes 1-2 sentences inside 财务数据 (if grade A-B) or a full paragraph (if grade C+).
    - Technical analysis becomes 1-2 paragraphs + one small price-level table inside 技术分析.
    - Valuation becomes 2-3 paragraphs + one peer table inside 估值情况.
    - Governance observations from risk analysis go into 业务逻辑重构 or 负债结构 where they make narrative sense.
 
-4. **Opinionated conclusion with explicit trade plan.** The report MUST end with a concrete trade plan. Use the format in `references/trade-plan-template.md`. Required fields:
-   - 评级 (买入/持有/观望/卖出)
-   - 建议仓位 (X-Y% of portfolio)
+6. **Mandatory "我与市场的分歧" (1-2 sentences, bolded).** Placed at the end of 业务逻辑 OR start of 估值情况. States explicitly what the market is missing or mis-weighting. Reports that could be replaced by "市场已正确定价" fail this check and must be revised.
+
+7. **Single-number target in closing line.** The CLOSING LINE of 估值情况 must be one number + one upside multiple: `目前市值 40 亿,我们看到 100 亿,6 倍空间` or `目标价 ¥8,700 (~2.0×)`. Three-method triangulation is allowed in the body but NEVER in the closing sentence. **Banned closers**: `三法收敛区间 ¥7,230-8,700,主推基准 ¥8,700`, `综合 DCF/相对/SOTP 公允价值 $X-$Y`.
+
+8. **Opinionated conclusion with explicit trade plan.** The report MUST end with a concrete trade plan. Use the format in `references/trade-plan-template.md`. Required fields:
+   - 评级 (买入/持有/观望/卖出) — **one posture only, no stacked hedges**
+   - 建议仓位 (X-Y% of portfolio) — single range, 5 percentage points max width
    - 入场区间 ($X-$Y with reason)
    - 止损位 ($Z with what invalidates thesis)
    - 第一止盈位 ($A with method)
    - 第二止盈位 ($B with method)
-   - 90 天内最重要催化剂 (one event)
+   - 90 天内最重要催化剂 (one event with specific date YYYY-MM or YYYY-Q#)
    - 做空风险 (one letter grade + one line)
    
    **Do NOT end with a summary matrix.** Prose only.
 
-5. **Length target: 3,000-5,000 Chinese characters = 10-15 pages.** Do not compress below 3,000 characters — that means you lost content. Do not exceed 5,000 characters — that means you stapled sub-reports without weaving.
+9. **Length target: 3,000-5,000 Chinese characters = 10-15 pages.** Do not compress below 3,000 characters — that means you lost content. Do not exceed 5,000 characters — that means you stapled sub-reports without weaving.
 
-6. **Strip skill vocabulary.** Before finalizing, scan for and remove any occurrence of: "数据充分性", "value_creating", "Claim Gate", "置信度", "Red Flag Inventory", "Commercial Evidence Table", "Conditional Judgment", "概率加权公允价值", "Meta-Question Self-Reflection", "第一部分/第二部分/第三部分/第四部分" headers, "本报告不构成投资建议" (except once at the very end), "Wyckoff Spring/SOS/LPS" (translate to plain Chinese).
+10. **Strip skill vocabulary AND templated phrases.** Before finalizing, scan for and remove ALL of:
+    - Skill vocabulary: "数据充分性", "value_creating", "Claim Gate", "置信度", "Red Flag Inventory", "Commercial Evidence Table", "Conditional Judgment", "概率加权公允价值", "Meta-Question Self-Reflection", "第一部分/第二部分/第三部分/第四部分" headers, "本报告不构成投资建议" (except once at the very end), "Wyckoff Spring/SOS/LPS" (translate to plain Chinese).
+    - **Templated transitions (NEW)**: "综上所述", "由此可见", "换言之", "综合来看", "值得关注的是", "读这个表的关键一句话：", "一句话总结：", "业务总结：", "综合评级", "核心判断：", "长话短说". These are Claude's tells — use plain prose or `总结：` + bullets.
+    - **Hedge stacks (NEW)**: "中性偏负,非高确信多头", "持有偏积极买入", "观望 (Hold / Trade-Only)", "二元期权" as thesis descriptor, "非对称性极强" (overused), English-in-parens subsection labels ("Guidance", "Margin Story").
 
-7. **Output format**: Default to markdown (.md) for easy review and diff. If the user asks for a Word document OR the task requires a shareable file for stakeholders, generate .docx using the `anthropic-skills:docx` skill as `[TICKER]_深度研究报告.docx`. Respect the user's requested format when specified.
+11. **Specific-date density.** Every major business driver paragraph must contain at least **one specific date (YYYY-MM or YYYY-Q#)**. Target: 10+ dated milestones across a report. Vague phrases like "in coming quarters" / "未来几个月" are BANNED.
+
+12. **Risk section discipline.** 风险提示 is 2-4 items MAX in a named list. Each risk must link to an **observable signal to monitor**, not an abstract regulatory/FX/liquidity category. Drop symmetric 4-block Credit/Market/Operational/Regulatory templates — those are compliance output, not analyst output.
+
+13. **Output format**: Default to markdown (.md) for easy review and diff. If the user asks for a Word document OR the task requires a shareable file for stakeholders, generate .docx using the `anthropic-skills:docx` skill as `[TICKER]_深度研究报告.docx`. Respect the user's requested format when specified.
 
 ---
 
@@ -265,16 +293,22 @@ The final report follows the themed structure below. Read `references/report-for
 [Subtitle: one-line thesis positioning — e.g., "AI 驱动下的业务逻辑重构与 2026 年市场估值展望"]
 
 ## 公司简介
-[1-2 paragraphs. What it does, when founded, key stats. Context-setting only.
-100-200 words.]
+[80-150 words. OPEN with narrative tension (pivot, inflection, mispricing) in sentence 1 — NOT with founding date.
+- GOOD opener: "这家源自澳洲的比特币矿工正在把算力卖给 AI 客户,一只脚在加密矿机上,另一只脚跨进 AI 算力云。"
+- BAD opener: "XYZ 成立于 1912 年,总部位于岐阜县大垣市..."
+Founding date, HQ, ticker, float can appear in sentence 3+ or a sidebar.
+End with a one-line setup of what the report will argue.]
 
 ## 业务逻辑
 [THE CORE SECTION — 2-4 paragraphs, 400-800 words.
 Old logic → New logic → Why now → Endgame.
 Include specific data points, management quotes with dates.
 Weave in industry chain context naturally.
+TAM + market share framing is MANDATORY for this section (even rough estimates).
+First-person "我认为..." should appear at least once here.
 This section should make the reader say "I get why this company is interesting RIGHT NOW."
-Governance-change observations from risk analysis may appear here if structurally relevant.]
+Governance-change observations from risk analysis may appear here if structurally relevant.
+**END this section with**: the `我与市场的分歧` mandatory 1-2 sentence paragraph (bolded) — OR place it at the start of 估值情况 if that fits better narratively. Pick ONE placement.]
 
 ## 运营逻辑
 [2-4 paragraphs + capacity-ramp table, 400-700 words.
@@ -302,11 +336,16 @@ If risk grade C+, expand to a full paragraph with named red flags.]
 ## 估值情况
 [2-3 paragraphs + tables, 400-700 words.
 Lead with the ONE primary valuation method (chosen by archetype).
-Derivation with every input named: "2027E EPS $X × historical average P/E 29x = target $Y"
+Derivation with every input named and **math done inline in prose**: "2027E EPS $X × 历史平均 P/E 29x = 目标价 $Y (我认为 29x 不激进因为 [reason])".
+Parenthetical confidence asides are encouraged: "(我认为这已经很保守了)", "(按 250 亿整数估算,方便计算)", "(我不求吃完,只求 [reason])".
 Peer comparison table (3-5 peers, 4-6 columns max).
-Bull/base/bear in prose (one sentence each) — NOT a probability-weighted table.
+Bull/base/bear in prose (one sentence each) — NOT a probability-weighted table, NOT a "综合公允价值" average.
 Multiple re-rating catalyst: what moves the stock from current to target multiple?
-For commodity companies, unit-math appears BEFORE multiple work.]
+For commodity companies, unit-math appears BEFORE multiple work.
+
+**CLOSING LINE REQUIREMENT**: The final sentence of 估值情况 MUST be single-number + upside multiple format:
+- GOOD: "目前市值 40 亿,我们看到 100 亿,6 倍空间。" / "目标价 $140 (约 2.5×,对应 2026E EPS $5.6 × 25x)。"
+- BAD: "三法收敛 ¥7,230-8,700,主推基准 ¥8,700。" / "DCF/EV-EBITDA/SOTP 综合公允价值区间 $X-$Y。"]
 
 ## 技术分析
 [1-2 paragraphs + one small price-level table, 150-200 words.
@@ -318,9 +357,11 @@ NO Wyckoff vocabulary — translate to 投降 / 反弹 / 回测 / 突破 / 上�
 Do NOT re-explain the trade plan here — that's the final section.]
 
 ## 风险提示
-[Bullet list, 3-5 items, 150-250 words.
-Each risk: what it is, severity, what to watch for.
-No scoring matrix. No probability table. No "red flag inventory".]
+[Bullet list, **2-4 items MAX**, 100-200 words. Fewer is better — only thesis-killers.
+Each risk: what it is, **observable signal to monitor** (not abstract regulatory/FX/liquidity category).
+Format: "风险：1, [specific thing], 2, [specific thing]。" is fine — analysts write it this short.
+No scoring matrix. No probability table. No "Red Flag Inventory".
+Do NOT include boilerplate "外汇风险/利率风险/地缘风险" unless they are genuine thesis-killers.]
 
 ## 交易计划
 [Prose, 200-350 words. This replaces the old "总结" + "综合总结 matrix" ending.
@@ -366,9 +407,11 @@ Read `references/style-guide.md` for the complete style guide. Key rules:
 
 ---
 
-## ANTI-TRUNCATION VERIFICATION
+## ANTI-TRUNCATION + VOICE VERIFICATION
 
 Before finalizing the report, run this self-check. A "pass" is either (a) the item is present, OR (b) the item is legitimately unavailable AND the limitation is explicitly stated inline.
+
+### Content checks (truncation prevention)
 
 1. **Customer names** — Did I include every named customer from the fundamental sub-report?
    - **Pass condition (if not disclosed)**: Statement like "客户名称未在 10-K 中披露，使用终端市场作为代理" appears inline in Block C, optionally with Tier-1 or indirect customer context.
@@ -389,7 +432,27 @@ Before finalizing the report, run this self-check. A "pass" is either (a) the it
 8. **Data anomaly flags** — If the source data contains obvious anomalies (identical EPS two years in a row, negative margin percentages, share count discrepancies): is the anomaly flagged inline?
    - **Pass condition**: Anomaly noted in one sentence with "需用户确认数据准确性".
 
-If ANY of these fail the pass conditions, the synthesis is broken. Fix it by re-weaving, not by adding a new appendix.
+### Voice/conviction checks (analyst-output parity)
+
+9. **First-person voice count** — Does "我"/"我认为"/"我觉得"/"我们" appear at least **6 times** across the report? Count them. If <6, rewrite 业务逻辑 and 估值情况 paragraphs to add conviction markers.
+
+10. **Narrative-tension opener** — Does sentence 1 of 公司简介 start with the pivot/inflection/mispricing? If it starts with founding date, ticker, or HQ location, rewrite.
+
+11. **Where-I-Differ paragraph** — Is there a `我与市场的分歧` paragraph (1-2 sentences, bolded) at the end of 业务逻辑 or start of 估值情况? If missing, the report has no alpha — add it.
+
+12. **Single-number target** — Is the CLOSING LINE of 估值情况 a single number + upside multiple? If it's a range ("区间 ¥X-¥Y") or triangulation ("三法收敛"), rewrite.
+
+13. **Inline arithmetic presence** — Does at least one valuation or operating-leverage calculation appear as inline prose arithmetic ("50 × 0.62 = 31 亿...") rather than a cold ledger table? If all math is in tables, rewrite one chain inline.
+
+14. **Banned-phrase scan** — Run a find on: 综上所述 / 由此可见 / 换言之 / 综合来看 / 值得关注的是 / 读这个表的关键一句话 / 一句话总结 / 业务总结 / 综合评级 / 核心判断 / 长话短说 / 二元期权 / 非对称性极强 / 中性偏负 / 非高确信 / Step 1...Step 5 enumeration. All should be ZERO occurrences.
+
+15. **Specific-date density** — Count specific dates (YYYY-MM or YYYY-Q# format) across the report. Target: **10+ dated milestones**. If fewer than 6, the report is too vague — add dates from sub-reports.
+
+16. **Risk section length** — Is 风险提示 at most 4 items? If 5+, trim to the thesis-killers.
+
+17. **Trade plan single-posture** — Is 评级 a single word (买入 / 持有 / 观望 / 卖出) with no stacked hedges? "中性偏负" / "观望 (Hold / Trade-Only)" / "持有偏积极买入" all FAIL.
+
+If ANY of these fail the pass conditions, the synthesis is broken. Fix it by re-weaving, not by adding a new appendix. Voice checks #9-17 are non-negotiable — reports that fail them read like templated Claude output, not analyst output.
 
 ---
 

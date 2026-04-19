@@ -1,8 +1,8 @@
 # Companion Skills — Extensions to the 5 Core Skills
 
-The `stock-research-report` orchestrator can optionally dispatch these 6 additional Claude Skills from `anthropics/financial-services-plugins` (Apache-2.0). They are NOT required for the default deep-research workflow, but they strengthen specific phases or cover new use cases.
+The `stock-research-report` orchestrator can optionally dispatch **9** additional Claude Skills: 6 from `anthropics/financial-services-plugins` (Apache-2.0) + 3 from `tradermonty/claude-trading-skills` (MIT). They are NOT required for the default deep-research workflow, but they strengthen specific phases or cover new use cases.
 
-All 6 skills are drop-in SKILL.md files and can be installed to `~/.claude/skills/` directly.
+All 9 skills are drop-in SKILL.md files and can be installed to `~/.claude/skills/` directly.
 
 ---
 
@@ -169,6 +169,75 @@ Use the Skill tool with `skill: "dcf-model"` and provide:
 
 ---
 
+---
+
+## 7. `macro-regime-overlay` — Macro Regime Context (MIT)
+
+**Source**: `tradermonty/claude-trading-skills/skills/macro-regime-detector` (MIT), adapted
+
+**When to use**: As a prelude to 估值情况 in every deep research report. Tells the reader which macro regime we are in (Expansion / Late-Cycle / Contraction / Recovery) and how that affects the target multiple for the target company.
+
+**What it adds**: A 2-3 sentence regime context paragraph at the start of 估值情况 or as a standalone opening section, citing: (1) yield curve shape, (2) credit spread (HY-OAS), (3) market breadth (RSP/SPY), (4) inflation surprise. Conditions the multiple assumption with regime-typical PE ranges.
+
+**How to dispatch**:
+```
+Use the Skill tool with `skill: "macro-regime-overlay"` and provide:
+- Target date for regime snapshot (default: today)
+- Primary sector of target company (tech / financials / industrials / healthcare / consumer / energy / materials / REITs / utilities / comm services)
+```
+
+**Where the output fits**: Prefix 估值情况 OR insert 1 sentence at top of 业务逻辑 (e.g., "当前处于 [Late-Cycle] 后半段,同业 forward PE 中枢 [X-Y] 倍").
+
+---
+
+## 8. `institutional-flow-tracker` — 13F + Insider Form 4 (MIT)
+
+**Source**: `tradermonty/claude-trading-skills/skills/institutional-flow-tracker` (MIT), adapted
+
+**When to use**: For any name where smart-money positioning is a thesis input — activist names, turnaround names, names with notable 13F holders (Buffett, Ackman, Burry, Klarman, Loeb, Greenlight, Appaloosa).
+
+**What it adds**:
+- Top-5 institutional holders with 90-day % change in position
+- Insider Form 4 transactions in trailing 90 days (buys > sells signal, open-market vs 10b5-1)
+- "Smart money tape" one-line call (accumulating / distributing / mixed)
+
+**How to dispatch**:
+```
+Use the Skill tool with `skill: "institutional-flow-tracker"` and provide:
+- Ticker
+- Lookback (default: 90 days)
+- "Track-only" smart money subset if user has preferences (e.g., "only Buffett/Ackman/Burry")
+```
+
+**Where the output fits**: Woven into 财务数据 or 客户与订单 as a 1-2 sentence "smart money positioning" aside. Also feeds into the investor council if dispatched.
+
+---
+
+## 9. `pead-screener` — Post-Earnings Drift Pattern (MIT)
+
+**Source**: `tradermonty/claude-trading-skills/skills/pead-screener` (MIT), adapted
+
+**When to use**: After an earnings release, when the user wants to know whether the stock is set up for a post-earnings announcement drift (PEAD) continuation or reversal. Complements `earnings-analysis`.
+
+**What it adds**:
+- Surprise magnitude scoring (revenue, EPS, guidance)
+- Day-1 reaction analysis (gap-up vs fill-the-gap)
+- Historical PEAD statistics for this surprise tier (e.g., stocks beating by 10%+ drift +X% over next 60 days on average)
+- Trade setup recommendation (immediate entry, wait for pullback, fade the move)
+
+**How to dispatch**:
+```
+Use the Skill tool with `skill: "pead-screener"` and provide:
+- Ticker
+- Earnings date
+- Consensus and actual (revenue, EPS, guidance)
+- Day-1 stock reaction (gap %, close %, volume vs average)
+```
+
+**Where this sits**: Standalone — usually invoked 1-3 days after earnings. Output pairs with `earnings-analysis` to inform position changes.
+
+---
+
 ## Dispatch Decision Matrix
 
 Use this table to decide which companion skill to invoke:
@@ -184,14 +253,18 @@ Use this table to decide which companion skill to invoke:
 | "Build a DCF model for X" | `dcf-model` | `valuation-calculator` for sanity check |
 | "Second opinion on X" | `stock-research-report` with `investor-council` | — |
 | "Bull/bear debate on X" | `investor-council` | — |
+| "What macro regime are we in" | `macro-regime-overlay` | — |
+| "Who owns X" / "smart money on X" | `institutional-flow-tracker` | `stock-research-report` to feed 财务数据 |
+| "Did X beat and what now" | `earnings-analysis` + `pead-screener` | `thesis-tracker` for position update |
 
 ---
 
 ## Installation
 
-All 6 anthropics skills install to `~/.claude/skills/`:
+All 9 companion skills install to `~/.claude/skills/`:
 
 ```bash
+# 6 from anthropics/financial-services-plugins (Apache-2.0)
 cd /path/to/financial-services-plugins
 for skill in catalyst-calendar earnings-preview earnings-analysis thesis-tracker; do
   cp -r equity-research/skills/$skill ~/.claude/skills/$skill
@@ -199,8 +272,16 @@ done
 for skill in comps-analysis dcf-model; do
   cp -r financial-analysis/skills/$skill ~/.claude/skills/$skill
 done
+
+# 3 from tradermonty/claude-trading-skills (MIT)
+cd /path/to/claude-trading-skills
+for skill in macro-regime-detector institutional-flow-tracker pead-screener; do
+  cp -r skills/$skill ~/.claude/skills/$skill
+done
+# Optionally rename macro-regime-detector → macro-regime-overlay for clarity
+mv ~/.claude/skills/macro-regime-detector ~/.claude/skills/macro-regime-overlay
 ```
 
-**Verification**: After install, the Skill tool's auto-complete should show all 6 new skills. They are callable directly by name (`skill: "catalyst-calendar"`, etc.) without namespacing.
+**Verification**: After install, the Skill tool's auto-complete should show all 9 new skills. They are callable directly by name (`skill: "catalyst-calendar"`, `skill: "macro-regime-overlay"`, etc.) without namespacing.
 
-**License note**: `anthropics/financial-services-plugins` is Apache-2.0. Attribution preserved in the original SKILL.md files.
+**License note**: `anthropics/financial-services-plugins` is Apache-2.0. `tradermonty/claude-trading-skills` is MIT. Attribution preserved in the original SKILL.md files.
