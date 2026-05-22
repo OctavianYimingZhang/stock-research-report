@@ -1,52 +1,123 @@
-# Stock Research Report — Orchestration Skill
+# stock-research-report
 
-An orchestration skill for Claude Code that produces analyst-style deep research reports by running four specialized analysis skills in parallel and synthesizing results into one cohesive narrative.
+A self-contained public-company deep research report Skill.
 
-## What It Does
+The Skill produces analyst style deep research reports with four integrated
+modules:
 
-Instead of outputting four separate reports (fundamentals → short-seller → technicals → valuation), this skill produces **one unified report** that matches the style of professional equity research analysts.
+1. business-model logic
+2. valuation, including assets, orders/backlog, debt, and dilution
+3. short-seller risk
+4. technical analysis and trade planning
 
-## Sub-Skills Required
+This repository has been refactored from the old architecture that stitched
+together four standalone Skills. The Skill no longer depends at runtime on:
 
-This skill orchestrates these four skills (must be installed):
+- `Stock-Analysis-Skill`
+- `valuation-calculator`
+- `short-seller-risk-analysis`
+- `technical-analysis-patterns`
 
-1. **[Stock-Analysis-Skill](https://github.com/OctavianYimingZhang/Stock-Analysis-Skill)** — Fundamental analysis
-2. **[short-seller-risk-analysis](https://github.com/OctavianYimingZhang/short-seller-risk-analysis)** — Forensic risk assessment
-3. **[technical-analysis-patterns](https://github.com/OctavianYimingZhang/technical-analysis-patterns)** — Chart pattern recognition
-4. **[valuation-calculator](https://github.com/OctavianYimingZhang/valuation-calculator)** — Multi-model valuation
+The strongest methods from those repositories are now consolidated into this
+repository's reference framework.
 
 ## Usage
 
-```
+```text
 Use $stock-research-report to analyze [TICKER]
 ```
 
-Optional parameters:
-- Focus areas: "focus on valuation" or "focus on business transformation"
-- Bloomberg data: Attach screenshots for higher-precision analysis
+Optional inputs:
 
-## Output Format
+- company name, exchange, and currency
+- Bloomberg, FactSet, or Capital IQ screenshots
+- filings, investor presentations, or earnings-call transcripts
+- K-line screenshots or OHLCV data
+- user focus areas such as valuation, short-seller risk, order quality, or
+  technical entry
 
-Single .docx file with sections:
-1. 公司简介
-2. 业务运营
-3. 行业地位
-4. 业务逻辑重构 (core section)
-5. 客户结构
-6. 负债结构
-7. 财务数据
-8. 估值情况
-9. 技术分析
-10. 风险提示
-11. 总结 (with verdict, position sizing, targets)
+## Output Structure
 
-## Key Design Principles
+The report uses this fixed structure:
 
-- **Narrative-first**: Reads like one analyst wrote it, not four AI skills
-- **Opinionated**: Clear investment conclusions, not hedged probabilities
-- **Concise**: 8-12 pages, not 20+
-- **Embedded analysis**: Short-seller risk = one line; technicals = 1-2 paragraphs
-- **Actionable conclusion**: Position size, target price, stop-loss, catalyst
+1. Company Overview
+2. Business Model Logic
+3. Operations, Customers, And Orders
+4. Financials, Assets, And Debt
+5. Valuation
+6. Short-Seller Risk
+7. Technical Analysis
+8. Risk Factors
+9. Trade Plan
+
+## Evidence Priority
+
+Use sources in this order:
+
+1. issuer filings, exchange notices, and regulator records
+2. issuer investor relations, earnings-call transcripts, and formal guidance
+3. government, regulator, industry association, customer, and partner
+   disclosures
+4. reliable market-data providers and terminal data
+5. high-quality secondary research
+
+User-provided historical reports are style, structure, and depth references
+only. They are not factual sources for a new report.
+
+## Core Rules
+
+- Do not invent data, dates, contracts, customers, orders, or target prices.
+- State data gaps explicitly.
+- Use one primary valuation method; other methods are sanity checks only.
+- Valuation must cover assets, orders/backlog, debt, cash, and dilution.
+- Short-seller risk must cover customer/contract authenticity, revenue
+  recognition, cash-flow quality, related parties, audit quality, insider
+  behavior, equity financing, and regulatory risk.
+- Technical analysis must output trend, pattern, support/resistance, entry, stop
+  loss, and take-profit levels.
+
+## Reference Files
+
+- `references/business-model-framework.md`
+- `references/valuation-framework.md`
+- `references/short-seller-risk-framework.md`
+- `references/technical-analysis-framework.md`
+- `references/report-style-patterns.md`
+- `references/external-inspirations-and-license-notes.md`
+
+## External Inspirations And Licenses
+
+The Skill borrows workflow ideas from public projects but does not copy
+third-party code or long prompt text. Referenced projects:
+
+- [Kronos](https://github.com/shiyu-coder/Kronos)
+- [FinRobot](https://github.com/AI4Finance-Foundation/FinRobot)
+- [TradingAgents](https://github.com/TauricResearch/TradingAgents)
+- [ai-hedge-fund](https://github.com/virattt/ai-hedge-fund)
+- [Anthropic financial-services plugins](https://github.com/anthropics/financial-services-plugins)
+- [TraderMonty Claude Trading Skills](https://github.com/tradermonty/claude-trading-skills)
+- [OctagonAI skills](https://github.com/OctagonAI/skills)
+
+License notes are documented in
+`references/external-inspirations-and-license-notes.md`.
+
+## Validation
+
+Run:
+
+```bash
+python3 scripts/validate.py
+```
+
+The validator checks:
+
+- Skill metadata
+- reference links
+- eval case metadata
+- required report structure
+- removal of old orchestration dependencies
+- absence of baked-in company names or ticker-based prompts
+- English-only repository text for Skill and GitHub-facing files
 
 ## License
 

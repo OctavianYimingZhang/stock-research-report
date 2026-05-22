@@ -1,0 +1,25 @@
+id: advanced-packaging-assets
+archetype: advanced_packaging_asset_intensive
+expected_primary_valuation: forward_ev_ebitda_or_mid_cycle_eps
+required_sections:
+  - Company Overview
+  - Business Model Logic
+  - Operations, Customers, And Orders
+  - Financials, Assets, And Debt
+  - Valuation
+  - Short-Seller Risk
+  - Technical Analysis
+  - Risk Factors
+  - Trade Plan
+required_checks:
+  - advanced_packaging_value_capture
+  - capex_and_asset_base
+  - customer_commitments_or_disclosure_gap
+  - debt_and_subsidy_or_prepayment_coverage
+  - one_primary_valuation_method
+  - short_seller_grade
+  - technical_entry_stop_tp
+forbidden:
+  - ai_infrastructure_label_without_value_capture
+  - capex_ignored_in_fcf
+  - probability_weighted_method_average

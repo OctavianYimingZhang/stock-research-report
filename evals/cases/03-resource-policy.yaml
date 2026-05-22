@@ -1,0 +1,25 @@
+id: resource-policy
+archetype: resource_policy
+expected_primary_valuation: unit_volume_price_margin_to_ebitda
+required_sections:
+  - Company Overview
+  - Business Model Logic
+  - Operations, Customers, And Orders
+  - Financials, Assets, And Debt
+  - Valuation
+  - Short-Seller Risk
+  - Technical Analysis
+  - Risk Factors
+  - Trade Plan
+required_checks:
+  - resource_or_asset_quality
+  - order_backlog_conversion
+  - commodity_price_and_unit_margin
+  - permit_or_regulatory_gate
+  - debt_cash_share_count_bridge
+  - one_primary_valuation_method
+  - short_seller_grade
+forbidden:
+  - scarcity_narrative_without_unit_math
+  - backlog_without_delivery_probability
+  - probability_weighted_method_average

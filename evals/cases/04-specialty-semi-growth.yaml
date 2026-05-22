@@ -1,0 +1,25 @@
+id: specialty-semi-growth
+archetype: specialty_semiconductor_growth
+expected_primary_valuation: forward_ev_ebitda_with_rerating_catalyst
+required_sections:
+  - Company Overview
+  - Business Model Logic
+  - Operations, Customers, And Orders
+  - Financials, Assets, And Debt
+  - Valuation
+  - Short-Seller Risk
+  - Technical Analysis
+  - Risk Factors
+  - Trade Plan
+required_checks:
+  - business_logic_old_to_new_driver
+  - capacity_reservation_or_customer_commitment
+  - capex_and_asset_base
+  - net_cash_or_debt_bridge
+  - one_primary_valuation_method
+  - short_seller_grade
+  - technical_entry_stop_tp
+forbidden:
+  - capacity_as_value_without_contracting_status
+  - equal_weighted_dcf_and_multiples
+  - four_skill_parallel_dispatch

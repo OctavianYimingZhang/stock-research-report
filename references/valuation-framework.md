@@ -1,0 +1,221 @@
+# Valuation Framework
+
+This reference defines the valuation system for the integrated research report.
+It uses standard CFA-aligned public-company valuation methods without copying
+textbook prose.
+
+## Required Inputs
+
+Before valuation, reconcile:
+
+- current share price and market capitalization
+- basic and diluted shares
+- cash and short-term investments
+- total debt, lease liabilities if material, and preferred/convertible
+  securities
+- enterprise value
+- latest revenue, gross margin, EBITDA, EBIT, net income, EPS, CFO, capex, FCF
+- segment revenue and margin where relevant
+- backlog/orders/contracts and expected conversion schedule
+- asset base, replacement value, book value, resource/NAV, or liquidation value
+  where relevant
+- debt maturities, interest cost, covenants, cash runway, ATM capacity, warrants,
+  convertibles, and expected dilution
+
+If diluted share count, net debt, or order quality cannot be reconciled, do not
+present a high-conviction target price.
+
+## Market Pricing Mechanism
+
+Reverse-engineer what the market is pricing before selecting the model:
+
+- Does the stock move on EPS, EBITDA, revenue, backlog, policy news, commodity
+  price, trial/regulatory events, book value, or technical momentum?
+- What denominator do closest peers trade on?
+- What multiple or assumption is implied by the current price?
+- Which assumption is fragile?
+
+The primary valuation method must match both company economics and the market's
+actual pricing mechanism.
+
+## Method Selection
+
+Use one primary method.
+
+| Company type | Primary method | Secondary check |
+|---|---|---|
+| Semiconductor cyclical | Mid-cycle EPS x through-cycle P/E | EV/EBITDA |
+| Specialty semi or advanced manufacturing growth | Forward EV/EBITDA with re-rating catalyst | P/E or SOTP |
+| Resource or commodity | Unit volume x price x margin -> EBITDA x peer EV/EBITDA | NAV or asset value |
+| Early commercialization with firm orders | Risk-adjusted backlog or forward EV/revenue | Cash runway and dilution |
+| Pre-revenue binary asset | rNPV or scenario framing | Cash less burn |
+| Turnaround | Normalized FCF, normalized EBITDA, or replacement/liquidation floor | Debt recovery value |
+| Financial institution | Residual income or P/B x sustainable ROE | P/E |
+| Multi-segment company | SOTP | Consolidated EV/EBITDA |
+| Stable cash generator | P/FCF or FCFF DCF | Dividend/shareholder yield |
+
+Do not average methods. A secondary method can invalidate or sanity-check the
+primary method, but it is not an equal vote.
+
+## Standard Formulas
+
+### Enterprise Value
+
+```text
+EV = equity market value + debt + preferred stock + minority interest - cash
+```
+
+### FCFF
+
+```text
+FCFF = EBIT x (1 - tax rate) + D&A - capex - change in net working capital
+FCFF = CFO + interest x (1 - tax rate) - capex
+```
+
+Use FCFF when capital structure is changing, leverage is material, or valuing
+the firm before debt holders.
+
+### FCFE
+
+```text
+FCFE = CFO - capex + net borrowing
+FCFE = net income + D&A - capex - change in net working capital + net borrowing
+```
+
+Use FCFE only when leverage is stable and equity cash flow is meaningful.
+
+### WACC
+
+```text
+WACC = E/(D+E) x cost of equity + D/(D+E) x pre-tax cost of debt x (1 - tax rate)
+```
+
+Use market values where available. If debt market value is unavailable, book
+debt can be used with a note.
+
+### Cost Of Equity
+
+```text
+cost of equity = risk-free rate + beta x equity risk premium + specific risk adjustments
+```
+
+Add country, size, liquidity, or project risk only if justified and stated.
+
+### Terminal Value
+
+```text
+perpetuity TV = FCFF[n+1] / (WACC - terminal growth)
+exit multiple TV = terminal metric x terminal multiple
+```
+
+Terminal growth must not exceed a sustainable economy-level growth assumption
+without explicit justification.
+
+### Residual Income
+
+```text
+residual income = net income - required return on equity x beginning book equity
+equity value = current book equity + present value of future residual income
+```
+
+Use for banks, lenders, and firms where book capital and ROE are the relevant
+value drivers.
+
+### SOTP
+
+```text
+equity value =
+  sum(segment metric x segment multiple)
+  + non-operating assets
+  - net debt
+  - minority interest
+  - holding/company-specific discount if justified
+```
+
+Use only when segments have materially different economics.
+
+### Commodity/Resource Unit Math
+
+```text
+revenue = volume x realized price
+unit margin = realized price - cash cost
+EBITDA = volume x unit margin - fixed cash cost + byproduct credits
+equity value = EBITDA x peer EV/EBITDA - net debt
+```
+
+For resources, include reserve/resource confidence, permitting status, recovery
+rate, capex, byproduct credits, and realized vs. spot pricing.
+
+### rNPV
+
+```text
+rNPV = probability of success x present value of conditional cash flows
+       - remaining development cost
+company equity value = sum(asset rNPV) + cash - debt
+```
+
+Use for drug pipelines, single-asset projects, reserves, permits, or other
+binary outcomes. Do not use full-success DCF for assets that still face major
+approval or commercialization gates.
+
+## Orders And Backlog
+
+Order valuation requires evidence quality.
+
+| Evidence | Valuation use |
+|---|---|
+| recognized revenue | strong |
+| binding PO or firm backlog | strong if delivery and margin are visible |
+| paid capacity reservation | medium to strong depending on cancellation terms |
+| IDIQ/framework | scenario input only unless conversion history exists |
+| MOU/LOI/pilot | not a valuation denominator |
+| management pipeline | narrative only |
+
+For backlog:
+
+```text
+risk-adjusted backlog value =
+  backlog x delivery probability x expected gross margin
+  - required capex/working capital
+```
+
+Backlog is not profit. Always convert to margin and cash flow.
+
+## Assets And Debt
+
+Every valuation must address:
+
+- asset replacement value or liquidation relevance
+- cash and restricted cash
+- gross debt and net debt
+- maturity schedule by year
+- interest burden and coverage
+- covenants or going-concern language
+- convertibles, warrants, preferred stock, ATM usage, and dilution
+- lease liabilities if material
+
+Debt can change the equity thesis even if enterprise value looks attractive.
+
+## Inline Arithmetic Standard
+
+Show the main math in prose:
+
+State the forecast metric, selected multiple or discount rate, resulting equity
+value, net debt adjustment, share count bridge, and implied upside in one
+readable chain.
+
+Tables can support the math, but the reader must see the equation in the
+narrative.
+
+## When Not To Give A Target
+
+Do not give a target price when:
+
+- share count cannot be reconciled
+- debt or preferred stack materially changes equity value and is unknown
+- backlog quality is weak but central to the thesis
+- the company has no revenue denominator and no binary-asset rNPV support
+- the available evidence cannot support the implied cash-flow path
+
+In these cases, write a scenario frame and list the data needed to unblock a
+target.

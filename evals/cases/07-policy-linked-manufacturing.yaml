@@ -1,0 +1,25 @@
+id: policy-linked-manufacturing
+archetype: policy_linked_manufacturing
+expected_primary_valuation: forward_ebitda_with_policy_and_capacity_scenario
+required_sections:
+  - Company Overview
+  - Business Model Logic
+  - Operations, Customers, And Orders
+  - Financials, Assets, And Debt
+  - Valuation
+  - Short-Seller Risk
+  - Technical Analysis
+  - Risk Factors
+  - Trade Plan
+required_checks:
+  - subsidy_and_policy_dependency
+  - capacity_ramp_and_utilization
+  - customer_order_visibility
+  - cash_runway_debt_and_dilution
+  - one_primary_valuation_method
+  - short_seller_grade
+  - technical_entry_stop_tp_or_observe
+forbidden:
+  - subsidy_as_permanent_without_policy_risk
+  - capacity_without_utilization
+  - target_without_net_debt_adjustment

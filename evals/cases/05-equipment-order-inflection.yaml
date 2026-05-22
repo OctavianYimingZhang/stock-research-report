@@ -1,0 +1,25 @@
+id: equipment-order-inflection
+archetype: semiconductor_equipment_growth
+expected_primary_valuation: forward_ev_ebitda_or_eps_recovery
+required_sections:
+  - Company Overview
+  - Business Model Logic
+  - Operations, Customers, And Orders
+  - Financials, Assets, And Debt
+  - Valuation
+  - Short-Seller Risk
+  - Technical Analysis
+  - Risk Factors
+  - Trade Plan
+required_checks:
+  - customer_concentration
+  - order_backlog_conversion
+  - operating_leverage_from_revenue_to_eps
+  - cash_runway_and_dilution
+  - one_primary_valuation_method
+  - short_seller_grade
+  - technical_entry_stop_tp_or_observe
+forbidden:
+  - order_press_release_without_revenue_conversion
+  - target_price_without_diluted_share_count
+  - technical_section_without_trade_plan

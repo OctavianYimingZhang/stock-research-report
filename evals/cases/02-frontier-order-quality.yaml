@@ -1,0 +1,25 @@
+id: frontier-order-quality
+archetype: early_commercialization_frontier
+expected_primary_valuation: risk_adjusted_backlog_or_forward_revenue_scenario
+required_sections:
+  - Company Overview
+  - Business Model Logic
+  - Operations, Customers, And Orders
+  - Financials, Assets, And Debt
+  - Valuation
+  - Short-Seller Risk
+  - Technical Analysis
+  - Risk Factors
+  - Trade Plan
+required_checks:
+  - contract_quality_hierarchy
+  - recognized_revenue_po_backlog_distinction
+  - cash_runway_and_dilution
+  - governance_and_promotion_screen
+  - one_primary_valuation_method
+  - short_seller_grade
+  - technical_entry_stop_tp_or_observe
+forbidden:
+  - mou_or_pilot_as_valuation_denominator
+  - probability_weighted_method_average
+  - unverified_customer_claim

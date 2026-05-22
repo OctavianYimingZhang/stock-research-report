@@ -1,0 +1,24 @@
+id: semiconductor-cyclical
+archetype: semiconductor_cyclical
+expected_primary_valuation: mid_cycle_eps_times_pe
+required_sections:
+  - Company Overview
+  - Business Model Logic
+  - Operations, Customers, And Orders
+  - Financials, Assets, And Debt
+  - Valuation
+  - Short-Seller Risk
+  - Technical Analysis
+  - Risk Factors
+  - Trade Plan
+required_checks:
+  - business_logic_old_to_new_driver
+  - named_customers_or_disclosure_gap
+  - debt_cash_share_count_bridge
+  - one_primary_valuation_method
+  - short_seller_grade
+  - technical_entry_stop_tp
+forbidden:
+  - four_skill_parallel_dispatch
+  - probability_weighted_method_average
+  - technical_section_without_trade_plan
