@@ -39,6 +39,7 @@ Read these files before writing the report:
 - `references/short-seller-risk-framework.md`
 - `references/technical-analysis-framework.md`
 - `references/report-style-patterns.md`
+- `references/quality-calibration-loop.md`
 - `references/external-inspirations-and-license-notes.md`
 
 ## Non-Negotiable Rules
@@ -70,6 +71,12 @@ Read these files before writing the report:
 10. **No third-party code copying.** External GitHub projects may influence
     workflow design and optional tool ideas only. Do not copy their code or
     proprietary prompts.
+11. **No baked-in company triggers.** Do not use prior report companies,
+    tickers, or temporary calibration companies as runtime trigger conditions.
+    Extract methods only.
+12. **Material numbers need source markers.** Revenue, cash, debt, share count,
+    backlog, customer concentration, target price, and technical levels must be
+    traceable to a source or clearly labeled as an assumption.
 
 ## Workflow
 
@@ -103,6 +110,11 @@ Build an internal evidence ledger with four labels:
 
 Facts and judgments must not blur in the final report.
 
+For material facts in the final report, include concise source markers such as
+`[filing]`, `[earnings call]`, `[IR presentation]`, `[regulator]`,
+`[counterparty]`, or `[market data]`. The marker must make the evidence class
+clear even when a full bibliography is not requested.
+
 ### 2. Business Model Logic
 
 Use `references/business-model-framework.md`.
@@ -133,6 +145,8 @@ pricing mechanism:
   NAV, backlog, or optionality?
 - Which events moved the stock recently?
 - Are sell-side or peer multiples using the same denominator?
+- What operating or financial assumption is already implied by the current
+  share price or enterprise value?
 
 Then select one primary method:
 
@@ -155,7 +169,10 @@ Required valuation outputs:
 - asset base and liquidation/replacement relevance
 - backlog/order quality and revenue conversion schedule
 - debt stack, maturity wall, cash runway, interest burden, and dilution risk
+- net income to operating cash flow reconciliation and working-capital movement
+- current-market-implied expectation before the analyst target
 - primary valuation derivation with inline arithmetic
+- EV-to-equity-to-diluted-share bridge for any per-share target
 - bull/base/bear cases, each tied to a concrete observable
 - one target price or target market cap, unless evidence is insufficient
 - short sanity check from one secondary method
@@ -178,10 +195,15 @@ Run the forensic screen internally:
 - share dilution, convertibles, warrants, and ATM usage
 - promotional activity versus real milestones
 - litigation, regulatory, sanctions, and policy risk
+- short interest, borrow cost, failures to deliver, and options skew when
+  reliable market data is available
 
 Output:
 
 - a concise letter grade: `A/B/C/D/F`
+- a one-sentence activist-short attack narrative and why it is strong or weak
+- strict separation of verified facts, allegations, inferences, and unanswered
+  questions
 - green flags and red flags
 - if grade is A/B, embed in financial/debt discussion and keep the standalone
   short-seller section short
@@ -195,6 +217,7 @@ Use `references/technical-analysis-framework.md`.
 Required inputs:
 
 - daily, weekly, and monthly OHLCV chart data or reliable chart screenshots
+- chart date and adjusted/unadjusted status for historical prices
 - recent catalyst calendar from the fundamental work
 
 Required output:
@@ -205,11 +228,32 @@ Required output:
 - volume confirmation
 - whether chart structure confirms or contradicts the fundamental thesis
 - entry zone, stop loss, first take-profit, second take-profit
+- position size tied to evidence quality and stop distance
 
 If no defensible setup exists, state that there is no clear entry point and name
 the price or catalyst that would change the setup. Do not invent levels.
 
-### 6. Final Report Composition
+### 6. Quality Calibration Loop
+
+Use `references/quality-calibration-loop.md` before finalizing substantial
+reports or when improving this Skill.
+
+Process:
+
+1. Draft the report for the requested company or a temporary public-company
+   calibration target.
+2. Compare the draft against the reference-caliber quality bar: opening tension,
+   business causal chain, order quality, cash conversion, current-implied
+   valuation, per-share bridge, short-risk effect, technical freshness, and
+   final trade usefulness.
+3. Diagnose every gap as either a data gap, reasoning gap, structure gap, or
+   validation gap.
+4. Revise the report or Skill contract until no actionable gap remains.
+
+Do not commit temporary company names, tickers, or generated reports as triggers
+or reusable prompts.
+
+### 7. Final Report Composition
 
 The final report must use this fixed structure:
 
@@ -237,11 +281,14 @@ Section requirements:
 - `Operations, Customers, And Orders`: named facilities, capacity, utilization,
   named customers, backlog/order table, delivery cadence, bottlenecks.
 - `Financials, Assets, And Debt`: 3-year financial table, forward model, asset
-  base, cash, debt, maturities, dilution, and embedded short-seller quality
-  note.
+  base, cash, debt, maturities, dilution, cash-conversion reconciliation, and
+  embedded short-seller quality note.
 - `Valuation`: one primary method with inline arithmetic; no method averaging.
+  State the current-market-implied assumption before the analyst target and show
+  the EV-to-equity-to-diluted-share bridge.
 - `Short-Seller Risk`: concise unless red flags are material.
-- `Technical Analysis`: compact and decision-oriented.
+- `Technical Analysis`: compact, fresh, adjusted where needed, and
+  decision-oriented.
 - `Risk Factors`: specific risk list; do not bury thesis-breaking evidence here
   if it affects valuation.
 - `Trade Plan`: final actionable conclusion with stance, position size, entry,

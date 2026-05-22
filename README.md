@@ -83,7 +83,26 @@ only. They are not factual sources for a new report.
 - `references/short-seller-risk-framework.md`
 - `references/technical-analysis-framework.md`
 - `references/report-style-patterns.md`
+- `references/quality-calibration-loop.md`
 - `references/external-inspirations-and-license-notes.md`
+
+## Calibration Method
+
+The current Skill was calibrated with a fresh public-company test outside the
+prior reference-report set. The temporary company name, ticker, and generated
+draft are intentionally not committed, because company-specific cases must not
+become runtime triggers.
+
+The comparison found gaps in four areas:
+
+- valuation needed a current-market-implied expectation before the analyst
+  target
+- orders needed a quality ladder for cases where formal backlog is absent
+- financial quality needed net-income-to-operating-cash-flow reconciliation
+- technical analysis needed chart-date freshness and adjusted-OHLCV controls
+
+Those gaps are now encoded in the Skill, reference framework, eval metadata, and
+validation script.
 
 ## External Inspirations And Licenses
 
@@ -109,6 +128,15 @@ Run:
 python3 scripts/validate.py
 ```
 
+To check a generated markdown report against the output contract:
+
+```bash
+python3 scripts/validate_report_output.py path/to/report.md
+```
+
+The repository includes `evals/fixtures/report-contract-fixture.md` as a
+minimal contract fixture for CI.
+
 The validator checks:
 
 - Skill metadata
@@ -118,6 +146,8 @@ The validator checks:
 - removal of old orchestration dependencies
 - absence of baked-in company names or ticker-based prompts
 - English-only repository text for Skill and GitHub-facing files
+- quality-loop contracts for source markers, implied valuation, order quality,
+  cash conversion, short risk, and technical freshness
 
 ## License
 

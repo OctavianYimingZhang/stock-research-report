@@ -6,9 +6,11 @@ short and decision-oriented.
 
 ## Required Inputs
 
-Use daily, weekly, and monthly OHLCV data or chart screenshots. If chart data is
-unavailable, do not invent levels. Ask for data or state that the technical
-section is blocked.
+Use daily, weekly, and monthly OHLCV data or chart screenshots. Record the
+chart date. Prefer split-adjusted and dividend-adjusted OHLCV when using historical
+prices. The chart date must be visible. If chart data is unavailable, stale, or not adjusted when adjustment
+matters, do not invent levels. Ask for data or state that the technical section
+is blocked.
 
 ## Three-Layer Internal Framework
 
@@ -34,7 +36,7 @@ Use internally:
 - breakout and retest
 - supply expansion after failed breakout
 
-Translate these into plain Chinese in the final report:
+Translate these into normal investor language in the final report:
 
 - capitulation
 - rebound
@@ -107,6 +109,7 @@ Trade Plan:
 
 Required content:
 
+- chart data date and adjusted/unadjusted status
 - monthly trend
 - weekly trend
 - daily trend

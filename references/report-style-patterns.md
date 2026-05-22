@@ -7,11 +7,12 @@ without treating those reports as factual evidence.
 
 The report should read like one analyst explaining a stock to an investor:
 
-- Chinese prose
 - the user-requested report language
 - clear thesis tension in the opening
 - concrete numbers
 - inline arithmetic
+- visible source markers for material numbers
+- current-market-implied expectations before the analyst target
 - compact tables only when they reduce ambiguity
 - direct conclusion
 - final trade plan
@@ -26,6 +27,25 @@ The first sentence should explain what is being repriced or disputed now.
 Founding year, headquarters, and listing venue belong after that sentence.
 
 Do not open with static corporate genealogy.
+
+## Reference-Caliber Quality Bar
+
+A report is not complete merely because all headings exist. It must satisfy
+these quality tests:
+
+- the opening names the disputed repricing question, not a generic theme
+- the business model explains the customer pain, the product, the capture
+  mechanism, the bottleneck, and the observable that proves the thesis
+- the operations section separates disclosed backlog from weaker order proxies
+- the financial section reconciles net income to operating cash flow and
+  explains working-capital movement
+- the valuation section states what the current price already implies before
+  presenting the analyst assumption
+- the short-seller section names the plausible attack narrative even when the
+  final grade is clean
+- the technical section converts trend into entry, invalidation, and take-profit
+  levels
+- the final trade plan ties position size to evidence quality and stop distance
 
 ## Section Rhythm
 

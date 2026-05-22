@@ -7,6 +7,7 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
+TEXT_SUFFIXES = {".md", ".yaml", ".yml", ".py"}
 
 
 REQUIRED_REFERENCES = [
@@ -15,6 +16,7 @@ REQUIRED_REFERENCES = [
     "references/short-seller-risk-framework.md",
     "references/technical-analysis-framework.md",
     "references/report-style-patterns.md",
+    "references/quality-calibration-loop.md",
     "references/external-inspirations-and-license-notes.md",
 ]
 
@@ -42,6 +44,33 @@ FORBIDDEN_SKILL_PATTERNS = [
     r"must be installed",
 ]
 
+FORBIDDEN_CASE_WORDS = [
+    "ex" + "ample",
+    "Ex" + "ample",
+    "EX" + "AMPLE",
+]
+
+FORBIDDEN_REFERENCE_CASES = [
+    "T" + "E",
+    "T" + "ER",
+    "U" + "MAC",
+    "U" + "AMY",
+    "T" + "SEM",
+    "A" + "EHR",
+    "A" + "MKR",
+    "Tera" + "dyne",
+    "Unusual " + "Machines",
+    "Ae" + "hr",
+    "Am" + "kor",
+    "Tower " + "Semiconductor",
+    "T1 " + "Energy",
+]
+
+FORBIDDEN_LANGUAGE_CONFLICTS = [
+    "Ch" + "inese " + "prose",
+    "plain " + "Ch" + "inese",
+]
+
 
 def fail(message: str) -> None:
     print(f"ERROR: {message}", file=sys.stderr)
@@ -53,6 +82,20 @@ def read(path: str) -> str:
     if not target.exists():
         fail(f"missing file: {path}")
     return target.read_text(encoding="utf-8")
+
+
+def repo_text_files() -> list[Path]:
+    files: list[Path] = []
+    for path in ROOT.rglob("*"):
+        if not path.is_file():
+            continue
+        if ".git" in path.parts:
+            continue
+        if path.name == "LICENSE":
+            continue
+        if path.suffix in TEXT_SUFFIXES:
+            files.append(path)
+    return sorted(files)
 
 
 def parse_frontmatter(text: str) -> dict[str, object]:
@@ -114,6 +157,16 @@ def validate_skill() -> None:
         if re.search(pattern, skill, re.IGNORECASE):
             fail("SKILL.md appears to allow probability-weighted or averaged valuation targets")
 
+    for phrase in [
+        "Quality Calibration Loop",
+        "current-market-implied",
+        "source markers",
+        "EV-to-equity-to-diluted-share",
+        "No baked-in company triggers",
+    ]:
+        if phrase not in skill:
+            fail(f"SKILL.md missing quality-loop requirement: {phrase}")
+
 
 def validate_readme() -> None:
     readme = read("README.md")
@@ -149,8 +202,8 @@ def validate_evals() -> None:
     if not case_dir.exists():
         fail("missing evals/cases")
     cases = sorted(case_dir.glob("*.yaml"))
-    if len(cases) < 7:
-        fail("expected at least 7 eval case YAML files")
+    if len(cases) < 8:
+        fail("expected at least 8 eval case YAML files")
     seen_archetypes = set()
     for case in cases:
         data = load_yaml(case)
@@ -176,6 +229,7 @@ def validate_evals() -> None:
         "semiconductor_equipment_growth",
         "advanced_packaging_asset_intensive",
         "policy_linked_manufacturing",
+        "fresh_outside_reference",
     }
     missing = expected - seen_archetypes
     if missing:
@@ -183,6 +237,9 @@ def validate_evals() -> None:
 
 
 def validate_references() -> None:
+    if (ROOT / "DEPRECATION.md").exists():
+        fail("DEPRECATION.md conflicts with the active standalone Skill repository")
+
     for ref in REQUIRED_REFERENCES:
         text = read(ref)
         if len(text.strip()) < 500:
@@ -195,25 +252,67 @@ def validate_references() -> None:
 
 
 def validate_english_only_repo_text() -> None:
-    checked_roots = [
-        ROOT / "SKILL.md",
-        ROOT / "README.md",
-        ROOT / "references",
-        ROOT / "evals",
-        ROOT / "scripts",
-        ROOT / ".github",
-    ]
-    files: list[Path] = []
-    for root in checked_roots:
-        if root.is_file():
-            files.append(root)
-        else:
-            files.extend(p for p in root.rglob("*") if p.is_file())
-    for path in files:
+    for path in repo_text_files():
         text = path.read_text(encoding="utf-8")
         if re.search(r"[\u4e00-\u9fff]", text):
             rel = path.relative_to(ROOT)
             fail(f"{rel} contains non-English CJK text")
+
+
+def validate_no_baked_case_language() -> None:
+    for path in repo_text_files():
+        text = path.read_text(encoding="utf-8")
+        rel = path.relative_to(ROOT)
+        for word in FORBIDDEN_CASE_WORDS:
+            if word.lower() in text.lower():
+                fail(f"{rel} contains banned case-word language")
+        for term in FORBIDDEN_REFERENCE_CASES:
+            if re.search(rf"(?<![A-Za-z0-9]){re.escape(term)}(?![A-Za-z0-9])", text, re.IGNORECASE):
+                fail(f"{rel} contains a baked-in reference-company term")
+        for phrase in FORBIDDEN_LANGUAGE_CONFLICTS:
+            if phrase.lower() in text.lower():
+                fail(f"{rel} contains conflicting language-output instruction")
+
+
+def validate_quality_contracts() -> None:
+    if not (ROOT / "scripts" / "validate_report_output.py").exists():
+        fail("missing generated-report output validator")
+    if not (ROOT / "evals" / "fixtures" / "report-contract-fixture.md").exists():
+        fail("missing report output contract fixture")
+
+    valuation = read("references/valuation-framework.md")
+    for phrase in [
+        "Current-Price-Implied Bridge",
+        "current price already implies",
+        "target equity value = target EV - net debt + non-operating assets",
+        "target price = target equity value / diluted shares",
+        "order-proxy ladder",
+    ]:
+        if phrase not in valuation:
+            fail(f"valuation framework missing quality contract: {phrase}")
+
+    short = read("references/short-seller-risk-framework.md")
+    for phrase in [
+        "verified fact",
+        "allegation",
+        "inference",
+        "unanswered question",
+        "short interest",
+        "activist-short attack narrative",
+    ]:
+        if phrase not in short:
+            fail(f"short-seller framework missing quality contract: {phrase}")
+
+    technical = read("references/technical-analysis-framework.md")
+    for phrase in [
+        "chart date",
+        "split-adjusted",
+        "dividend-adjusted",
+        "stale",
+        "adjusted/unadjusted status",
+    ]:
+        if phrase not in technical:
+            fail(f"technical framework missing quality contract: {phrase}")
 
 
 def main() -> None:
@@ -222,6 +321,8 @@ def main() -> None:
     validate_references()
     validate_evals()
     validate_english_only_repo_text()
+    validate_no_baked_case_language()
+    validate_quality_contracts()
     print("OK: validation passed")
 
 

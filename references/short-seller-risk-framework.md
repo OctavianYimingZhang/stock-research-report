@@ -44,6 +44,17 @@ Expanded mode explains how the risk affects valuation or position sizing.
 
 ## Core Checks
 
+Label sensitive claims precisely:
+
+- `verified fact`: directly sourced
+- `allegation`: claim made by a short report, lawsuit, regulator, or other
+  external party
+- `inference`: analyst conclusion derived from verified facts
+- `unanswered question`: unresolved item that needs a filing, transcript,
+  counterparty confirmation, or market-data source
+
+Do not present an inference as a verified fact.
+
 ### 1. Customer And Contract Authenticity
 
 Check:
@@ -101,6 +112,8 @@ Check:
 - preferred stock, convertibles, warrants
 - ATM or shelf registration
 - share count growth over 1, 3, and 5 years
+- short interest, borrow availability/cost, failures to deliver, and options
+  skew where reliable market data is available
 
 Dilution matters twice: it funds survival and changes per-share upside.
 
@@ -183,6 +196,9 @@ Short-seller risk must affect the report:
 - C grade: discount multiple, reduce position size, or require milestone
   confirmation
 - D/F grade: avoid high-conviction target unless the issue is resolved
+
+Also state the most plausible activist-short attack narrative in one sentence.
+If the company is clean, the sentence should explain why that narrative is weak.
 
 Do not bury material red flags only in `Risk Factors`; place them where they affect
 business logic, order quality, debt safety, or valuation.

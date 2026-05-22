@@ -38,6 +38,31 @@ Reverse-engineer what the market is pricing before selecting the model:
 The primary valuation method must match both company economics and the market's
 actual pricing mechanism.
 
+## Current-Price-Implied Bridge
+
+Before giving an analyst target, state what the current share price already
+implies. In short, state what the current price already implies. This is the
+main test that prevents a report from becoming a generic model.
+
+Use the pricing denominator that the market is using:
+
+```text
+implied metric = current EV / current trading multiple
+implied multiple = current EV / forward metric
+implied EPS = current share price / current P/E
+implied revenue conversion = current EV / expected backlog-to-revenue path
+```
+
+Then compare it with the analyst assumption:
+
+```text
+current price implies [metric or multiple]; the report's base case assumes
+[metric or multiple] because [verified operational evidence].
+```
+
+If the current price already discounts the upside scenario, say so and do not
+force a bullish target.
+
 ## Method Selection
 
 Use one primary method.
@@ -181,6 +206,21 @@ risk-adjusted backlog value =
 
 Backlog is not profit. Always convert to margin and cash flow.
 
+When formal backlog is absent, use an order-proxy ladder rather than treating
+all demand signals as equal:
+
+| Proxy | How to use it |
+|---|---|
+| revenue already recognized | strongest proof of conversion |
+| customer concentration in filings | evidence of demand, but adds credit and concentration risk |
+| inventory purchase obligation | supply-side commitment, not customer demand |
+| management revenue guide | forecast input, haircut unless repeatedly met |
+| capacity expansion funded by customers | strong only if payment and cancellation terms are disclosed |
+| production capacity sold out | useful, but weak unless buyer, price, and margin are visible |
+
+The report must state whether the order evidence is a revenue fact, legal
+contract, financial obligation, management guide, or unsupported pipeline.
+
 ## Assets And Debt
 
 Every valuation must address:
@@ -206,6 +246,18 @@ readable chain.
 
 Tables can support the math, but the reader must see the equation in the
 narrative.
+
+For equity targets, include the full per-share bridge:
+
+```text
+target EV = forecast metric x selected multiple
+target equity value = target EV - net debt + non-operating assets
+target price = target equity value / diluted shares
+```
+
+Do not skip directly from EV to target price. If share count may change through
+warrants, convertibles, preferred stock, or expected equity issuance, use the
+diluted or pro-forma share count and say why.
 
 ## When Not To Give A Target
 

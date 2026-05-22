@@ -1,0 +1,30 @@
+id: fresh-outside-reference
+archetype: fresh_outside_reference
+expected_primary_valuation: selected_from_market_pricing_mechanism
+required_sections:
+  - Company Overview
+  - Business Model Logic
+  - Operations, Customers, And Orders
+  - Financials, Assets, And Debt
+  - Valuation
+  - Short-Seller Risk
+  - Technical Analysis
+  - Risk Factors
+  - Trade Plan
+required_checks:
+  - current_rerating_dispute
+  - source_markers_for_material_numbers
+  - current_market_implied_expectation
+  - order_proxy_quality_ladder
+  - debt_cash_share_count_bridge
+  - cash_conversion_reconciliation
+  - one_primary_valuation_method
+  - short_seller_grade
+  - verified_fact_vs_inference_labels
+  - technical_chart_freshness
+  - technical_entry_stop_tp
+forbidden:
+  - prior_reference_company_trigger
+  - probability_weighted_method_average
+  - stale_chart_levels
+  - target_without_ev_to_equity_share_bridge
