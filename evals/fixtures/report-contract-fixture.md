@@ -5,6 +5,7 @@
 
 The current price implies a re-rating dispute around whether verified demand can
 convert into earnings. Revenue was 100 in the latest filing [filing].
+Decision Grade: B, with a binding cap from still-developing cash conversion.
 
 ## Business Model Logic
 
@@ -22,7 +23,10 @@ treated as profit.
 
 Cash and short-term investments are reconciled with debt, lease liabilities,
 maturity timing, diluted shares, operating cash flow, OCF, cash conversion, and
-working capital.
+working capital. The EBITDA-to-OCF-to-FCF bridge explains that EBITDA converts
+to OCF after working-capital use and then to FCF after capex. FCF margin, FCF
+conversion, SBC-adjusted FCF, FCF per share, and stock-based compensation are
+included before owner cash flow is used in valuation.
 
 ## Valuation
 
@@ -50,3 +54,5 @@ valuation multiple compression.
 ## Trade Plan
 
 Position size is limited by evidence quality and stop distance.
+The action grade is B, and the binding cap reason is cash-flow quality that is
+not yet strong enough for maximum size.

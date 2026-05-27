@@ -8,7 +8,8 @@ reference company names, tickers, or trigger phrases into the Skill.
 The Skill should be calibrated against prior high-quality reports by extracting
 methods, not by copying companies. Prior reports are used to identify structural
 patterns: opening tension, business-model depth, valuation mechanics, order and
-debt treatment, short-risk thinking, and trade-plan usefulness.
+debt treatment, profit/cash-flow quality, short-risk thinking, decision
+scorecard discipline, and trade-plan usefulness.
 
 ## Fresh-Company Test
 
@@ -24,10 +25,13 @@ The test must check whether the Skill forces the analyst to produce:
 - order evidence graded by legal and financial quality
 - cash, debt, maturity, dilution, and share-count bridge
 - net income to operating cash flow reconciliation
+- EBITDA-to-OCF-to-FCF bridge, capex quality, SBC-adjusted FCF, and FCF per
+  share
 - current-market-implied expectation before analyst valuation
 - one primary valuation method and one secondary sanity check
 - short-seller risk grade with verified fact versus inference separation
 - technical analysis using current adjusted OHLCV or a blocked-status note
+- action grade and binding cap reason from the decision scorecard
 - entry, stop, first take-profit, second take-profit, position size, and
   invalidation
 
@@ -43,8 +47,10 @@ After drafting the test report, compare it against the quality bar:
 | valuation is mechanical | gives target without current implied assumption | require current-price-implied bridge |
 | target math is incomplete | skips EV-to-equity-to-share bridge | require per-share bridge |
 | financial quality is missed | net income and cash flow diverge without explanation | require cash-conversion reconciliation |
+| owner cash flow is missed | FCF ignores capex, SBC, or diluted shares | require profit/cash-flow quality analysis |
 | short risk is isolated | red flags do not affect valuation or size | require valuation or position-size impact |
 | technical work is stale | levels lack chart date or adjusted OHLCV status | require freshness and adjustment check |
+| scorecard is cosmetic | high grade ignores a binding blocker | require action-grade cap reason |
 | trade plan is vague | no entry, stop, take-profit, or size | require full trade contract |
 
 ## Exit Criteria

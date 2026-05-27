@@ -58,6 +58,16 @@ def main() -> None:
         if not usable_bridge:
             fail("report target language lacks unblocked equity bridge")
 
+    if re.search(r"Decision Grade|action grade", report, re.IGNORECASE):
+        scorecards = manifest.get("decision_scorecards")
+        if not isinstance(scorecards, list) or not scorecards:
+            fail("report decision-grade language requires decision scorecard manifest")
+        if not any(
+            isinstance(item, dict) and item.get("action_grade") and item.get("binding_cap_reason")
+            for item in scorecards
+        ):
+            fail("report decision-grade language lacks action grade and binding cap reason manifest")
+
     print("OK: report-manifest validation passed")
 
 

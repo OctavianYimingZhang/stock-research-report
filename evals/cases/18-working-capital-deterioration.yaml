@@ -1,0 +1,25 @@
+id: working-capital-deterioration
+archetype: working_capital_deterioration_caps_valuation
+expected_primary_valuation: valuation_discounted_until_working_capital_normalizes
+required_sections:
+  - Company Overview
+  - Business Model Logic
+  - Operations, Customers, And Orders
+  - Financials, Assets, And Debt
+  - Valuation
+  - Short-Seller Risk
+  - Technical Analysis
+  - Risk Factors
+  - Trade Plan
+required_checks:
+  - working_capital_cycle_analysis
+  - dso_dio_dpo_review
+  - cash_conversion_reconciliation
+  - short_seller_grade
+  - one_primary_valuation_method
+  - decision_scorecard_action_grade
+  - binding_cap_reason
+forbidden:
+  - revenue_growth_without_receivables_inventory_review
+  - valuation_multiple_expansion_despite_unexplained_ocf_shortfall
+  - numeric_score_average

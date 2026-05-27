@@ -16,7 +16,13 @@ REQUIRED_TOP_LEVEL = [
     "data_gaps",
     "valuation_cases",
     "equity_bridges",
+    "profit_cash_flow_quality_analyses",
     "technical_setups",
+    "expectation_revision_assessments",
+    "momentum_regime_assessments",
+    "valuation_odds_assessments",
+    "risk_filter_assessments",
+    "decision_scorecards",
     "trade_plans",
     "short_seller_assessments",
     "report_sections",
@@ -81,7 +87,13 @@ def main() -> None:
     data_gap_ids = ids(require_list(root["data_gaps"], "data_gaps"), "data_gaps")
     valuation_ids = ids(require_list(root["valuation_cases"], "valuation_cases"), "valuation_cases")
     equity_bridge_ids = ids(require_list(root["equity_bridges"], "equity_bridges"), "equity_bridges")
+    profit_cash_ids = ids(require_list(root["profit_cash_flow_quality_analyses"], "profit_cash_flow_quality_analyses"), "profit_cash_flow_quality_analyses")
     technical_ids = ids(require_list(root["technical_setups"], "technical_setups"), "technical_setups")
+    expectation_ids = ids(require_list(root["expectation_revision_assessments"], "expectation_revision_assessments"), "expectation_revision_assessments")
+    momentum_ids = ids(require_list(root["momentum_regime_assessments"], "momentum_regime_assessments"), "momentum_regime_assessments")
+    valuation_odds_ids = ids(require_list(root["valuation_odds_assessments"], "valuation_odds_assessments"), "valuation_odds_assessments")
+    risk_filter_ids = ids(require_list(root["risk_filter_assessments"], "risk_filter_assessments"), "risk_filter_assessments")
+    decision_scorecard_ids = ids(require_list(root["decision_scorecards"], "decision_scorecards"), "decision_scorecards")
     short_ids = ids(require_list(root["short_seller_assessments"], "short_seller_assessments"), "short_seller_assessments")
 
     for partition in require_list(root["source_partitions"], "source_partitions"):
@@ -121,6 +133,26 @@ def main() -> None:
         if obj.get("equity_bridge_id") not in equity_bridge_ids:
             fail(f"valuation case {obj.get('id')} lacks equity bridge")
 
+    for analysis in require_list(root["profit_cash_flow_quality_analyses"], "profit_cash_flow_quality_analyses"):
+        obj = require_dict(analysis, "profit cash-flow quality analysis")
+        if not obj.get("valuation_effect") or not obj.get("short_risk_effect"):
+            fail(f"profit cash-flow analysis {obj.get('id')} lacks valuation or short-risk effect")
+
+    for scorecard in require_list(root["decision_scorecards"], "decision_scorecards"):
+        obj = require_dict(scorecard, "decision scorecard")
+        if obj.get("expectation_revision_assessment_id") not in expectation_ids:
+            fail(f"decision scorecard {obj.get('id')} lacks expectation revision assessment")
+        if obj.get("momentum_regime_assessment_id") not in momentum_ids:
+            fail(f"decision scorecard {obj.get('id')} lacks momentum regime assessment")
+        if obj.get("valuation_odds_assessment_id") not in valuation_odds_ids:
+            fail(f"decision scorecard {obj.get('id')} lacks valuation odds assessment")
+        if obj.get("risk_filter_assessment_id") not in risk_filter_ids:
+            fail(f"decision scorecard {obj.get('id')} lacks risk filter assessment")
+        if obj.get("profit_cash_flow_quality_analysis_id") not in profit_cash_ids:
+            fail(f"decision scorecard {obj.get('id')} lacks profit cash-flow quality analysis")
+        if not obj.get("action_grade") or not obj.get("binding_cap_reason"):
+            fail(f"decision scorecard {obj.get('id')} lacks action grade or binding cap reason")
+
     for setup in require_list(root["technical_setups"], "technical_setups"):
         obj = require_dict(setup, "technical setup")
         if obj.get("freshness_status") == "stale" and obj.get("drives_trade_plan") is True:
@@ -134,6 +166,8 @@ def main() -> None:
             fail(f"trade plan {obj.get('id')} references unknown technical setup")
         if obj.get("short_seller_assessment_id") not in short_ids:
             fail(f"trade plan {obj.get('id')} references unknown short assessment")
+        if obj.get("decision_scorecard_id") not in decision_scorecard_ids:
+            fail(f"trade plan {obj.get('id')} references unknown decision scorecard")
 
     for assessment in require_list(root["short_seller_assessments"], "short_seller_assessments"):
         obj = require_dict(assessment, "short-seller assessment")

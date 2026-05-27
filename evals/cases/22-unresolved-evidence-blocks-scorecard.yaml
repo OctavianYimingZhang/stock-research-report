@@ -1,0 +1,25 @@
+id: unresolved-evidence-blocks-scorecard
+archetype: unresolved_evidence_blocks_scorecard
+expected_primary_valuation: action_grade_capped_or_blocked_by_unresolved_high_materiality_gap
+required_sections:
+  - Company Overview
+  - Business Model Logic
+  - Operations, Customers, And Orders
+  - Financials, Assets, And Debt
+  - Valuation
+  - Short-Seller Risk
+  - Technical Analysis
+  - Risk Factors
+  - Trade Plan
+required_checks:
+  - data_gap_gate
+  - decision_scorecard_action_grade
+  - binding_cap_reason
+  - blocked_conclusion_named
+  - one_primary_valuation_method
+  - short_seller_grade
+  - verified_fact_vs_inference_labels
+forbidden:
+  - high_action_grade_with_unresolved_blocking_gap
+  - target_or_trade_plan_forced_through_blocked_evidence
+  - numeric_score_average

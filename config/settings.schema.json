@@ -39,6 +39,7 @@
         "valuation_memo",
         "short_seller_attack_memo",
         "trade_plan_only",
+        "scorecard_summary",
         "evidence_gap_report",
         "source_conflict_report",
         "incremental_refresh_summary"

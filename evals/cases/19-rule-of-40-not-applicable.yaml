@@ -1,0 +1,24 @@
+id: rule-of-40-not-applicable
+archetype: rule_of_40_not_applicable
+expected_primary_valuation: metric_marked_not_applicable_when_business_model_does_not_fit
+required_sections:
+  - Company Overview
+  - Business Model Logic
+  - Operations, Customers, And Orders
+  - Financials, Assets, And Debt
+  - Valuation
+  - Short-Seller Risk
+  - Technical Analysis
+  - Risk Factors
+  - Trade Plan
+required_checks:
+  - rule_of_40_applicability
+  - not_applicable_allowed
+  - profit_cash_flow_quality_analysis
+  - one_primary_valuation_method
+  - short_seller_grade
+  - decision_scorecard_action_grade
+  - binding_cap_reason
+forbidden:
+  - forcing_rule_of_40_on_non_subscription_business
+  - numeric_score_average

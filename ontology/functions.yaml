@@ -94,6 +94,41 @@ functions:
     output: cash_conversion_score
     blocking_gaps:
       - missing_cash_flow_statement
+  - name: calculate_cash_quality_bridge
+    inputs:
+      - net_income
+      - ebitda
+      - operating_cash_flow
+      - capex
+      - change_in_working_capital
+      - stock_based_compensation
+    output: profit_cash_flow_quality_bridge
+    blocking_gaps:
+      - missing_cash_flow_statement
+      - missing_capex
+      - missing_sbc
+  - name: assess_working_capital_cycle
+    inputs:
+      - revenue
+      - receivables
+      - inventory
+      - payables
+      - contract_assets
+      - deferred_revenue
+    output: working_capital_cycle_assessment
+    blocking_gaps:
+      - missing_balance_sheet_detail
+      - missing_revenue_period
+  - name: calculate_sbc_adjusted_fcf_per_share
+    inputs:
+      - operating_cash_flow
+      - maintenance_capex
+      - stock_based_compensation
+      - diluted_share_count
+    output: sbc_adjusted_fcf_per_share
+    blocking_gaps:
+      - missing_sbc
+      - missing_diluted_share_count
   - name: debt_safety_score
     inputs:
       - cash
@@ -148,6 +183,25 @@ functions:
     output: short_seller_grade
     blocking_gaps:
       - missing_governance_data
+  - name: build_decision_scorecard
+    inputs:
+      - business_model_thesis
+      - profit_cash_flow_quality_analysis
+      - valuation_case
+      - short_seller_assessment
+      - technical_setup
+    output: decision_scorecard
+    blocking_gaps:
+      - missing_action_grade_inputs
+  - name: determine_action_grade_cap
+    inputs:
+      - valuation_odds
+      - risk_filter
+      - momentum_regime
+      - data_gaps
+    output: binding_cap_reason
+    blocking_gaps:
+      - unresolved_binding_cap_reason
   - name: technical_freshness_check
     inputs:
       - chart_date

@@ -13,6 +13,8 @@ The report should read like one analyst explaining a stock to an investor:
 - inline arithmetic
 - visible source markers for material numbers
 - current-market-implied expectations before the analyst target
+- profit-to-cash-flow quality before valuation confidence
+- compact decision scorecard summary where it sharpens the trade conclusion
 - compact tables only when they reduce ambiguity
 - direct conclusion
 - final trade plan
@@ -38,13 +40,16 @@ these quality tests:
   mechanism, the bottleneck, and the observable that proves the thesis
 - the operations section separates disclosed backlog from weaker order proxies
 - the financial section reconciles net income to operating cash flow and
-  explains working-capital movement
+  explains working-capital movement, capex quality, SBC-adjusted FCF, and FCF
+  per share
 - the valuation section states what the current price already implies before
   presenting the analyst assumption
 - the short-seller section names the plausible attack narrative even when the
   final grade is clean
 - the technical section converts trend into entry, invalidation, and take-profit
   levels
+- the decision scorecard states action grade and binding cap reason without
+  numeric score averaging
 - the final trade plan ties position size to evidence quality and stop distance
 
 ## Section Rhythm
@@ -101,6 +106,19 @@ For risky companies, name the specific issue and valuation impact.
 The short-seller paragraph should identify the risk type, evidence, and effect
 on valuation or position sizing. Avoid dashboard-style scoring unless serious
 red flags justify an expanded forensic section.
+
+## Decision Scorecard Style
+
+Use the scorecard as a compact decision summary, not as a separate model. The
+reader should see why the grade is capped:
+
+- strong company quality but weak cash conversion
+- improving operations but valuation already prices the upside
+- good fundamental setup but overextended momentum
+- clean short-seller risk but unresolved share-count bridge
+
+The scorecard must use an action grade and binding cap reason. Do not average
+numeric scores or let a clean category hide a blocking gap.
 
 ## Technical Style
 

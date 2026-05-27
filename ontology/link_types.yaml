@@ -100,6 +100,18 @@ link_types:
     from: DilutionInstrument
     to: EquityBridge
     purpose: Dilution affects per-share value.
+  - name: refines_financial_quality
+    from: ProfitCashFlowQualityAnalysis
+    to: FinancialQualityAssessment
+    purpose: Profit and cash-flow analysis deepens the earnings-quality assessment.
+  - name: cash_quality_supports_valuation
+    from: ProfitCashFlowQualityAnalysis
+    to: ValuationCase
+    purpose: Cash-flow quality supports, caps, or blocks valuation confidence.
+  - name: cash_quality_flags_short_risk
+    from: ProfitCashFlowQualityAnalysis
+    to: ShortRiskSignal
+    purpose: Weak cash conversion or per-share dilution becomes a short-risk signal when material.
   - name: bridges_to_target_price
     from: EquityBridge
     to: ValuationCase
@@ -116,6 +128,26 @@ link_types:
     from: TechnicalSetup
     to: TradePlan
     purpose: Technical setup constrains entry, stop, and take-profit.
+  - name: expectation_feeds_scorecard
+    from: ExpectationRevisionAssessment
+    to: DecisionScorecard
+    purpose: Revision assessment feeds the final action grade.
+  - name: momentum_feeds_scorecard
+    from: MomentumRegimeAssessment
+    to: DecisionScorecard
+    purpose: Momentum regime assessment feeds the final action grade.
+  - name: valuation_odds_feeds_scorecard
+    from: ValuationOddsAssessment
+    to: DecisionScorecard
+    purpose: Valuation odds assessment feeds the final action grade.
+  - name: risk_filter_feeds_scorecard
+    from: RiskFilterAssessment
+    to: DecisionScorecard
+    purpose: Risk filter assessment caps the final action grade.
+  - name: scorecard_constrains_trade
+    from: DecisionScorecard
+    to: TradePlan
+    purpose: Decision scorecard constrains stance, position size, and action grade.
   - name: valuation_constrains_trade
     from: ValuationCase
     to: TradePlan

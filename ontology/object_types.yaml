@@ -205,6 +205,22 @@ object_types:
       - working_capital_driver
       - cash_conversion_score
       - accounting_risk_note
+  - name: ProfitCashFlowQualityAnalysis
+    purpose: Owner cash-flow quality analysis linking reported profit to OCF, FCF, SBC, capex, dilution, and valuation confidence.
+    required_properties:
+      - ocf_to_net_income_reconciliation
+      - ebitda_to_ocf_to_fcf_bridge
+      - fcf_margin_or_conversion
+      - working_capital_cycle
+      - capex_quality
+      - maintenance_vs_growth_capex
+      - sbc_adjusted_fcf
+      - fcf_per_share
+      - diluted_share_count_effect
+      - rule_of_40_applicability
+      - cash_quality_verdict
+      - valuation_effect
+      - short_risk_effect
   - name: CurrentMarketImpliedBridge
     purpose: What the current price or enterprise value already discounts.
     required_properties:
@@ -269,6 +285,51 @@ object_types:
       - stop
       - take_profit_1
       - take_profit_2
+  - name: ExpectationRevisionAssessment
+    purpose: Assessment of whether financial and operating expectations are likely to revise up, revise down, or remain unconfirmed.
+    required_properties:
+      - revenue_revision_direction
+      - earnings_or_cash_flow_revision_direction
+      - order_or_guidance_revision_direction
+      - catalyst_needed
+      - source_status
+  - name: MomentumRegimeAssessment
+    purpose: Momentum regime derived from monthly, weekly, and daily technical setup plus volume and overextension.
+    required_properties:
+      - monthly_weekly_daily_alignment
+      - overextension_status
+      - volume_confirmation
+      - technical_freshness_status
+      - fundamental_confirmation_status
+  - name: ValuationOddsAssessment
+    purpose: Assessment of upside and downside odds after comparing current-implied expectations with the base case.
+    required_properties:
+      - current_implied_vs_base_case
+      - upside_downside_asymmetry
+      - primary_method_dependency
+      - target_blocker_or_gap
+      - valuation_odds_verdict
+  - name: RiskFilterAssessment
+    purpose: Assessment of whether short risk, balance sheet, dilution, cash quality, governance, or evidence gaps cap the action grade.
+    required_properties:
+      - short_seller_grade_effect
+      - balance_sheet_constraint
+      - cash_flow_quality_constraint
+      - evidence_quality_constraint
+      - binding_cap_reason
+  - name: DecisionScorecard
+    purpose: Report projection that compresses evidence-backed research objects into action grade and trade-plan constraint.
+    required_properties:
+      - company_quality
+      - operating_trend
+      - expectation_revision
+      - growth_logic
+      - momentum_state
+      - valuation_odds
+      - risk_filter
+      - action_grade
+      - binding_cap_reason
+      - trade_plan_effect
   - name: TradePlan
     purpose: Final position and risk plan.
     required_properties:

@@ -1,0 +1,26 @@
+id: cash-conversion-quality
+archetype: cash_conversion_quality
+expected_primary_valuation: cash_flow_multiple_allowed_only_after_owner_fcf_bridge
+required_sections:
+  - Company Overview
+  - Business Model Logic
+  - Operations, Customers, And Orders
+  - Financials, Assets, And Debt
+  - Valuation
+  - Short-Seller Risk
+  - Technical Analysis
+  - Risk Factors
+  - Trade Plan
+required_checks:
+  - profit_cash_flow_quality_analysis
+  - ebitda_to_ocf_to_fcf_bridge
+  - fcf_margin_or_conversion
+  - fcf_per_share
+  - one_primary_valuation_method
+  - short_seller_grade
+  - decision_scorecard_action_grade
+  - binding_cap_reason
+forbidden:
+  - mature_cash_flow_multiple_without_ocf_bridge
+  - owner_fcf_without_diluted_shares
+  - numeric_score_average

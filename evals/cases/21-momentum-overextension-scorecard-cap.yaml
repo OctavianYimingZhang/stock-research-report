@@ -1,0 +1,25 @@
+id: momentum-overextension-scorecard-cap
+archetype: momentum_overextension_scorecard_cap
+expected_primary_valuation: entry_wait_or_reduced_size_when_momentum_is_overextended
+required_sections:
+  - Company Overview
+  - Business Model Logic
+  - Operations, Customers, And Orders
+  - Financials, Assets, And Debt
+  - Valuation
+  - Short-Seller Risk
+  - Technical Analysis
+  - Risk Factors
+  - Trade Plan
+required_checks:
+  - momentum_regime_assessment
+  - overextension_status
+  - technical_chart_freshness
+  - decision_scorecard_action_grade
+  - binding_cap_reason
+  - one_primary_valuation_method
+  - short_seller_grade
+forbidden:
+  - full_size_entry_after_overextended_move_without_pullback_plan
+  - technical_levels_without_chart_date
+  - numeric_score_average

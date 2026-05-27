@@ -24,6 +24,10 @@ company archetypes from the user's reference-report set.
 - blocked trade plan when chart data is stale
 - reduced position size when short-seller risk reaches C grade
 - source-priority resolution when material sources conflict
+- profit and cash-flow quality gates covering OCF, EBITDA, FCF, working capital,
+  capex, SBC, dilution, and FCF per share
+- decision scorecard caps from valuation stretch, momentum overextension, and
+  unresolved high-materiality evidence gaps
 
 ## Required Assertions
 
@@ -46,6 +50,8 @@ Each case specifies:
 - settings and output-view separation from factual evidence
 - current-market-implied valuation bridge
 - cash-conversion reconciliation
+- profit/cash-flow quality analysis
+- decision scorecard action grade and binding cap reason
 - technical chart freshness and adjusted-data status
 
 Run:

@@ -13,7 +13,7 @@ Use five layers:
 | Bronze | Preserve raw source fidelity | `SourceSnapshot`, `SourceDocument`, raw filing, transcript, presentation, regulator record, OHLCV, screenshot |
 | Source Index | Route source slices before extraction | `SourcePartition` |
 | Silver | Clean and validate extracted evidence | `EvidencePartition`, `EvidenceItem`, `Claim`, `MetricObservation`, `ContractOrder`, `DebtInstrument`, `DilutionInstrument` |
-| Gold | Analysis-ready research products | `BusinessModelThesis`, `CurrentMarketImpliedBridge`, `EquityBridge`, `ValuationCase`, `ShortSellerAssessment`, `TechnicalSetup`, `TradePlan` |
+| Gold | Analysis-ready research products | `BusinessModelThesis`, `ProfitCashFlowQualityAnalysis`, `CurrentMarketImpliedBridge`, `EquityBridge`, `ValuationCase`, `ShortSellerAssessment`, `TechnicalSetup`, `DecisionScorecard`, `TradePlan` |
 | Report View | Final user-facing projection | `Report`, `ReportSection` |
 
 ## Layer Rules
@@ -81,6 +81,7 @@ Typical `fail` outcomes:
 - weak order signal drives valuation
 - chart date is missing for technical levels
 - valuation method averaging appears
+- action grade appears without a binding cap reason
 
 Typical `block` outcomes:
 

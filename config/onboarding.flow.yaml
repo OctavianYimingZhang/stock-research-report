@@ -20,6 +20,10 @@ presets:
     label: Trade Plan
     research_mode: technical_only
     output_view: trade_plan_only
+  - id: scorecard_summary
+    label: Scorecard Summary
+    research_mode: full_report
+    output_view: scorecard_summary
   - id: evidence_gap_scan
     label: Evidence Gap Scan
     research_mode: gap_scan

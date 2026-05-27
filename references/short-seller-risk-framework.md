@@ -87,15 +87,22 @@ faster, explain the working-capital risk.
 
 ### 3. Cash Flow Quality
 
+Read `ProfitCashFlowQualityAnalysis` before assigning the final grade.
+
 Check:
 
 - cumulative OCF vs. cumulative net income
+- EBITDA -> OCF -> FCF bridge
+- FCF margin and FCF conversion
 - CFO conversion ratio
 - FCF after maintenance capex
 - working-capital drivers
+- DSO, DIO, DPO, inventory, receivables, and contract assets
 - capitalized costs
 - non-GAAP add-backs
 - stock-based compensation
+- SBC-adjusted FCF and FCF per share
+- diluted shares outstanding and per-share cash-flow dilution
 
 OCF consistently below net income is not proof of fraud, but it is a strong
 quality warning that must be explained.

@@ -48,6 +48,7 @@ def build_prompt(settings: dict[str, Any], identifier: str) -> str:
         f"- valuation strictness: share count blocker {value(settings, 'valuation_policy.block_target_if_share_count_unresolved')}, net debt blocker {value(settings, 'valuation_policy.block_target_if_net_debt_unresolved')}, senior claims blocker {value(settings, 'valuation_policy.block_target_if_senior_claims_unresolved')}",
         f"- short-risk threshold: {value(settings, 'short_risk_policy.expand_threshold')}",
         f"- technical requirement: current OHLCV {value(settings, 'technical_policy.require_current_ohlcv')}, chart date {value(settings, 'technical_policy.require_chart_date')}, adjusted status {value(settings, 'technical_policy.require_adjusted_status')}",
+        "- decision scorecard: require action grade and binding cap reason",
         f"- interaction level: {value(settings, 'interaction_level')}",
         "",
         "Apply the Skill evidence rules. Treat user hypotheses as questions to test, not as evidence.",

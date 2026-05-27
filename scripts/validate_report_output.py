@@ -60,12 +60,18 @@ def main() -> None:
     require(r"debt|lease liabilities|maturity", text, "missing debt or maturity discussion")
     require(r"backlog|order|purchase obligation|capacity reservation|contract", text, "missing order or backlog discussion")
     require(r"operating cash flow|OCF|cash conversion|working capital", text, "missing cash-conversion reconciliation")
+    require(r"EBITDA[- ]to[- ]OCF[- ]to[- ]FCF|EBITDA.*OCF.*FCF", text, "missing EBITDA-to-OCF-to-FCF bridge")
+    require(r"FCF margin|FCF conversion", text, "missing FCF margin or FCF conversion")
+    require(r"SBC[- ]adjusted|stock[- ]based compensation", text, "missing SBC-adjusted cash-flow treatment")
+    require(r"FCF per share|free cash flow per share", text, "missing FCF per-share analysis")
     require(r"Short-Seller Risk:\s*[ABCDF]\b|grade:\s*[ABCDF]\b", text, "missing short-seller risk grade")
     require(r"verified fact|inference|unanswered question|allegation", text, "missing fact/inference separation")
     require(r"chart date|OHLCV|adjusted", text, "missing chart freshness or adjustment note")
     require(r"entry", text, "missing entry level")
     require(r"stop", text, "missing stop loss or invalidation")
     require(r"take[- ]profit|TP1|TP2", text, "missing take-profit levels")
+    require(r"Decision Grade|action grade", text, "missing decision scorecard action grade")
+    require(r"binding cap|cap reason", text, "missing scorecard binding cap reason")
 
     if re.search(r"probability-weighted|method average|average of.*DCF.*P/E", text, re.IGNORECASE | re.DOTALL):
         fail("report appears to average valuation methods")

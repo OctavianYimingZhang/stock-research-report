@@ -16,7 +16,7 @@ evidence.
 
 ## Presets
 
-Use six preset entry points:
+Use these preset entry points:
 
 | Preset | Internal mode | Output view |
 |---|---|---|
@@ -25,6 +25,7 @@ Use six preset entry points:
 | Valuation Memo | `valuation_only` | `valuation_memo` |
 | Short-Seller Audit | `short_risk_only` | `short_seller_attack_memo` |
 | Trade Plan | `technical_only` | `trade_plan_only` |
+| Scorecard Summary | `full_report` | `scorecard_summary` |
 | Evidence Gap Scan | `gap_scan` | `evidence_gap_report` |
 
 Do not ask many questions up front. Capture the preset, ticker, exchange or
@@ -65,6 +66,7 @@ Supported views:
 - `valuation_memo`
 - `short_seller_attack_memo`
 - `trade_plan_only`
+- `scorecard_summary`
 - `evidence_gap_report`
 - `source_conflict_report`
 - `incremental_refresh_summary`

@@ -1,0 +1,25 @@
+id: valuation-stretch-scorecard-cap
+archetype: valuation_stretch_scorecard_cap
+expected_primary_valuation: positive_thesis_capped_when_current_price_already_discounts_base_case
+required_sections:
+  - Company Overview
+  - Business Model Logic
+  - Operations, Customers, And Orders
+  - Financials, Assets, And Debt
+  - Valuation
+  - Short-Seller Risk
+  - Technical Analysis
+  - Risk Factors
+  - Trade Plan
+required_checks:
+  - current_market_implied_expectation
+  - valuation_odds_assessment
+  - decision_scorecard_action_grade
+  - binding_cap_reason
+  - one_primary_valuation_method
+  - short_seller_grade
+  - technical_entry_stop_tp
+forbidden:
+  - bullish_action_grade_when_price_already_discounts_base_case
+  - target_without_current_implied_bridge
+  - numeric_score_average

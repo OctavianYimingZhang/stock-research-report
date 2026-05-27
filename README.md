@@ -6,8 +6,9 @@
 
 `stock-research-report` is a self-contained Codex Skill for producing
 evidence-first public-company deep research reports. It combines business-model
-analysis, valuation, short-seller risk review, and technical trade planning into
-one ontology-backed research workflow.
+analysis, profit and cash-flow quality, valuation, short-seller risk review,
+decision scorecard grading, and technical trade planning into one
+ontology-backed research workflow.
 
 The project is designed for analysts who need a report that says what can be
 verified, what is only an inference, what is still blocked by missing data, and
@@ -15,13 +16,15 @@ how valuation and trade conclusions change when evidence quality is weak.
 
 ## What It Produces
 
-The Skill generates analyst-style reports with four integrated pillars:
+The Skill generates analyst-style reports with five integrated pillars:
 
 1. business-model logic
-2. valuation, including assets, orders/backlog, debt, dilution, and an explicit
+2. profit and cash-flow quality, including owner FCF, working capital, capex,
+   SBC, dilution, and per-share cash flow
+3. valuation, including assets, orders/backlog, debt, dilution, and an explicit
    equity bridge
-3. short-seller risk
-4. technical analysis and trade planning
+4. short-seller risk
+5. decision scorecard, technical analysis, and trade planning
 
 The default report has nine sections: company overview, business model,
 operations and orders, financials and debt, valuation, short-seller risk,
@@ -38,8 +41,8 @@ validators.
 The final report is not written directly from raw text. It is projected from an
 evidence-backed object graph that connects source snapshots, source partitions,
 evidence items, claims, metrics, orders, assets, debt, valuation cases,
-short-risk signals, technical setups, data gaps, gate results, and report
-sections.
+profit/cash-flow quality, short-risk signals, decision scorecards, technical
+setups, data gaps, gate results, and report sections.
 
 ## Architecture At A Glance
 
@@ -58,8 +61,8 @@ The research data flow uses a lightweight lakehouse pattern:
 - Bronze: immutable source snapshots
 - Source Index: pre-extraction source partitions
 - Silver: validated evidence, claims, metrics, orders, debt, and dilution
-- Gold: business thesis, equity bridge, valuation, short risk, technical setup,
-  and trade plan
+- Gold: business thesis, profit/cash-flow quality, equity bridge, valuation,
+  short risk, technical setup, decision scorecard, and trade plan
 - Report View: final output sections
 
 Gate results are explicit: `pass`, `warn`, `block`, `fail`, or
@@ -144,18 +147,25 @@ only. They are not factual sources for a new report.
 - Use one primary valuation method; other methods are sanity checks only.
 - Build an explicit equity bridge before allowing a per-share target.
 - Valuation must cover assets, orders/backlog, debt, cash, and dilution.
+- Profit and cash-flow quality must cover OCF versus net income,
+  EBITDA-to-OCF-to-FCF, working capital, capex quality, SBC-adjusted FCF, FCF
+  per share, and diluted share count.
 - Short-seller risk must cover customer/contract authenticity, revenue
   recognition, cash-flow quality, related parties, audit quality, insider
   behavior, equity financing, and regulatory risk.
 - Technical analysis must output trend, pattern, support/resistance, entry, stop
   loss, and take-profit levels.
+- Decision scorecard grading must use qualitative action grades with a binding
+  cap reason rather than numeric score averaging.
 
 ## Reference Files
 
 - `references/business-model-framework.md`
 - `references/valuation-framework.md`
+- `references/profit-cash-flow-quality-framework.md`
 - `references/short-seller-risk-framework.md`
 - `references/technical-analysis-framework.md`
+- `references/scorecard-decision-framework.md`
 - `references/report-style-patterns.md`
 - `references/research-lakehouse-framework.md`
 - `references/evidence-indexing-framework.md`
@@ -186,6 +196,11 @@ Additional ontology objects support source lineage and efficient refresh:
 `OutputView`, `IncrementalRefreshPlan`, `EquityBridge`, and
 `ConflictResolution`.
 
+Additional decision objects support profit/cash-flow quality and final action
+grading: `ProfitCashFlowQualityAnalysis`, `ExpectationRevisionAssessment`,
+`MomentumRegimeAssessment`, `ValuationOddsAssessment`, `RiskFilterAssessment`,
+and `DecisionScorecard`.
+
 Gate results use `pass`, `warn`, `block`, `fail`, or `not_applicable`.
 
 ## Calibration Method
@@ -195,13 +210,14 @@ prior reference-report set. The temporary company name, ticker, and generated
 draft are intentionally not committed, because company-specific cases must not
 become runtime triggers.
 
-The comparison found gaps in four areas:
+The comparison found gaps in five areas:
 
 - valuation needed a current-market-implied expectation before the analyst
   target
 - orders needed a quality ladder for cases where formal backlog is absent
 - financial quality needed net-income-to-operating-cash-flow reconciliation
 - technical analysis needed chart-date freshness and adjusted-OHLCV controls
+- trade planning needed an explicit decision scorecard and action-grade cap
 
 Those gaps are now encoded in the Skill, reference framework, eval metadata, and
 validation script.

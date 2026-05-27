@@ -79,6 +79,17 @@ workflow_gates:
     pass_conditions:
       - ocf_net_income_reconciled
       - working_capital_driver_named
+  - name: ProfitCashFlowQualityGate
+    purpose: Profit, OCF, FCF, capex, SBC, dilution, and owner cash flow are reconciled before valuation confidence.
+    required_objects:
+      - MetricObservation
+      - FinancialQualityAssessment
+      - ProfitCashFlowQualityAnalysis
+    pass_conditions:
+      - ebitda_ocf_fcf_bridge_present
+      - fcf_per_share_reconciled_or_blocked
+      - sbc_and_dilution_addressed
+      - rule_of_40_marked_applicable_or_not_applicable
   - name: DebtGate
     purpose: Debt, cash, maturity, interest, dilution, and share count feed valuation.
     required_objects:
@@ -129,6 +140,20 @@ workflow_gates:
       - chart_date_present
       - adjusted_status_present
       - entry_stop_take_profit_present_or_blocked
+  - name: DecisionScorecardGate
+    purpose: Final action grade is supported by the underlying analysis objects and capped by binding blockers.
+    required_objects:
+      - ExpectationRevisionAssessment
+      - MomentumRegimeAssessment
+      - ValuationOddsAssessment
+      - RiskFilterAssessment
+      - DecisionScorecard
+      - TradePlan
+    pass_conditions:
+      - action_grade_present
+      - binding_cap_reason_present
+      - no_numeric_score_average
+      - trade_plan_reflects_scorecard_cap
   - name: FreshnessGate
     purpose: Stale objects cannot drive valuation or technical levels.
     required_objects:

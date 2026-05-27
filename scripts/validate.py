@@ -14,8 +14,10 @@ TEXT_SUFFIXES = {".md", ".yaml", ".yml", ".py", ".json"}
 REQUIRED_REFERENCES = [
     "references/business-model-framework.md",
     "references/valuation-framework.md",
+    "references/profit-cash-flow-quality-framework.md",
     "references/short-seller-risk-framework.md",
     "references/technical-analysis-framework.md",
+    "references/scorecard-decision-framework.md",
     "references/report-style-patterns.md",
     "references/research-lakehouse-framework.md",
     "references/evidence-indexing-framework.md",
@@ -186,6 +188,8 @@ def validate_skill() -> None:
         "current-market-implied",
         "source markers",
         "EV-to-equity-to-diluted-share",
+        "Profit Cash Flow Quality Analysis",
+        "Decision Scorecard",
         "No baked-in company triggers",
     ]:
         if phrase not in skill:
@@ -264,6 +268,13 @@ def validate_evals() -> None:
         "short_risk_c_grade_reduces_position_size",
         "conflicting_source_priority_resolution",
         "missing_debt_maturity_blocks_equity_bridge",
+        "cash_conversion_quality",
+        "sbc_dilution_owner_fcf_cap",
+        "working_capital_deterioration_caps_valuation",
+        "rule_of_40_not_applicable",
+        "valuation_stretch_scorecard_cap",
+        "momentum_overextension_scorecard_cap",
+        "unresolved_evidence_blocks_scorecard",
     }
     missing = expected - seen_archetypes
     if missing:
@@ -338,9 +349,24 @@ def validate_quality_contracts() -> None:
         "target equity value = target EV - net debt + non-operating assets",
         "target price = target equity value / diluted shares",
         "order-proxy ladder",
+        "ProfitCashFlowQualityAnalysis",
+        "owner FCF per share",
     ]:
         if phrase not in valuation:
             fail(f"valuation framework missing quality contract: {phrase}")
+
+    profit_cash = read("references/profit-cash-flow-quality-framework.md")
+    for phrase in [
+        "ProfitCashFlowQualityAnalysis",
+        "OCF / net income",
+        "EBITDA -> OCF -> FCF",
+        "FCF per share",
+        "Rule of 40 applicability",
+        "not_applicable",
+        "SBC-adjusted FCF",
+    ]:
+        if phrase not in profit_cash:
+            fail(f"profit cash-flow framework missing quality contract: {phrase}")
 
     short = read("references/short-seller-risk-framework.md")
     for phrase in [
@@ -365,6 +391,17 @@ def validate_quality_contracts() -> None:
         if phrase not in technical:
             fail(f"technical framework missing quality contract: {phrase}")
 
+    scorecard = read("references/scorecard-decision-framework.md")
+    for phrase in [
+        "DecisionScorecard",
+        "action grade",
+        "binding cap reason",
+        "Do not average numeric scores",
+        "report projection",
+    ]:
+        if phrase not in scorecard:
+            fail(f"scorecard framework missing quality contract: {phrase}")
+
     ontology = read("references/ontology-framework.md")
     for phrase in [
         "evidence-backed `Claim`",
@@ -377,6 +414,8 @@ def validate_quality_contracts() -> None:
         "Gate results use",
         "Workflow Gates",
         "Report Projection",
+        "ProfitCashFlowQualityAnalysis",
+        "DecisionScorecard",
     ]:
         if phrase not in ontology:
             fail(f"ontology framework missing quality contract: {phrase}")

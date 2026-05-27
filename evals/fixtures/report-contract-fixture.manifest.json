@@ -24,6 +24,26 @@
         "affected_objects": [],
         "blocked_conclusions": [],
         "required_user_input": []
+      },
+      {
+        "gate_name": "ProfitCashFlowQualityGate",
+        "status": "pass",
+        "reason": "profit and cash-flow quality bridge is present",
+        "affected_objects": [
+          "profit-cash-quality-base"
+        ],
+        "blocked_conclusions": [],
+        "required_user_input": []
+      },
+      {
+        "gate_name": "DecisionScorecardGate",
+        "status": "pass",
+        "reason": "action grade and binding cap reason are present",
+        "affected_objects": [
+          "decision-scorecard-base"
+        ],
+        "blocked_conclusions": [],
+        "required_user_input": []
       }
     ]
   },
@@ -77,6 +97,13 @@
       "blocker_reason_or_gap": "none"
     }
   ],
+  "profit_cash_flow_quality_analyses": [
+    {
+      "id": "profit-cash-quality-base",
+      "valuation_effect": "supports valuation with a cash-quality cap",
+      "short_risk_effect": "keeps short risk at monitoring level"
+    }
+  ],
   "technical_setups": [
     {
       "id": "technical-current",
@@ -84,12 +111,49 @@
       "drives_trade_plan": true
     }
   ],
+  "expectation_revision_assessments": [
+    {
+      "id": "expectation-revision-base",
+      "revision_direction": "unconfirmed"
+    }
+  ],
+  "momentum_regime_assessments": [
+    {
+      "id": "momentum-regime-base",
+      "alignment": "constructive"
+    }
+  ],
+  "valuation_odds_assessments": [
+    {
+      "id": "valuation-odds-base",
+      "verdict": "constructive but capped"
+    }
+  ],
+  "risk_filter_assessments": [
+    {
+      "id": "risk-filter-base",
+      "binding_cap_reason": "cash-flow quality not yet strong enough for maximum size"
+    }
+  ],
+  "decision_scorecards": [
+    {
+      "id": "decision-scorecard-base",
+      "expectation_revision_assessment_id": "expectation-revision-base",
+      "momentum_regime_assessment_id": "momentum-regime-base",
+      "valuation_odds_assessment_id": "valuation-odds-base",
+      "risk_filter_assessment_id": "risk-filter-base",
+      "profit_cash_flow_quality_analysis_id": "profit-cash-quality-base",
+      "action_grade": "B",
+      "binding_cap_reason": "cash-flow quality not yet strong enough for maximum size"
+    }
+  ],
   "trade_plans": [
     {
       "id": "trade-plan-base",
       "valuation_case_id": "valuation-base",
       "technical_setup_id": "technical-current",
-      "short_seller_assessment_id": "short-assessment-base"
+      "short_seller_assessment_id": "short-assessment-base",
+      "decision_scorecard_id": "decision-scorecard-base"
     }
   ],
   "short_seller_assessments": [

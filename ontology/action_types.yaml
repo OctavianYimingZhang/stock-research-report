@@ -163,6 +163,23 @@ action_types:
     required_checks:
       - ocf_net_income_reconciled
       - working_capital_explained
+  - name: AnalyzeProfitCashFlowQuality
+    reads:
+      - MetricObservation
+      - FinancialQualityAssessment
+      - DebtInstrument
+      - DilutionInstrument
+      - Claim
+    writes:
+      - ProfitCashFlowQualityAnalysis
+      - ShortRiskSignal
+      - DataGap
+    required_checks:
+      - ocf_net_income_reconciled
+      - ebitda_ocf_fcf_bridge_present
+      - fcf_per_share_reconciled
+      - sbc_and_dilution_addressed
+      - valuation_and_short_risk_effect_named
   - name: ReconcileShareCountAndEV
     reads:
       - Security
@@ -191,16 +208,19 @@ action_types:
       - Company
       - CurrentMarketImpliedBridge
       - FinancialQualityAssessment
+      - ProfitCashFlowQualityAnalysis
     writes:
       - ValuationMethodSelection
     required_checks:
       - one_primary_method
       - secondary_check_limited
+      - cash_flow_maturity_considered
   - name: BuildValuationCase
     reads:
       - ValuationMethodSelection
       - CurrentMarketImpliedBridge
       - MetricObservation
+      - ProfitCashFlowQualityAnalysis
       - ContractOrder
       - DebtInstrument
       - DilutionInstrument
@@ -229,6 +249,7 @@ action_types:
       - Claim
       - ContractOrder
       - FinancialQualityAssessment
+      - ProfitCashFlowQualityAnalysis
       - DebtInstrument
       - DilutionInstrument
     writes:
@@ -248,12 +269,38 @@ action_types:
       - chart_date_present
       - adjusted_status_present
       - levels_supported_or_blocked
+  - name: BuildDecisionScorecard
+    reads:
+      - BusinessModelThesis
+      - ValueDriverTransition
+      - OrderQualityAssessment
+      - ProfitCashFlowQualityAnalysis
+      - CurrentMarketImpliedBridge
+      - ValuationMethodSelection
+      - EquityBridge
+      - ValuationCase
+      - ShortSellerAssessment
+      - TechnicalSetup
+      - DataGap
+    writes:
+      - ExpectationRevisionAssessment
+      - MomentumRegimeAssessment
+      - ValuationOddsAssessment
+      - RiskFilterAssessment
+      - DecisionScorecard
+      - DataGap
+    required_checks:
+      - action_grade_present
+      - binding_cap_reason_present
+      - no_numeric_score_average
+      - blocked_objects_cap_grade
   - name: BuildTradePlan
     reads:
       - ValuationCase
       - EquityBridge
       - ShortSellerAssessment
       - TechnicalSetup
+      - DecisionScorecard
       - DataGap
     writes:
       - TradePlan
@@ -271,6 +318,8 @@ action_types:
       - ValuationCase
       - ShortSellerAssessment
       - TechnicalSetup
+      - ProfitCashFlowQualityAnalysis
+      - DecisionScorecard
       - TradePlan
       - DataGap
     writes:

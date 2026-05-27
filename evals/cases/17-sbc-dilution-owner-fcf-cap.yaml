@@ -1,0 +1,26 @@
+id: sbc-dilution-owner-fcf-cap
+archetype: sbc_dilution_owner_fcf_cap
+expected_primary_valuation: per_share_value_capped_by_sbc_adjusted_fcf
+required_sections:
+  - Company Overview
+  - Business Model Logic
+  - Operations, Customers, And Orders
+  - Financials, Assets, And Debt
+  - Valuation
+  - Short-Seller Risk
+  - Technical Analysis
+  - Risk Factors
+  - Trade Plan
+required_checks:
+  - sbc_adjusted_fcf
+  - diluted_share_count_effect
+  - fcf_per_share
+  - equity_bridge_present_or_blocked
+  - one_primary_valuation_method
+  - short_seller_grade
+  - decision_scorecard_action_grade
+  - binding_cap_reason
+forbidden:
+  - fcf_target_without_sbc_adjustment
+  - per_share_target_without_dilution
+  - numeric_score_average

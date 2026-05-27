@@ -15,6 +15,8 @@ Before valuation, reconcile:
   securities
 - enterprise value
 - latest revenue, gross margin, EBITDA, EBIT, net income, EPS, CFO, capex, FCF
+- OCF / net income, EBITDA -> OCF -> FCF, FCF margin, FCF conversion,
+  SBC-adjusted FCF, FCF per share, and diluted share count
 - segment revenue and margin where relevant
 - backlog/orders/contracts and expected conversion schedule
 - asset base, replacement value, book value, resource/NAV, or liquidation value
@@ -29,6 +31,11 @@ Create an `EquityBridge` object before any per-share target. The bridge must
 stand apart from `ValuationCase` so validators can block target prices when
 cash, debt, senior claims, non-operating assets, or diluted shares do not
 reconcile.
+
+Create `ProfitCashFlowQualityAnalysis` before method selection. A company with
+weak or unexplained cash conversion should not receive mature-cash-flow
+multiples unless the report states why the weakness is temporary and what
+observable would confirm recovery.
 
 ## Market Pricing Mechanism
 
@@ -86,6 +93,25 @@ Use one primary method.
 
 Do not average methods. A secondary method can invalidate or sanity-check the
 primary method, but it is not an equal vote.
+
+## Profit And Cash-Flow Quality Before Method Selection
+
+Use `references/profit-cash-flow-quality-framework.md` before selecting the
+primary method. The valuation denominator must match cash-flow maturity:
+
+- use P/FCF, FCFF, or FCFE only when owner cash flow is traceable and durable
+- use EV/EBITDA only when the bridge from EBITDA to FCF is credible
+- use revenue or backlog only when cash conversion is not yet mature and order
+  quality is strong enough to support scenario work
+- block or heavily haircut target value when SBC, capex, working capital, or
+  dilution erase per-share economics
+
+Owner FCF should be visible in the valuation discussion:
+
+```text
+owner FCF = operating cash flow - maintenance capex - economically recurring SBC
+owner FCF per share = owner FCF / diluted or pro-forma shares
+```
 
 ## Standard Formulas
 

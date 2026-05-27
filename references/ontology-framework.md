@@ -3,7 +3,8 @@
 This reference turns the report Skill into an ontology-driven research workflow.
 The report is the final view. The source of truth is an object graph of
 evidence, claims, metrics, orders, assets, debt, valuation cases, short-risk
-signals, technical setups, data gaps, and report sections.
+signals, profit/cash-flow quality, decision scorecards, technical setups, data
+gaps, and report sections.
 
 ## Design Principle
 
@@ -51,6 +52,7 @@ Minimum object layer:
 - `DebtInstrument`
 - `DilutionInstrument`
 - `FinancialQualityAssessment`
+- `ProfitCashFlowQualityAnalysis`
 - `CurrentMarketImpliedBridge`
 - `ValuationMethodSelection`
 - `EquityBridge`
@@ -58,6 +60,11 @@ Minimum object layer:
 - `ShortRiskSignal`
 - `ShortSellerAssessment`
 - `TechnicalSetup`
+- `ExpectationRevisionAssessment`
+- `MomentumRegimeAssessment`
+- `ValuationOddsAssessment`
+- `RiskFilterAssessment`
+- `DecisionScorecard`
 - `TradePlan`
 - `IncrementalRefreshPlan`
 - `ActionExecution`
@@ -104,8 +111,15 @@ The most important links are:
 - `DebtInstrument -> affects_equity_bridge -> EquityBridge`
 - `DilutionInstrument -> affects_target_price -> EquityBridge`
 - `EquityBridge -> bridges_to_target_price -> ValuationCase`
+- `ProfitCashFlowQualityAnalysis -> cash_quality_supports_valuation -> ValuationCase`
+- `ProfitCashFlowQualityAnalysis -> cash_quality_flags_short_risk -> ShortRiskSignal`
 - `ShortRiskSignal -> discounts -> ValuationCase`
 - `TechnicalSetup -> constrains -> TradePlan`
+- `ExpectationRevisionAssessment -> expectation_feeds_scorecard -> DecisionScorecard`
+- `MomentumRegimeAssessment -> momentum_feeds_scorecard -> DecisionScorecard`
+- `ValuationOddsAssessment -> valuation_odds_feeds_scorecard -> DecisionScorecard`
+- `RiskFilterAssessment -> risk_filter_feeds_scorecard -> DecisionScorecard`
+- `DecisionScorecard -> scorecard_constrains_trade -> TradePlan`
 - `ValuationCase -> valuation_constrains_trade -> TradePlan`
 - `ShortSellerAssessment -> short_risk_constrains_trade -> TradePlan`
 - `DataGap -> blocks -> Claim`
@@ -136,6 +150,7 @@ Use actions as workflow transactions:
 - `IncrementalRefresh`
 - `GradeOrderQuality`
 - `ReconcileFinancials`
+- `AnalyzeProfitCashFlowQuality`
 - `ReconcileShareCountAndEV`
 - `InferCurrentMarketPricing`
 - `SelectPrimaryValuationMethod`
@@ -143,6 +158,7 @@ Use actions as workflow transactions:
 - `BuildEquityBridge`
 - `RunShortRiskScreen`
 - `ValidateTechnicalSetup`
+- `BuildDecisionScorecard`
 - `BuildTradePlan`
 - `GenerateReportSection`
 - `SelectOutputView`
@@ -160,11 +176,16 @@ Calculations and repeatable decisions belong in functions:
 - risk-adjusted backlog value
 - order-quality grade
 - cash-conversion score
+- cash-quality bridge
+- working-capital cycle assessment
+- SBC-adjusted FCF per share
 - debt-safety score
 - valuation-method selection
 - target-price blocker detection
 - explicit equity bridge calculation
 - short-risk grade
+- decision scorecard construction
+- action-grade cap determination
 - technical freshness check
 - position sizing from stop distance
 - source conflict detection
@@ -192,6 +213,8 @@ Before report composition, pass these gates:
   valuation without conversion proof
 - Financial Gate: net income, OCF, working capital, and cash conversion are
   reconciled
+- Profit Cash Flow Quality Gate: OCF, EBITDA, FCF, capex, SBC, dilution, and
+  owner FCF are reconciled or explicitly blocked
 - Debt Gate: cash, debt, maturity, interest, dilution, and share count feed the
   equity bridge
 - Equity Bridge Gate: target price is blocked unless EV, cash, senior claims,
@@ -200,6 +223,8 @@ Before report composition, pass these gates:
 - Short Risk Gate: elevated short risk affects valuation or position sizing
 - Technical Gate: chart date, adjusted status, entry, stop, and take-profit are
   supported or blocked
+- Decision Scorecard Gate: action grade and binding cap reason are supported by
+  underlying analysis objects
 - Freshness Gate: stale objects cannot drive valuation or technical levels
 - Incremental Refresh Gate: changed sources refresh dependent objects or trigger
   a full rerun
@@ -220,14 +245,14 @@ The final report sections should read from the object graph:
 - `Operations, Customers, And Orders`: counterparties, orders, capacity, order
   quality
 - `Financials, Assets, And Debt`: metrics, assets, debt, dilution, financial
-  quality
+  quality, and profit/cash-flow quality
 - `Valuation`: current-implied bridge, selected method, equity bridge,
   valuation cases
 - `Short-Seller Risk`: short-risk signals and short-seller assessment
 - `Technical Analysis`: technical setup and freshness gate
 - `Risk Factors`: data gaps and high-risk claims
-- `Trade Plan`: final trade plan constrained by valuation, risk, and technical
-  setup
+- `Trade Plan`: final trade plan constrained by valuation, risk, scorecard, and
+  technical setup
 
 Do not let a section own facts that are absent from the graph. Sections cite
 evidence-backed claims.
