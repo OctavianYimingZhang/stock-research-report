@@ -38,6 +38,52 @@ If outside research or user notes motivated the ticker, the opening should say
 what market question those sources raised, then immediately separate verified
 facts from unverified narrative.
 
+## Reference-Caliber Memo Assembly
+
+A strong report should be assembled as one causal memo, not as a sequence of
+filled headings. Before drafting, compress the research into a thesis kernel:
+
+```text
+repricing dispute -> demand shock -> industry constraint -> scarce node
+-> issuer control point -> order or capacity proof -> cash conversion
+-> current-implied expectation -> action grade cap -> trade execution
+```
+
+The kernel controls paragraph order. A section may contain background only when
+that background makes the next link in the chain understandable. Background that
+does not change demand, scarcity, order conversion, cash flow, valuation, or
+trade action should be removed.
+
+The report should create the same reading effect as a carefully written manual
+memo:
+
+- the reader understands why the stock matters before learning the full company
+  profile
+- the industry primer explains the bottleneck, not the whole industry
+- the company section shows the control point in the value chain
+- the order section grades what has converted from narrative into demand
+- the operations section shows whether supply can meet that demand
+- the financial section shows whether revenue becomes owner cash flow
+- the valuation section shows what must go right for the current price to work
+- the trade plan converts the thesis into size, entry, stop, trim, and
+  invalidation
+
+## Industry Primer Rule
+
+Add a compact industry primer when the thesis depends on technical context,
+policy structure, supply-chain architecture, or asset economics that a normal
+investor may not already understand.
+
+The primer must answer only four items:
+
+1. what the bottleneck technology or policy mechanism does
+2. why that mechanism became more important now
+3. where money flows through the chain
+4. which node controls price, delivery, reliability, compliance, or yield
+
+The primer is not a textbook. It should end by locating the issuer at the scarce
+node and by naming the first observable that would confirm or break the thesis.
+
 ## Reference-Caliber Quality Bar
 
 A report is not complete merely because all headings exist. It must satisfy
@@ -110,6 +156,33 @@ Do not expose module labels. Older section aliases may be accepted by validators
 for legacy fixtures, but new full reports should use the mainline-driven
 structure.
 
+## Section Output Contract
+
+Each section must output one decision-useful conclusion:
+
+- `Core Conclusion`: stance, cap reason, position sizing range, and invalidation.
+- `Why This Stock Exists Now`: the market variable that changed and the evidence
+  that it changed.
+- `Industry Chain And Bottleneck`: the scarce node and why it has pricing or
+  availability power.
+- `Company Position In The Chain`: whether the issuer is company alpha or only
+  industry beta.
+- `Business Model Logic`: value-capture mechanism and falsification observable.
+- `Scarcity And Moat Assessment`: replication difficulty and duration of the
+  scarcity.
+- `Customers, Orders, And Commercialization Path`: order quality grade and
+  valuation usability.
+- `Operations, Capacity, And Execution Quality`: ramp bottleneck and date by
+  which failure becomes visible.
+- `Financial Quality, Assets, Debt, And Dilution`: whether the equity owner gets
+  cash flow after capex, working capital, dilution, and senior claims.
+- `Valuation And Market-Implied Expectation`: what the current price already
+  requires and what must be revised for upside.
+- `Catalysts, Risks, And Falsification`: monitorable events that raise or lower
+  conviction.
+- `Technical Structure And Trade Plan`: trade stance, entry, stop, TP1, TP2,
+  trim/add logic, and size.
+
 ## Business Logic Prose
 
 Strong reports explain:
@@ -126,6 +199,24 @@ Weak reports merely list products, markets, and catalysts.
 
 The business section must close with one sentence that names the value driver,
 current stage, and key observable.
+
+## Anti-Checklist Reconstruction Pass
+
+After a draft exists, run this repair pass before final output:
+
+1. Remove any paragraph that could apply to most peers in the same industry.
+2. Move industry context ahead of company description only when it explains the
+   bottleneck.
+3. Convert every generic catalyst into a dated or source-linked observable.
+4. Convert every order claim into an order-quality level and revenue-conversion
+   path.
+5. Convert every valuation multiple into a current-implied expectation and one
+   re-rating condition.
+6. Convert every risk into either a thesis-breaker, a valuation haircut, or a
+   position-size cap.
+7. Convert every technical comment into an action or a blocked setup.
+
+A report that still reads like headings filled with facts has failed this pass.
 
 ## Inline Arithmetic
 
