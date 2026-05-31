@@ -7,8 +7,14 @@
     "mode": "mixed",
     "primary_source_strictness": "strict",
     "secondary_research": "context_only",
+    "outside_thesis_replay": "required_when_available",
     "historical_reports": "style_only",
     "freshness": "latest_available"
+  },
+  "opportunity_policy": {
+    "require_archetype_routing": true,
+    "require_four_part_test": true,
+    "cap_if_no_company_specific_route": true
   },
   "valuation_policy": {
     "require_current_market_implied_bridge": true,

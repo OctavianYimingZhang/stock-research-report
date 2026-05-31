@@ -2,9 +2,10 @@
 
 This reference turns the report Skill into an ontology-driven research workflow.
 The report is the final view. The source of truth is an object graph of
-evidence, claims, metrics, orders, assets, debt, valuation cases, short-risk
-signals, profit/cash-flow quality, decision scorecards, technical setups, data
-gaps, and report sections.
+evidence, claims, article-thesis maps, opportunity archetypes, demand and
+scarcity assessments, metrics, orders, assets, debt, valuation cases,
+short-risk signals, profit/cash-flow quality, decision scorecards, technical
+setups, data gaps, and report sections.
 
 ## Design Principle
 
@@ -36,6 +37,13 @@ Minimum object layer:
 - `ResearchSettings`
 - `UserHypothesis`
 - `ResearchRun`
+- `ArticleThesisMap`
+- `ThesisPathReplay`
+- `OpportunityArchetype`
+- `DemandExpansionAssessment`
+- `ScalingDifficultyAssessment`
+- `ScarcityBottleneckAssessment`
+- `CommercializationPathAssessment`
 - `Company`
 - `Security`
 - `SourceDocument`
@@ -46,6 +54,9 @@ Minimum object layer:
 - `Claim`
 - `ConflictResolution`
 - `MetricObservation`
+- `BusinessModelThesis`
+- `ValueDriverTransition`
+- `OperatingLeverageMap`
 - `ContractOrder`
 - `OrderQualityAssessment`
 - `AssetFacility`
@@ -59,7 +70,9 @@ Minimum object layer:
 - `ValuationCase`
 - `ShortRiskSignal`
 - `ShortSellerAssessment`
+- `FalsificationPattern`
 - `TechnicalSetup`
+- `PositionSizingRationale`
 - `ExpectationRevisionAssessment`
 - `MomentumRegimeAssessment`
 - `ValuationOddsAssessment`
@@ -97,6 +110,13 @@ The most important links are:
 
 - `ResearchSettings -> configures_run -> ResearchRun`
 - `UserHypothesis -> tests_hypothesis -> Claim`
+- `ArticleThesisMap -> replays_thesis_path -> ThesisPathReplay`
+- `ThesisPathReplay -> tested_by_claims -> Claim`
+- `OpportunityArchetype -> routes_company -> Company`
+- `DemandExpansionAssessment -> supports_opportunity -> OpportunityArchetype`
+- `ScalingDifficultyAssessment -> scaling_supports_opportunity -> OpportunityArchetype`
+- `ScarcityBottleneckAssessment -> scarcity_supports_opportunity -> OpportunityArchetype`
+- `CommercializationPathAssessment -> commercialization_supports_opportunity -> OpportunityArchetype`
 - `SourceDocument -> contains -> EvidenceItem`
 - `SourcePartition -> partitions_source -> SourceSnapshot`
 - `SourcePartition -> routes_to_evidence -> EvidenceItem`
@@ -142,6 +162,10 @@ Use actions as workflow transactions:
 - `BuildSourcePartitions`
 - `BuildEvidencePartitions`
 - `ExtractEvidence`
+- `MapArticleThesis`
+- `BuildThesisPathReplay`
+- `RouteOpportunityArchetype`
+- `RunFourPartOpportunityTest`
 - `NormalizeOperatingObjects`
 - `ClassifyClaim`
 - `ResolveConflictingFacts`
@@ -195,6 +219,12 @@ Calculations and repeatable decisions belong in functions:
 - source conflict detection
 - materiality classification
 - material metric extraction
+- outside thesis extraction
+- opportunity archetype routing
+- demand expansion assessment
+- scaling difficulty assessment
+- scarcity bottleneck assessment
+- commercialization visibility assessment
 - gate-result classification
 - output-view selection
 
@@ -208,6 +238,10 @@ Before report composition, pass these gates:
   boundaries are respected
 - Settings Gate: runtime settings are complete and user hypotheses are not
   treated as evidence
+- Article Map Gate: outside thesis paths are extracted and independently tested
+- Opportunity Archetype Gate: issuer route is supported or capped
+- Four-Part Opportunity Gate: demand expansion, scaling difficulty,
+  bottleneck/scarcity, and commercialization visibility pass or block
 - Evidence Gate: material claims have evidence links
 - Lineage Gate: material conclusions trace to source snapshots
 - Partition Coverage Gate: relevant evidence partitions are available or
@@ -244,19 +278,31 @@ in `GateResult` through `ActionExecution`.
 
 The final report sections should read from the object graph:
 
-- `Company Overview`: `Company`, `Security`, current dispute, material claims
-- `Business Model Logic`: business model claims and value-driver transition
-- `Operations, Customers, And Orders`: counterparties, orders, capacity, order
-  quality
-- `Financials, Assets, And Debt`: metrics, assets, debt, dilution, financial
-  quality, and profit/cash-flow quality
-- `Valuation`: current-implied bridge, selected method, equity bridge,
-  valuation cases
-- `Short-Seller Risk`: short-risk signals and short-seller assessment
-- `Technical Analysis`: technical setup and freshness gate
-- `Risk Factors`: data gaps and high-risk claims
-- `Trade Plan`: final trade plan constrained by valuation, risk, scorecard, and
-  technical setup
+- `Core Conclusion`: current dispute, action stance, position-size logic,
+  upside variable, and invalidation
+- `Why This Stock Exists Now`: article-thesis map, thesis-path replay, demand
+  expansion, and current market attention trigger
+- `Industry Chain And Bottleneck`: opportunity archetype, scaling difficulty,
+  scarcity node, and scarcity duration
+- `Company Position In The Chain`: company role, payer, customer avoided cost
+  or risk, and industry-beta versus company-alpha judgment
+- `Business Model Logic`: business model claims, value-driver transition, and
+  operating leverage map
+- `Scarcity And Moat Assessment`: scarcity bottleneck assessment and
+  replication barriers
+- `Customers, Orders, And Commercialization Path`: counterparties, orders,
+  commercialization path, order quality, and order-to-revenue bridge
+- `Operations, Capacity, And Execution Quality`: assets, facilities, capacity,
+  capex, utilization, execution bottleneck, and margin at scale
+- `Financial Quality, Assets, Debt, And Dilution`: metrics, assets, debt,
+  dilution, financial quality, profit/cash-flow quality, and cash runway
+- `Valuation And Market-Implied Expectation`: current-implied bridge, selected
+  method, equity bridge, valuation cases, re-rating condition, and downside
+  floor
+- `Catalysts, Risks, And Falsification`: short-risk signals, short-seller
+  assessment, falsification pattern, data gaps, and high-risk claims
+- `Technical Structure And Trade Plan`: technical setup, freshness gate,
+  position-sizing rationale, decision scorecard, and trade plan
 
 Do not let a section own facts that are absent from the graph. Sections cite
 evidence-backed claims.

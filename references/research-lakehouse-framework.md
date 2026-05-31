@@ -12,8 +12,8 @@ Use five layers:
 |---|---|---|
 | Bronze | Preserve raw source fidelity | `SourceSnapshot`, `SourceDocument`, raw filing, transcript, presentation, regulator record, OHLCV, screenshot |
 | Source Index | Route source slices before extraction | `SourcePartition` |
-| Silver | Clean and validate extracted evidence | `EvidencePartition`, `EvidenceItem`, `Claim`, `MetricObservation`, `ContractOrder`, `DebtInstrument`, `DilutionInstrument` |
-| Gold | Analysis-ready research products | `BusinessModelThesis`, `ProfitCashFlowQualityAnalysis`, `CurrentMarketImpliedBridge`, `EquityBridge`, `ValuationCase`, `ShortSellerAssessment`, `TechnicalSetup`, `DecisionScorecard`, `TradePlan` |
+| Silver | Clean and validate extracted evidence | `EvidencePartition`, `EvidenceItem`, `Claim`, `MetricObservation`, `ContractOrder`, `DebtInstrument`, `DilutionInstrument`, `ConflictResolution` |
+| Gold | Analysis-ready research products | `ArticleThesisMap`, `ThesisPathReplay`, `OpportunityArchetype`, `DemandExpansionAssessment`, `ScalingDifficultyAssessment`, `ScarcityBottleneckAssessment`, `CommercializationPathAssessment`, `BusinessModelThesis`, `ProfitCashFlowQualityAnalysis`, `CurrentMarketImpliedBridge`, `EquityBridge`, `ValuationCase`, `ShortSellerAssessment`, `TechnicalSetup`, `DecisionScorecard`, `TradePlan` |
 | Report View | Final user-facing projection | `Report`, `ReportSection` |
 
 ## Layer Rules
@@ -82,6 +82,9 @@ Typical `fail` outcomes:
 - chart date is missing for technical levels
 - valuation method averaging appears
 - action grade appears without a binding cap reason
+- outside thesis is used as fact without primary verification
+- high-conviction thesis skips opportunity archetype routing or the four-part
+  opportunity test
 
 Typical `block` outcomes:
 
@@ -93,6 +96,8 @@ Typical `warn` outcomes:
 
 - weak order signal is discussed but not used for target value
 - secondary source is used only to frame context
+- outside research is used only to discover a thesis path and all material
+  claims are verified separately
 - non-critical source freshness is imperfect but does not drive valuation
 
 ## Report Implication

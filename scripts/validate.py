@@ -20,6 +20,8 @@ REQUIRED_REFERENCES = [
     "references/technical-analysis-framework.md",
     "references/scorecard-decision-framework.md",
     "references/report-style-patterns.md",
+    "references/article-thesis-distillation-framework.md",
+    "references/opportunity-discovery-framework.md",
     "references/research-lakehouse-framework.md",
     "references/evidence-indexing-framework.md",
     "references/incremental-refresh-framework.md",
@@ -51,6 +53,21 @@ REQUIRED_MAINTENANCE_FILES = [
 ]
 
 REQUIRED_SECTIONS = [
+    "Core Conclusion",
+    "Why This Stock Exists Now",
+    "Industry Chain And Bottleneck",
+    "Company Position In The Chain",
+    "Business Model Logic",
+    "Scarcity And Moat Assessment",
+    "Customers, Orders, And Commercialization Path",
+    "Operations, Capacity, And Execution Quality",
+    "Financial Quality, Assets, Debt, And Dilution",
+    "Valuation And Market-Implied Expectation",
+    "Catalysts, Risks, And Falsification",
+    "Technical Structure And Trade Plan",
+]
+
+LEGACY_SECTIONS = [
     "Company Overview",
     "Business Model Logic",
     "Operations, Customers, And Orders",
@@ -192,12 +209,22 @@ def validate_skill() -> None:
         "Quality Calibration Loop",
         "Ontology Object Graph",
         "Research Lakehouse And Evidence Index",
+        "Research Path Replay And Opportunity Discovery",
+        "Opportunity Archetype Routing",
+        "Four-Part Opportunity Test",
         "Runtime Settings And Source Map",
         "current-market-implied",
         "source markers",
         "EV-to-equity-to-diluted-share",
         "Profit Cash Flow Quality Analysis",
         "Decision Scorecard",
+        "ArticleThesisMap",
+        "ThesisPathReplay",
+        "OpportunityArchetype",
+        "DemandExpansionAssessment",
+        "ScalingDifficultyAssessment",
+        "ScarcityBottleneckAssessment",
+        "CommercializationPathAssessment",
         "No baked-in company triggers",
     ]:
         if phrase not in skill:
@@ -254,7 +281,7 @@ def validate_evals() -> None:
                 fail(f"{case} missing required key: {key}")
         seen_archetypes.add(str(data["archetype"]))
         text = case.read_text(encoding="utf-8")
-        for section in REQUIRED_SECTIONS:
+        for section in LEGACY_SECTIONS:
             if section not in text:
                 fail(f"{case} missing required section assertion: {section}")
         for check in [
@@ -380,6 +407,8 @@ def validate_quality_contracts() -> None:
     for phrase in [
         "industry-to-company bridge",
         "Strategic Transition Tests",
+        "Opportunity Archetype Link",
+        "Four-Part Opportunity Test",
         "operating ramp bridge",
         "order-to-revenue path",
     ]:
@@ -427,10 +456,35 @@ def validate_quality_contracts() -> None:
     style = read("references/report-style-patterns.md")
     for phrase in [
         "Layer Depth Standard",
+        "Section Rhythm",
+        "Core Conclusion",
         "separate business thesis strength from trade action grade",
     ]:
         if phrase not in style:
             fail(f"report style framework missing quality contract: {phrase}")
+
+    article = read("references/article-thesis-distillation-framework.md")
+    for phrase in [
+        "ArticleThesisMap",
+        "ThesisPathReplay",
+        "ArticleMapGate",
+        "outside thesis",
+        "primary-source check",
+    ]:
+        if phrase not in article:
+            fail(f"article thesis framework missing quality contract: {phrase}")
+
+    opportunity = read("references/opportunity-discovery-framework.md")
+    for phrase in [
+        "OpportunityArchetype",
+        "scarcity_bottleneck",
+        "policy_protected_supply_chain",
+        "customer_funded_capacity_ramp",
+        "Four-Part Opportunity Test",
+        "CommercializationPathAssessment",
+    ]:
+        if phrase not in opportunity:
+            fail(f"opportunity discovery framework missing quality contract: {phrase}")
 
     scorecard = read("references/scorecard-decision-framework.md")
     for phrase in [
@@ -455,6 +509,9 @@ def validate_quality_contracts() -> None:
         "Gate results use",
         "Workflow Gates",
         "Report Projection",
+        "Article Map Gate",
+        "Opportunity Archetype Gate",
+        "Four-Part Opportunity Gate",
         "ProfitCashFlowQualityAnalysis",
         "DecisionScorecard",
     ]:
@@ -470,6 +527,8 @@ def validate_quality_contracts() -> None:
         "Report View",
         "SourceSnapshot",
         "ResearchRun",
+        "ArticleThesisMap",
+        "OpportunityArchetype",
     ]:
         if phrase not in lakehouse:
             fail(f"research lakehouse framework missing quality contract: {phrase}")

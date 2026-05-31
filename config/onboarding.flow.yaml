@@ -32,11 +32,15 @@ required_inputs:
   - ticker_or_company_identifier
   - output_view
   - source_policy
+  - opportunity_policy
   - valuation_strictness
   - technical_requirement
 preflight_actions:
   - resolve_security
   - map_required_source_classes
+  - map_outside_thesis_paths
+  - route_opportunity_archetype
+  - run_four_part_opportunity_test
   - identify_blocking_gaps
   - build_source_partitions
   - confirm_output_view

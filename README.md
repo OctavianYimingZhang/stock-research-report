@@ -5,10 +5,10 @@
 [![Language](https://img.shields.io/badge/repository%20text-English%20only-lightgrey.svg)](#core-rules)
 
 `stock-research-report` is a self-contained Codex Skill for producing
-evidence-first public-company deep research reports. It combines business-model
-analysis, profit and cash-flow quality, valuation, short-seller risk review,
-decision scorecard grading, and technical trade planning into one
-ontology-backed research workflow.
+evidence-first public-company deep research reports. It now treats the final
+output as a causal investment memo: the report starts with the current
+repricing dispute, reconstructs outside thesis paths, tests scarcity and order
+conversion, then converts the supported thesis into valuation and a trade plan.
 
 The project is designed for analysts who need a report that says what can be
 verified, what is only an inference, what is still blocked by missing data, and
@@ -16,43 +16,52 @@ how valuation and trade conclusions change when evidence quality is weak.
 
 ## What It Produces
 
-The Skill generates analyst-style reports with five integrated pillars:
+The Skill generates analyst-style causal memos with eight integrated pillars:
 
-1. business-model logic
-2. profit and cash-flow quality, including owner FCF, working capital, capex,
+1. research-path replay from outside articles and primary sources
+2. opportunity archetype routing
+3. demand expansion, scaling difficulty, bottleneck scarcity, and
+   commercialization visibility
+4. business-model logic and value-driver transition
+5. profit and cash-flow quality, including owner FCF, working capital, capex,
    SBC, dilution, and per-share cash flow
-3. valuation, including assets, orders/backlog, debt, dilution, and an explicit
+6. valuation, including assets, orders/backlog, debt, dilution, and an explicit
    equity bridge
-4. short-seller risk
-5. decision scorecard, technical analysis, and trade planning
+7. short-seller risk and falsification pattern
+8. decision scorecard, technical analysis, and trade planning
 
-The default report has nine sections: company overview, business model,
-operations and orders, financials and debt, valuation, short-seller risk,
-technical analysis, risk factors, and trade plan.
+The default report is no longer a generic company profile. It is a memo that
+answers why the stock exists now, why the company may control a scarce node,
+whether orders can convert into revenue and cash, and whether the current price
+already discounts the thesis.
 
 ## Why This Exists
 
 Most AI-generated equity reports fail in predictable ways: they mix facts with
 opinions, treat weak order language as backlog, skip the EV-to-equity bridge,
-ignore debt and dilution, or invent trade levels from stale charts. This
-repository turns those failure modes into object contracts, gates, and
-validators.
+ignore debt and dilution, open with generic background, or invent trade levels
+from stale charts. This repository turns those failure modes into object
+contracts, gates, and validators.
 
 The final report is not written directly from raw text. It is projected from an
 evidence-backed object graph that connects source snapshots, source partitions,
-evidence items, claims, metrics, orders, assets, debt, valuation cases,
-profit/cash-flow quality, short-risk signals, decision scorecards, technical
-setups, data gaps, gate results, and report sections.
+evidence items, claims, article-thesis maps, opportunity archetypes, demand and
+scarcity assessments, orders, assets, debt, valuation cases, profit/cash-flow
+quality, short-risk signals, decision scorecards, technical setups, data gaps,
+gate results, and report sections.
 
 ## Architecture At A Glance
 
 ```text
 ResearchSettings
+  -> ArticleThesisMap
+  -> ThesisPathReplay
+  -> OpportunityArchetype
   -> SourceSnapshot
   -> SourcePartition
   -> EvidenceItem
   -> Claim
-  -> analysis objects
+  -> opportunity, financial, valuation, risk, and trade objects
   -> ReportSection
 ```
 
@@ -60,9 +69,11 @@ The research data flow uses a lightweight lakehouse pattern:
 
 - Bronze: immutable source snapshots
 - Source Index: pre-extraction source partitions
-- Silver: validated evidence, claims, metrics, orders, debt, and dilution
-- Gold: business thesis, profit/cash-flow quality, equity bridge, valuation,
-  short risk, technical setup, decision scorecard, and trade plan
+- Silver: validated evidence, claims, metrics, orders, debt, dilution, and
+  conflict records
+- Gold: opportunity thesis, scarcity assessment, commercialization path,
+  profit/cash-flow quality, equity bridge, valuation, short risk, technical
+  setup, decision scorecard, and trade plan
 - Report View: final output sections
 
 Gate results are explicit: `pass`, `warn`, `block`, `fail`, or
@@ -84,11 +95,12 @@ Useful optional inputs:
 
 - company name, exchange, and currency
 - filings, investor presentations, or earnings-call transcripts
+- outside articles or analyst notes whose thesis path should be tested
 - terminal screenshots for price, market cap, EV, share count, cash, debt, and
   peer multiples
 - K-line screenshots or OHLCV data with chart date and adjusted status
-- user focus areas such as valuation, short-seller risk, order quality, debt,
-  dilution, or technical entry
+- user focus areas such as valuation, scarcity, order quality, debt, dilution,
+  short-seller risk, or technical entry
 
 Runtime settings can also be supplied through `config/settings.schema.json`.
 The default profile is `config/profiles/default.json`, and the onboarding flow
@@ -107,17 +119,25 @@ repository's reference framework.
 
 ## Output Structure
 
-The default `full_report` output view uses this fixed structure:
+The default `full_report` output view uses this causal memo structure:
 
-1. Company Overview
-2. Business Model Logic
-3. Operations, Customers, And Orders
-4. Financials, Assets, And Debt
-5. Valuation
-6. Short-Seller Risk
-7. Technical Analysis
-8. Risk Factors
-9. Trade Plan
+1. Core Conclusion
+2. Why This Stock Exists Now
+3. Industry Chain And Bottleneck
+4. Company Position In The Chain
+5. Business Model Logic
+6. Scarcity And Moat Assessment
+7. Customers, Orders, And Commercialization Path
+8. Operations, Capacity, And Execution Quality
+9. Financial Quality, Assets, Debt, And Dilution
+10. Valuation And Market-Implied Expectation
+11. Catalysts, Risks, And Falsification
+12. Technical Structure And Trade Plan
+
+Legacy validation aliases are still recognized for older fixtures:
+Company Overview, Operations, Customers, And Orders, Financials, Assets, And
+Debt, Valuation, Short-Seller Risk, Technical Analysis, Risk Factors, and Trade
+Plan.
 
 ## Evidence Priority
 
@@ -128,7 +148,8 @@ Use sources in this order:
 3. government, regulator, industry association, customer, and partner
    disclosures
 4. reliable market-data providers and terminal data
-5. high-quality secondary research
+5. high-quality secondary research, used as thesis-path input only until
+   independently verified
 
 User-provided historical reports are style, structure, and depth references
 only. They are not factual sources for a new report.
@@ -137,13 +158,18 @@ only. They are not factual sources for a new report.
 
 - Do not invent data, dates, contracts, customers, orders, or target prices.
 - State data gaps explicitly.
+- Start from the current repricing dispute, not a generic company profile.
 - Build the ontology object graph before drafting report prose.
 - Capture runtime settings and user hypotheses before source work.
 - Treat user hypotheses as questions to test, not as evidence.
+- Treat outside articles as thesis-path hints, not as evidence.
 - Preserve source snapshots and run lineage for material claims.
 - Use source partitions before loading long source text, then use evidence
   partitions after extraction.
 - Use incremental refresh when only a subset of source material changed.
+- Route the issuer to an opportunity archetype before valuation.
+- Test demand expansion, scaling difficulty, bottleneck scarcity, and
+  commercialization visibility.
 - Use one primary valuation method; other methods are sanity checks only.
 - Build an explicit equity bridge before allowing a per-share target.
 - Valuation must cover assets, orders/backlog, debt, cash, and dilution.
@@ -170,6 +196,8 @@ only. They are not factual sources for a new report.
 - `references/technical-analysis-framework.md`
 - `references/scorecard-decision-framework.md`
 - `references/report-style-patterns.md`
+- `references/article-thesis-distillation-framework.md`
+- `references/opportunity-discovery-framework.md`
 - `references/research-lakehouse-framework.md`
 - `references/evidence-indexing-framework.md`
 - `references/incremental-refresh-framework.md`
@@ -194,7 +222,10 @@ quality, cash conversion, debt, valuation, short risk, technical freshness, and
 blocked conclusions before report composition.
 
 Additional ontology objects support source lineage and efficient refresh:
-`ResearchSettings`, `UserHypothesis`, `SourceSnapshot`, `SourcePartition`,
+`ResearchSettings`, `UserHypothesis`, `ArticleThesisMap`, `ThesisPathReplay`,
+`OpportunityArchetype`, `DemandExpansionAssessment`,
+`ScalingDifficultyAssessment`, `ScarcityBottleneckAssessment`,
+`CommercializationPathAssessment`, `SourceSnapshot`, `SourcePartition`,
 `EvidencePartition`, `ResearchRun`, `ActionExecution`, `GateResult`,
 `OutputView`, `IncrementalRefreshPlan`, `EquityBridge`, and
 `ConflictResolution`.
@@ -217,6 +248,11 @@ The comparison found gaps in six areas:
 
 - valuation needed a current-market-implied expectation before the analyst
   target
+- outside articles needed thesis-path extraction without being treated as
+  evidence
+- issuer selection needed opportunity archetype routing before section emphasis
+- high-conviction cases needed a four-part demand, scaling, scarcity, and
+  commercialization test
 - orders needed a quality ladder for cases where formal backlog is absent
 - financial quality needed net-income-to-operating-cash-flow reconciliation
 - technical analysis needed chart-date freshness and adjusted-OHLCV controls
@@ -243,6 +279,7 @@ third-party code or long prompt text. Referenced projects:
 - [Databricks documentation](https://docs.databricks.com/)
 - [Snowflake documentation](https://docs.snowflake.com/)
 - [OpenClaw skills documentation](https://docs.openclaw.ai/tools/skills)
+- [User-provided ChatGPT Pro report-design discussion](https://chatgpt.com/share/6a1c4f5a-5e04-83eb-a051-0e7ad3c41f7e)
 - [User-provided ChatGPT Pro design discussion](https://chatgpt.com/share/6a1779ca-13b0-83eb-a9f0-157203a052f1)
 
 License notes are documented in

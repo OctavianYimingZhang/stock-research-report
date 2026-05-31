@@ -17,6 +17,10 @@ Use these source classes in order:
 
 User-provided prior reports are style references only.
 
+Outside articles and public analyst notes are thesis-path inputs only. Extract
+the market logic, then verify material claims through the source classes above
+before using them in the business model.
+
 ## Core Questions
 
 Every business-model section must answer:
@@ -26,6 +30,8 @@ Every business-model section must answer:
 - What was the old value driver?
 - What is the new value driver?
 - What structural change explains the transition?
+- What demand shock or repricing dispute makes this stock relevant now?
+- Which opportunity archetype best explains the thesis?
 - How does the company capture value instead of merely riding industry growth?
 - What evidence would prove the transition is not working?
 
@@ -34,8 +40,9 @@ Every business-model section must answer:
 Write the business-model logic as a causal chain:
 
 ```text
-Customer problem -> product or service -> value captured by company ->
-revenue denominator -> margin mechanism -> cash-flow pattern -> valuation method
+demand shock -> industry bottleneck -> customer pain -> company solution
+-> value capture -> revenue denominator -> margin mechanism
+-> cash-flow pattern -> valuation denominator -> falsification observable
 ```
 
 Do not stop at labels such as "AI beneficiary", "defense supplier",
@@ -47,14 +54,17 @@ the mechanism is explicit.
 The strongest reports build an industry-to-company bridge before describing the
 issuer. Use this order:
 
-1. structural industry bottleneck or policy shock
-2. customer pain, cost, or operational risk created by that bottleneck
-3. company asset, process, certification, channel, or relationship that can
+1. current repricing dispute
+2. demand expansion or policy shock
+3. scaling difficulty faced by the industry
+4. structural industry bottleneck or scarcity node
+5. customer pain, cost, or operational risk created by that bottleneck
+6. company asset, process, certification, channel, or relationship that can
    solve the pain
-4. monetization denominator: unit, capacity, order, contract, take rate,
+7. monetization denominator: unit, capacity, order, contract, take rate,
    throughput, or service attach
-5. margin and cash-flow mechanism
-6. falsification observable
+8. margin and cash-flow mechanism
+9. falsification observable
 
 The section should make clear whether the company is selling scarce capacity,
 technical qualification, cost reduction, supply assurance, yield protection,
@@ -97,6 +107,40 @@ Use at least two of these tests:
 
 If none can be verified, say the thesis is industry-beta rather than company
 alpha.
+
+## Opportunity Archetype Link
+
+Use `references/opportunity-discovery-framework.md` to route the issuer before
+writing the business section. The business model should make the route visible:
+
+- scarcity routes must name the scarce value-chain node and the replication
+  barrier
+- policy routes must name the rule, funding source, procurement channel, or
+  compliance burden that changes demand
+- capacity-ramp routes must connect funded expansion to utilization, delivery,
+  margin, and cash conversion
+- order routes must connect legal order strength to revenue conversion and
+  valuation usability
+- levered routes must connect business upside to debt, maturities, warrants,
+  convertibles, preferred stock, or share-count dilution
+
+If the route is unsupported, cap the thesis as industry beta or watchlist-only.
+
+## Four-Part Opportunity Test
+
+Before calling a thesis high conviction, answer:
+
+- Demand expansion: who is spending, why now, and whether demand is structural
+  or cyclical.
+- Scaling difficulty: why supply cannot expand quickly and which barrier matters
+  most.
+- Bottleneck or scarcity: the exact node, why this company controls or relieves
+  it, and whether scarcity is temporary, cyclical, or structural.
+- Commercialization visibility: whether evidence is recognized revenue, binding
+  purchase order, contracted backlog, paid reservation, customer-funded
+  capacity, framework, pilot, MOU, LOI, pipeline, or management aspiration.
+
+Failure on any part should create a `DataGap` or cap the action grade.
 
 ## Strategic Transition Tests
 

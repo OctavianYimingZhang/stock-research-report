@@ -23,6 +23,7 @@ quality gates, role separation, and output contracts.
 | [Databricks Lakehouse and Delta Lake documentation](https://docs.databricks.com/) | Public documentation | research lakehouse layering, source snapshot lineage, and data-quality expectation ideas; no code copied |
 | [Snowflake architecture documentation](https://docs.snowflake.com/) | Public documentation | metadata pruning, dynamic refresh, and compute/control separation ideas; no code copied |
 | [OpenClaw skills documentation](https://docs.openclaw.ai/tools/skills) | Public documentation | settings and onboarding metadata ideas for skill invocation; no code copied |
+| [User-provided ChatGPT Pro report-design discussion](https://chatgpt.com/share/6a1c4f5a-5e04-83eb-a051-0e7ad3c41f7e) | User-provided shared discussion | outside thesis replay, opportunity archetype routing, four-part opportunity test, and mainline-driven report structure; no code copied |
 | [User-provided ChatGPT Pro design discussion](https://chatgpt.com/share/6a1779ca-13b0-83eb-a9f0-157203a052f1) | User-provided shared discussion | self-maintenance pattern with read-only doctor checks, dry-run update preview, explicit update, backup, validation, and proposal-only improvement planning; no code copied |
 
 ## Attribution Standard

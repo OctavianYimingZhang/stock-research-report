@@ -2,11 +2,12 @@
 name: stock-research-report
 description: >
   Self-contained ontology-backed public-company deep research report skill.
-  Produces analyst style reports with integrated business-model logic, profit
-  and cash-flow quality, valuation with assets/orders/debt, short-seller risk,
-  decision scorecard, and K-line technical trade planning. Uses authoritative
-  sources first and treats user-provided historical reports only as style and
-  structure patterns, never as factual evidence.
+  Produces analyst style causal memos with outside thesis replay, opportunity
+  archetype routing, business-model logic, profit and cash-flow quality,
+  valuation with assets/orders/debt, short-seller risk, decision scorecard, and
+  K-line technical trade planning. Uses authoritative sources first and treats
+  outside articles or user-provided historical reports only as research-path,
+  style, and structure inputs unless independently verified.
 homepage: https://github.com/OctavianYimingZhang/Stock-DeepResearch-Skill
 user-invocable: true
 metadata: {"settings_schema":"config/settings.schema.json","onboarding_flow":"config/onboarding.flow.yaml","default_profile":"config/profiles/default.json"}
@@ -43,6 +44,8 @@ Read these files before writing a full report or changing the Skill contract:
 - `references/technical-analysis-framework.md`
 - `references/scorecard-decision-framework.md`
 - `references/report-style-patterns.md`
+- `references/article-thesis-distillation-framework.md`
+- `references/opportunity-discovery-framework.md`
 - `references/research-lakehouse-framework.md`
 - `references/evidence-indexing-framework.md`
 - `references/incremental-refresh-framework.md`
@@ -60,36 +63,43 @@ machine-readable version of the workflow.
    earnings-call transcripts, exchange/regulator/government records,
    customer/partner disclosures, and reliable market data before secondary
    research.
-2. Historical reports are not evidence. They teach style, section rhythm, and
-   depth only.
-3. No invented facts. If a needed data point is missing, state the missing item
+2. Outside articles are research-path hints, not evidence. Extract the thesis
+   path, then verify each material claim independently.
+3. Historical reports are not evidence. They teach style, section rhythm,
+   causal depth, and trade-plan usefulness only.
+4. Start with the current repricing dispute. Do not open with a generic company
+   history unless identity itself is the investment issue.
+5. Every high-conviction thesis must test demand expansion, scaling difficulty,
+   bottleneck or scarcity, and commercialization visibility.
+6. No invented facts. If a needed data point is missing, state the missing item
    and block the affected conclusion.
-4. One report, one voice. Do not expose separate module outputs.
-5. One primary valuation method. Use other methods only as brief sanity checks;
+7. One report, one voice. Do not expose separate module outputs.
+8. One primary valuation method. Use other methods only as brief sanity checks;
    do not average methods into a target.
-6. Assets, orders, cash, debt, maturity wall, dilution, and share count are
+9. Assets, orders, cash, debt, maturity wall, dilution, and share count are
    mandatory in valuation.
-7. Profit and cash-flow quality is mandatory. Reconcile earnings to OCF, EBITDA
-   to OCF to FCF, FCF per share, working capital, capex quality, and dilution.
-8. Short-seller risk is mandatory. Grade the risk and state how it affects
+10. Profit and cash-flow quality is mandatory. Reconcile earnings to OCF,
+    EBITDA to OCF to FCF, FCF per share, working capital, capex quality, and
+    dilution.
+11. Short-seller risk is mandatory. Grade the risk and state how it affects
    valuation, position sizing, or confidence.
-9. Technical analysis is decision-oriented. Output trend, pattern,
-   support/resistance, entry, stop, and take-profit levels, or block the setup.
-10. Decision scorecard is a projection, not evidence. It compresses supported
+12. Technical analysis is decision-oriented. Output trend, pattern,
+    support/resistance, entry, stop, and take-profit levels, or block the setup.
+13. Decision scorecard is a projection, not evidence. It compresses supported
     analysis into an action grade and binding cap reason.
-11. Use CFA-aligned formulas and method logic without copying textbook prose.
-12. No third-party code copying. Public projects may inspire workflow design
+14. Use CFA-aligned formulas and method logic without copying textbook prose.
+15. No third-party code copying. Public projects may inspire workflow design
     only; preserve links and license notes.
-13. No baked-in company triggers. Never use prior report issuers, tickers, or
+16. No baked-in company triggers. Never use prior report issuers, tickers, or
     temporary calibration targets as runtime conditions.
-14. Material numbers need source markers. Revenue, cash, debt, backlog, share
+17. Material numbers need source markers. Revenue, cash, debt, backlog, share
     count, target price, and technical levels must be traceable or labeled as
     assumptions.
-15. Runtime settings are not evidence. User settings and user hypotheses
+18. Runtime settings are not evidence. User settings and user hypotheses
     configure the run and must be tested against sources.
-16. Ontology before prose. Build the object graph first; report sections are
+19. Ontology before prose. Build the object graph first; report sections are
     projections from evidence-backed claims.
-17. Maintenance is explicit. Use `skill_manifest.json` and
+20. Maintenance is explicit. Use `skill_manifest.json` and
     `scripts/skill_maintenance.py` for doctor checks, dry-run update previews,
     explicit updates, and proposal-only improvement planning. Do not silently
     update, rewrite, or push repository state from normal report generation.
@@ -108,7 +118,48 @@ market data, and industry archetype. Label every research statement as
 Use concise source markers such as `[filing]`, `[earnings call]`,
 `[IR presentation]`, `[regulator]`, `[counterparty]`, or `[market data]`.
 
-### 2. Research Lakehouse And Evidence Index
+### 2. Research Path Replay And Opportunity Discovery
+
+Use `references/opportunity-discovery-framework.md` and
+`references/article-thesis-distillation-framework.md`.
+
+Before building the final evidence graph, reconstruct why the issuer is worth
+researching now:
+
+- collect issuer filings, investor relations, transcripts, press releases,
+  customer disclosures, supplier disclosures, government sources, regulator
+  sources, reliable market data, and high-quality outside research when
+  available
+- build `ArticleThesisMap` for each outside thesis path
+- extract what each outside source believes, which causal chain it uses, what
+  facts it relies on, which facts are missing, and what would falsify it
+- build `ThesisPathReplay` to compare outside-in thesis discovery with
+  inside-out primary-source reconstruction
+- reject or qualify every outside claim that primary sources do not support
+
+Do not copy article language. Use outside research only to discover candidate
+paths and missing questions.
+
+### 3. Opportunity Archetype Routing
+
+Classify the issuer before drafting:
+
+- `scarcity_bottleneck`
+- `policy_protected_supply_chain`
+- `customer_funded_capacity_ramp`
+- `operating_leverage_recovery`
+- `order_backlog_repricing`
+- `strategic_asset_optional_value`
+- `levered_residual_equity`
+- `early_commercialization`
+- `mature_infrastructure_compounder`
+- `commodity_or_resource_processing`
+
+The archetype determines section emphasis, evidence burden, order quality
+threshold, and valuation method. If no archetype is supported, mark the issuer
+as industry beta or watchlist-only.
+
+### 4. Research Lakehouse And Evidence Index
 
 Use `references/research-lakehouse-framework.md`,
 `references/evidence-indexing-framework.md`, and
@@ -119,16 +170,17 @@ Process evidence in layers:
 - Bronze: immutable `SourceSnapshot` and `SourceDocument`
 - Source Index: `SourcePartition` routing before extraction
 - Silver: `EvidencePartition`, `EvidenceItem`, `Claim`, metrics, orders, debt,
-  and dilution
-- Gold: business thesis, financial quality, valuation, short-risk, technical
-  setup, scorecard, and trade plan
+  dilution, and conflict records
+- Gold: opportunity thesis, scarcity assessment, commercialization path,
+  business thesis, financial quality, valuation, short-risk, technical setup,
+  scorecard, and trade plan
 - Report View: final `ReportSection` projections
 
 Use partitions to avoid loading irrelevant source text. If new source material
 arrives, build an `IncrementalRefreshPlan` and refresh only affected objects
 unless a high-materiality claim is invalidated.
 
-### 3. Ontology Object Graph
+### 5. Ontology Object Graph
 
 Use `references/ontology-framework.md` and the YAML contracts in `ontology/`.
 
@@ -140,42 +192,116 @@ SourceDocument -> EvidenceItem -> Claim -> analysis object -> ReportSection
 
 Required analysis objects include:
 
-- `BusinessModelThesis`, `ValueDriverTransition`, `OrderQualityAssessment`
+- `ResearchSettings`, `UserHypothesis`, `ArticleThesisMap`, `ThesisPathReplay`
+- `OpportunityArchetype`, `DemandExpansionAssessment`,
+  `ScalingDifficultyAssessment`, `ScarcityBottleneckAssessment`,
+  `CommercializationPathAssessment`
+- `BusinessModelThesis`, `ValueDriverTransition`, `OrderQualityAssessment`,
+  `OperatingLeverageMap`
 - `FinancialQualityAssessment`, `ProfitCashFlowQualityAnalysis`
 - `CurrentMarketImpliedBridge`, `ValuationMethodSelection`, `EquityBridge`,
   `ValuationCase`
-- `ShortRiskSignal`, `ShortSellerAssessment`
-- `TechnicalSetup`
+- `ShortRiskSignal`, `ShortSellerAssessment`, `FalsificationPattern`
+- `TechnicalSetup`, `PositionSizingRationale`
 - `ExpectationRevisionAssessment`, `MomentumRegimeAssessment`,
   `ValuationOddsAssessment`, `RiskFilterAssessment`, `DecisionScorecard`
 - `TradePlan`, `GateResult`, `DataGap`, `ReportSection`
 
-Run all workflow gates before final prose, including ProfitCashFlowQualityGate
-and DecisionScorecardGate. Each gate result must be `pass`, `warn`, `block`,
-`fail`, or `not_applicable`.
+Run all workflow gates before final prose. Each gate result must be `pass`,
+`warn`, `block`, `fail`, or `not_applicable`.
 
-### 4. Business Model Logic
+### 6. Four-Part Opportunity Test
+
+Every high-conviction report must pass or explicitly block this sequence:
+
+1. Demand expansion:
+   - name the end demand
+   - identify who is spending
+   - explain why demand is growing now
+   - separate structural demand from cyclical rebound
+
+2. Scaling difficulty:
+   - explain why supply cannot expand easily
+   - identify qualification, certification, capex, construction time, yield,
+     customer approval, regulation, or supply-chain barriers
+
+3. Bottleneck or scarcity:
+   - identify the exact value-chain node
+   - explain why this company controls or benefits from that node
+   - classify scarcity as technical, capacity, qualification, policy,
+     customer-relationship, asset, financing, or channel scarcity
+   - determine whether scarcity is temporary, cyclical, or structural
+
+4. Commercialization visibility:
+   - separate recognized revenue, binding purchase order, firm backlog, paid
+     reservation, customer-funded capacity, contract, IDIQ/framework, pilot,
+     MOU, LOI, pipeline, and management aspiration
+
+If any of the four parts fails, cap the final action grade unless valuation is
+already priced as a discounted option.
+
+### 7. Business Logic Build
 
 Use `references/business-model-framework.md`.
 
-Explain the industry-to-company bridge: structural bottleneck, customer pain,
-company solution, value capture, revenue denominator, margin mechanism, and
-falsification observable. End the section with a bold one-sentence judgment
-naming the value driver, current stage, and key observable.
+Build the business logic as:
 
-### 5. Operations, Customers, And Orders
+```text
+demand shock -> industry bottleneck -> customer pain -> company solution
+-> value capture -> revenue denominator -> margin mechanism
+-> cash-flow pattern -> valuation denominator -> falsification observable
+```
+
+The section must identify old driver, new driver, why the transition is
+happening now, how the company captures value, what evidence proves the
+transition is real, and what evidence would break it.
+
+End the section with a bold one-sentence judgment naming the value driver,
+current stage, and key observable.
+
+### 8. Commercialization And Order Quality
 
 Use `references/business-model-framework.md` and
 `references/valuation-framework.md`.
 
-Separate recognized revenue, firm backlog, purchase orders, capacity
-reservations, framework agreements, customer concentration, pipeline language,
-and management guidance. Grade order quality before any order-based valuation
-use. Tie orders to delivery cadence, capacity match, margin visibility,
-working-capital burden, and customer funding. Weak order signals can support a
-narrative but cannot drive a target.
+Separate:
 
-### 6. Profit Cash Flow Quality Analysis
+- recognized revenue
+- binding purchase order
+- contracted backlog
+- paid capacity reservation
+- customer prepayment
+- commercial contract
+- IDIQ or framework
+- pilot
+- MOU
+- LOI
+- pipeline
+- management aspiration
+
+Only recognized revenue, binding purchase orders, contracted backlog, paid
+reservations, or customer-funded capacity can normally support base-case
+valuation. Weaker order types may support upside optionality only.
+
+For every order-heavy thesis, build:
+
+```text
+order evidence -> customer identity -> legal strength -> delivery cadence
+-> capacity match -> margin visibility -> working-capital burden
+-> cash conversion -> valuation usability
+```
+
+### 9. Operations, Capacity, And Execution Quality
+
+Use `references/opportunity-discovery-framework.md` and
+`references/business-model-framework.md`.
+
+Tie asset, facility, production, capacity, utilization, capex, and ramp timing
+to the opportunity archetype. For asset-heavy or capacity-ramp theses, show the
+current capacity, target capacity, funding source, bottleneck, and date by which
+failure would become visible.
+
+### 10. Profit Cash Flow Quality Analysis
 
 Use `references/profit-cash-flow-quality-framework.md`.
 
@@ -194,7 +320,7 @@ Cover:
 Embed conclusions in `Financials, Assets, And Debt`, `Valuation`,
 `Short-Seller Risk`, and `Trade Plan`. Do not add a tenth report section.
 
-### 7. Valuation With Assets, Orders, And Debt
+### 11. Valuation With Assets, Orders, And Debt
 
 Use `references/valuation-framework.md`.
 
@@ -215,7 +341,7 @@ Required valuation outputs:
 - target price or target market cap, unless blocked by evidence gaps
 - one secondary sanity check at most
 
-### 8. Short-Seller Risk
+### 12. Short-Seller Risk
 
 Use `references/short-seller-risk-framework.md`.
 
@@ -228,7 +354,7 @@ Output a grade `A/B/C/D/F`, the activist-short attack narrative, strongest red
 and green flags, and valuation or position-size effect. Keep verified facts,
 allegations, inferences, and unanswered questions separate.
 
-### 9. Technical Analysis And Trade Plan Inputs
+### 13. Technical Analysis And Trade Plan Inputs
 
 Use `references/technical-analysis-framework.md`.
 
@@ -241,7 +367,7 @@ thesis.
 If no defensible setup exists, state the observation stance and the price or
 catalyst that would change it.
 
-### 10. Decision Scorecard
+### 14. Decision Scorecard
 
 Use `references/scorecard-decision-framework.md`.
 
@@ -255,7 +381,7 @@ decision-critical blocker, such as unresolved evidence, stretched valuation,
 negative revision risk, weak cash conversion, elevated short risk, or
 overextended momentum.
 
-### 11. Quality Calibration Loop
+### 15. Quality Calibration Loop
 
 Use `references/quality-calibration-loop.md` before finalizing substantial
 reports or when improving this Skill.
@@ -269,7 +395,7 @@ structure gaps, or validation gaps until no actionable gap remains.
 Do not commit temporary issuer names, tickers, or generated reports as triggers
 or reusable prompts.
 
-### 12. Skill Health And Maintenance
+### 16. Skill Health And Maintenance
 
 Use `skill_manifest.json` as the repository contract for Skill identity,
 entrypoint, branch, health commands, and post-update commands.
@@ -286,45 +412,70 @@ Maintenance logic is operational support. It must not change the report
 contract, evidence hierarchy, ontology graph, or English-only repository rule
 without corresponding documentation and validation updates.
 
-### 13. Final Report Composition
+### 17. Final Report Composition
 
-The default `full_report` output view must use this fixed structure:
+The default `full_report` output view must use this mainline-driven structure:
 
 ```markdown
 # [Company Name] ([Ticker]) Deep Research Report:
 ## [One-line thesis subtitle]
 
-## Company Overview
+## Core Conclusion
+## Why This Stock Exists Now
+## Industry Chain And Bottleneck
+## Company Position In The Chain
 ## Business Model Logic
-## Operations, Customers, And Orders
-## Financials, Assets, And Debt
-## Valuation
-## Short-Seller Risk
-## Technical Analysis
-## Risk Factors
-## Trade Plan
+## Scarcity And Moat Assessment
+## Customers, Orders, And Commercialization Path
+## Operations, Capacity, And Execution Quality
+## Financial Quality, Assets, Debt, And Dilution
+## Valuation And Market-Implied Expectation
+## Catalysts, Risks, And Falsification
+## Technical Structure And Trade Plan
 ```
 
 Section requirements:
 
-- `Company Overview`: current investment tension, company identity, and compact
-  decision scorecard summary.
+- `Core Conclusion`: current repricing dispute, action stance, position-size
+  logic, main upside variable, and main invalidation variable.
+- `Why This Stock Exists Now`: demand expansion, market attention trigger,
+  what changed versus the prior 6-12 months, and whether the move is structural
+  or cyclical.
+- `Industry Chain And Bottleneck`: industry pain, insufficient alternatives,
+  scarce value-chain node, and scarcity duration.
+- `Company Position In The Chain`: what the company sells, who pays, why they
+  pay, which cost or risk is avoided, and whether the stock is industry beta or
+  company alpha.
 - `Business Model Logic`: old driver, new driver, value capture, bottleneck,
   and verification variable.
-- `Operations, Customers, And Orders`: facilities, capacity, customers, order
-  evidence, conversion cadence, and bottlenecks.
-- `Financials, Assets, And Debt`: financial trend, assets, cash, debt,
-  maturities, dilution, profit-to-cash-flow bridge, SBC-adjusted FCF, FCF per
-  share, and embedded quality note.
-- `Valuation`: one primary method, current-market-implied expectation, inline
-  arithmetic, EV-to-equity-to-diluted-share bridge, and one sanity check.
-- `Short-Seller Risk`: grade, attack narrative, fact/inference separation, and
-  valuation or position-size effect.
-- `Technical Analysis`: trend, pattern, freshness, support/resistance, entry,
-  stop, TP1, and TP2.
-- `Risk Factors`: thesis-breaking risks and blocked conclusions.
-- `Trade Plan`: stance, action grade, binding cap reason, position size, entry,
-  stop, take-profit, catalyst, and invalidation.
+- `Scarcity And Moat Assessment`: technical, capacity, certification,
+  customer-relationship, policy, switching-cost, and replication-difficulty
+  evidence.
+- `Customers, Orders, And Commercialization Path`: revenue, binding demand,
+  backlog, paid reservations, frameworks, pilots, delivery cadence, customer
+  funding, working-capital burden, and order-to-revenue bridge.
+- `Operations, Capacity, And Execution Quality`: facilities, assets, capacity,
+  utilization, expansion plan, capex source, ramp date, bottleneck, and margin
+  at scale.
+- `Financial Quality, Assets, Debt, And Dilution`: revenue and margin trend,
+  cash, debt, maturities, dilution, OCF, EBITDA-to-OCF-to-FCF bridge, working
+  capital, capex quality, SBC-adjusted FCF, FCF per share, and cash runway.
+- `Valuation And Market-Implied Expectation`: current-market-implied
+  expectation, one primary method, inline arithmetic, EV-to-equity-to-diluted
+  share bridge, base/bull/bear cases, re-rating condition, downside floor, and
+  one sanity check.
+- `Catalysts, Risks, And Falsification`: 3-6 month catalysts, 12-24 month
+  catalysts, thesis-breaking risks, short-seller attack narrative, and evidence
+  that would prove the thesis wrong.
+- `Technical Structure And Trade Plan`: monthly trend, weekly trend, daily
+  trend, pattern, volume, entry, stop, TP1, TP2, add/trim logic, position size,
+  action grade, binding cap reason, catalyst, and invalidation.
+
+Legacy aliases such as `Company Overview`, `Operations, Customers, And Orders`,
+`Financials, Assets, And Debt`, `Valuation`, `Short-Seller Risk`, `Technical
+Analysis`, `Risk Factors`, and `Trade Plan` may be recognized when validating
+older fixtures, but new `full_report` outputs should use the mainline-driven
+structure above.
 
 ## Style Rules
 
@@ -359,6 +510,13 @@ conclusion precisely.
 Before final output, verify:
 
 - all nine fixed sections are present
+- the report uses the mainline-driven `full_report` structure unless rendering
+  a legacy fixture
+- the current repricing dispute appears before corporate background
+- every outside thesis path is verified, rejected, or blocked before use
+- the issuer is routed to an opportunity archetype or capped as industry beta
+- demand expansion, scaling difficulty, bottleneck/scarcity, and
+  commercialization visibility are passed or explicitly blocked
 - ontology gates have passed or produced explicit blocked conclusions
 - every layer contains a judgment, not only a description
 - high-materiality claims have evidence, contradiction, qualification, or a

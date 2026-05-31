@@ -30,6 +30,8 @@ company archetypes from the user's reference-report set.
   unresolved high-materiality evidence gaps
 - layer-depth checks for business transition, order-to-revenue ramp, re-rating
   bridge, funding bridge, falsification lens, and trim/add trade logic
+- outside-thesis replay, opportunity archetype routing, and the four-part
+  demand, scaling, scarcity, and commercialization test
 
 ## Required Assertions
 
@@ -40,6 +42,10 @@ Each case specifies:
 - asset/order/debt coverage
 - source snapshots, run lineage, and evidence partitions where source scope is
   large or refreshed
+- ArticleThesisMap and ThesisPathReplay when outside research shapes the path
+- opportunity archetype route or explicit watchlist/industry-beta cap
+- demand expansion, scaling difficulty, scarcity bottleneck, and
+  commercialization path assessments for high-conviction reports
 - source partitions before evidence extraction
 - equity bridge object before any per-share target
 - gate result status using pass, warn, block, fail, or not_applicable

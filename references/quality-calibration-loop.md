@@ -20,6 +20,11 @@ commit the company name, ticker, or generated report as a Skill trigger.
 The test must check whether the Skill forces the analyst to produce:
 
 - a first-paragraph current re-rating dispute
+- outside thesis replay when public articles or user notes shaped the ticker
+  path
+- opportunity archetype routing before report section emphasis
+- demand expansion, scaling difficulty, bottleneck scarcity, and
+  commercialization visibility for any high-conviction thesis
 - old value driver, new value driver, and one verification variable
 - industry-to-company bridge and explicit value-capture mechanism
 - source markers for material facts and numbers
@@ -47,6 +52,9 @@ After drafting the test report, compare it against the quality bar:
 | Gap type | Failure signal | Contract response |
 |---|---|---|
 | opening is generic | starts with static company background | require re-rating dispute first |
+| outside thesis is untested | article narrative becomes fact | require thesis-path replay and primary verification |
+| opportunity route is missing | every issuer receives the same emphasis | require opportunity archetype routing |
+| opportunity test is shallow | demand, scaling, scarcity, or commercialization is not tested | require four-part opportunity assessment |
 | business logic is shallow | lists products without value capture | require causal chain and verification variable |
 | transition is vague | old and new value drivers are not separated | require strategic transition tests |
 | orders are overstated | treats pipeline as backlog | require order-proxy ladder and haircut |

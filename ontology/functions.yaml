@@ -35,6 +35,70 @@ functions:
     output: conflict_status
     blocking_gaps:
       - unresolved_primary_source_conflict
+  - name: extract_outside_thesis_path
+    inputs:
+      - outside_source_document
+      - source_type
+      - source_date
+    output: article_thesis_map
+    blocking_gaps:
+      - outside_source_unavailable
+      - thesis_path_not_extractable
+      - source_date_unresolved
+  - name: verify_outside_thesis_components
+    inputs:
+      - article_thesis_map
+      - primary_source_claims
+      - conflict_resolution
+    output: thesis_path_replay
+    blocking_gaps:
+      - material_claim_not_primary_verified
+      - contradiction_unresolved
+  - name: route_opportunity_archetype
+    inputs:
+      - thesis_path_replay
+      - business_model_claims
+      - order_quality
+      - asset_and_debt_profile
+    output: opportunity_archetype
+    blocking_gaps:
+      - no_company_specific_route
+      - unsupported_archetype
+  - name: assess_demand_expansion
+    inputs:
+      - end_demand
+      - spender_or_customer
+      - why_now_evidence
+    output: demand_expansion_assessment
+    blocking_gaps:
+      - end_demand_not_named
+      - spender_not_identified
+  - name: assess_scaling_difficulty
+    inputs:
+      - supply_expansion_path
+      - qualification_barrier
+      - capex_or_time_to_scale
+    output: scaling_difficulty_assessment
+    blocking_gaps:
+      - scaling_barrier_not_supported
+  - name: assess_scarcity_bottleneck
+    inputs:
+      - value_chain_node
+      - company_control_or_benefit
+      - replication_barrier
+    output: scarcity_bottleneck_assessment
+    blocking_gaps:
+      - bottleneck_not_specific
+      - company_link_to_scarcity_unverified
+  - name: assess_commercialization_visibility
+    inputs:
+      - order_evidence_type
+      - delivery_cadence
+      - cash_conversion_path
+    output: commercialization_path_assessment
+    blocking_gaps:
+      - commercial_evidence_too_weak
+      - cash_conversion_path_unresolved
   - name: calculate_enterprise_value
     inputs:
       - market_cap

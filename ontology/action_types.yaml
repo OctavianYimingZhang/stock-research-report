@@ -65,6 +65,63 @@ action_types:
     required_checks:
       - source_marker_present
       - materiality_set
+  - name: MapArticleThesis
+    reads:
+      - SourceDocument
+      - EvidenceItem
+      - Claim
+    writes:
+      - ArticleThesisMap
+      - DataGap
+    required_checks:
+      - outside_source_marked_not_evidence
+      - thesis_summary_present
+      - missing_evidence_listed
+      - unsupported_claims_listed
+  - name: BuildThesisPathReplay
+    reads:
+      - ArticleThesisMap
+      - Claim
+      - EvidenceItem
+      - ConflictResolution
+    writes:
+      - ThesisPathReplay
+      - DataGap
+    required_checks:
+      - outside_in_path_compared_to_primary_sources
+      - confirmed_components_listed
+      - rejected_components_listed
+      - unresolved_claims_blocked_or_capped
+  - name: RouteOpportunityArchetype
+    reads:
+      - ThesisPathReplay
+      - Claim
+      - Company
+    writes:
+      - OpportunityArchetype
+      - DataGap
+    required_checks:
+      - archetype_selected_or_watchlist_capped
+      - route_evidence_present
+      - section_emphasis_set
+      - valuation_implication_set
+  - name: RunFourPartOpportunityTest
+    reads:
+      - OpportunityArchetype
+      - Claim
+      - ContractOrder
+      - AssetFacility
+    writes:
+      - DemandExpansionAssessment
+      - ScalingDifficultyAssessment
+      - ScarcityBottleneckAssessment
+      - CommercializationPathAssessment
+      - DataGap
+    required_checks:
+      - demand_expansion_supported_or_blocked
+      - scaling_difficulty_supported_or_blocked
+      - bottleneck_scarcity_supported_or_blocked
+      - commercialization_visibility_supported_or_blocked
   - name: NormalizeOperatingObjects
     reads:
       - EvidenceItem
@@ -109,16 +166,24 @@ action_types:
       - CustomerCounterparty
       - ContractOrder
       - AssetFacility
+      - OpportunityArchetype
+      - DemandExpansionAssessment
+      - ScalingDifficultyAssessment
+      - ScarcityBottleneckAssessment
+      - CommercializationPathAssessment
       - EvidenceItem
     writes:
       - BusinessModelThesis
       - ValueDriverTransition
+      - OperatingLeverageMap
       - DataGap
     required_checks:
       - industry_to_company_bridge_present
+      - opportunity_archetype_reflected
       - customer_problem_named
       - value_capture_mechanism_named
       - value_driver_transition_named
+      - operating_leverage_or_blocker_named
       - verification_variable_named
       - falsification_observable_named
   - name: DetectSourceChange
@@ -254,6 +319,7 @@ action_types:
     reads:
       - Claim
       - ContractOrder
+      - CommercializationPathAssessment
       - FinancialQualityAssessment
       - ProfitCashFlowQualityAnalysis
       - DebtInstrument
@@ -261,9 +327,11 @@ action_types:
     writes:
       - ShortRiskSignal
       - ShortSellerAssessment
+      - FalsificationPattern
     required_checks:
       - grade_present
       - risk_effect_linked
+      - falsification_pattern_named
   - name: ValidateTechnicalSetup
     reads:
       - MetricObservation
@@ -279,6 +347,11 @@ action_types:
     reads:
       - BusinessModelThesis
       - ValueDriverTransition
+      - OpportunityArchetype
+      - DemandExpansionAssessment
+      - ScalingDifficultyAssessment
+      - ScarcityBottleneckAssessment
+      - CommercializationPathAssessment
       - OrderQualityAssessment
       - ProfitCashFlowQualityAnalysis
       - CurrentMarketImpliedBridge
@@ -305,10 +378,12 @@ action_types:
       - ValuationCase
       - EquityBridge
       - ShortSellerAssessment
+      - FalsificationPattern
       - TechnicalSetup
       - DecisionScorecard
       - DataGap
     writes:
+      - PositionSizingRationale
       - TradePlan
       - DataGap
     required_checks:
@@ -320,11 +395,22 @@ action_types:
   - name: GenerateReportSection
     reads:
       - OutputView
+      - ArticleThesisMap
+      - ThesisPathReplay
+      - OpportunityArchetype
+      - DemandExpansionAssessment
+      - ScalingDifficultyAssessment
+      - ScarcityBottleneckAssessment
+      - CommercializationPathAssessment
       - Claim
       - EvidenceItem
+      - BusinessModelThesis
+      - OperatingLeverageMap
       - ValuationCase
       - ShortSellerAssessment
+      - FalsificationPattern
       - TechnicalSetup
+      - PositionSizingRationale
       - ProfitCashFlowQualityAnalysis
       - DecisionScorecard
       - TradePlan

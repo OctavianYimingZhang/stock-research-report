@@ -7,15 +7,18 @@ from pathlib import Path
 
 
 REQUIRED_SECTIONS = [
-    "Company Overview",
+    "Core Conclusion",
+    "Why This Stock Exists Now",
+    "Industry Chain And Bottleneck",
+    "Company Position In The Chain",
     "Business Model Logic",
-    "Operations, Customers, And Orders",
-    "Financials, Assets, And Debt",
-    "Valuation",
-    "Short-Seller Risk",
-    "Technical Analysis",
-    "Risk Factors",
-    "Trade Plan",
+    "Scarcity And Moat Assessment",
+    "Customers, Orders, And Commercialization Path",
+    "Operations, Capacity, And Execution Quality",
+    "Financial Quality, Assets, Debt, And Dilution",
+    "Valuation And Market-Implied Expectation",
+    "Catalysts, Risks, And Falsification",
+    "Technical Structure And Trade Plan",
 ]
 
 SOURCE_MARKERS = [
@@ -54,6 +57,12 @@ def main() -> None:
         fail("report must include source markers for material numbers")
 
     require(r"investment dispute|re[- ]rating dispute|market debate|what the market is pricing", text, "missing opening investment dispute")
+    require(r"outside thesis|thesis path|ArticleThesisMap|external thesis", text, "missing outside thesis-path replay")
+    require(r"opportunity archetype|scarcity_bottleneck|policy_protected_supply_chain|customer_funded_capacity_ramp|industry beta|watchlist", text, "missing opportunity archetype routing")
+    require(r"demand[-\s]+expansion", text, "missing demand-expansion assessment")
+    require(r"scaling difficulty|supply cannot expand|qualification|certification|capex barrier", text, "missing scaling-difficulty assessment")
+    require(r"bottleneck|scarcity", text, "missing bottleneck or scarcity assessment")
+    require(r"commercialization visibility|commercialization path|order-to-revenue", text, "missing commercialization-path assessment")
     require(r"current[- ]market[- ]implied|current price implies|market implies", text, "missing current-market-implied valuation bridge")
     require(r"re[- ]rating|multiple expansion|market bucket", text, "missing re-rating bridge or multiple-expansion condition")
     require(r"EV[- ]to[- ]equity|target equity value|net debt", text, "missing EV-to-equity bridge")

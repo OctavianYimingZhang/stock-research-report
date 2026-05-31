@@ -35,6 +35,76 @@ object_types:
       - gates_failed
       - blocked_conclusions
       - output_report_id
+  - name: ArticleThesisMap
+    purpose: Outside thesis-path map used for discovery, not factual proof.
+    required_properties:
+      - source_title_or_locator
+      - source_type
+      - source_date_or_gap
+      - thesis_summary
+      - implied_causal_chain
+      - claimed_catalysts
+      - claimed_bottleneck
+      - claimed_order_or_customer_proof
+      - evidence_used_by_source
+      - evidence_missing
+      - unsupported_claims
+      - falsification_test
+      - usable_angle
+      - verification_status
+  - name: ThesisPathReplay
+    purpose: Reconciliation of outside-in thesis discovery with inside-out primary-source reconstruction.
+    required_properties:
+      - outside_logic
+      - primary_source_reconstruction
+      - confirmed_components
+      - rejected_components
+      - unresolved_claims
+      - improved_thesis
+      - valuation_implications
+      - action_grade_cap_or_gap
+  - name: OpportunityArchetype
+    purpose: Issuer route that determines report emphasis, evidence burden, and valuation method.
+    required_properties:
+      - archetype
+      - route_evidence
+      - section_emphasis
+      - evidence_burden
+      - valuation_method_implication
+      - unsupported_route_gap
+  - name: DemandExpansionAssessment
+    purpose: Assessment of why end demand is growing and who is spending now.
+    required_properties:
+      - end_demand
+      - spender_or_customer
+      - why_now
+      - structural_or_cyclical
+      - evidence_status
+  - name: ScalingDifficultyAssessment
+    purpose: Assessment of why supply or execution capacity cannot expand easily.
+    required_properties:
+      - limiting_factor
+      - barrier_type
+      - time_to_scale_or_gap
+      - required_capex_or_gap
+      - evidence_status
+  - name: ScarcityBottleneckAssessment
+    purpose: Assessment of the scarce value-chain node and company link to it.
+    required_properties:
+      - value_chain_node
+      - company_control_or_benefit
+      - scarcity_type
+      - scarcity_duration
+      - replication_barrier
+      - evidence_status
+  - name: CommercializationPathAssessment
+    purpose: Assessment of whether demand evidence can become revenue and cash.
+    required_properties:
+      - strongest_commercial_evidence
+      - evidence_quality
+      - delivery_cadence_or_gap
+      - cash_conversion_path_or_gap
+      - valuation_usability
   - name: Company
     purpose: Legal and operating identity of the issuer.
     required_properties:
@@ -45,6 +115,7 @@ object_types:
       - fiscal_year
       - reporting_standard
       - industry_archetype
+      - opportunity_archetype
   - name: Security
     purpose: Listed equity or listed equity equivalent being analyzed.
     required_properties:
@@ -155,6 +226,15 @@ object_types:
       - new_driver
       - transition_evidence
       - failure_observable
+  - name: OperatingLeverageMap
+    purpose: Map from revenue or volume change to margin, cash flow, and valuation denominator.
+    required_properties:
+      - revenue_denominator
+      - fixed_cost_base_or_gap
+      - incremental_margin_or_gap
+      - utilization_driver
+      - cash_flow_conversion_effect
+      - valuation_denominator
   - name: CustomerCounterparty
     purpose: Customer, supplier, partner, or government counterparty.
     required_properties:
@@ -288,6 +368,14 @@ object_types:
       - strongest_red_flag
       - strongest_green_flag
       - valuation_or_size_effect
+  - name: FalsificationPattern
+    purpose: Monitorable evidence pattern that would disprove the main thesis.
+    required_properties:
+      - thesis_component
+      - failure_signal
+      - source_to_monitor
+      - timing
+      - valuation_or_trade_effect
   - name: TechnicalSetup
     purpose: K-line trend, pattern, levels, freshness, and invalidation setup.
     required_properties:
@@ -300,6 +388,14 @@ object_types:
       - stop
       - take_profit_1
       - take_profit_2
+  - name: PositionSizingRationale
+    purpose: Position size derived from evidence quality, scorecard cap, stop distance, and short-risk effect.
+    required_properties:
+      - evidence_quality
+      - scorecard_cap
+      - stop_distance
+      - short_risk_effect
+      - max_position_size_or_gap
   - name: ExpectationRevisionAssessment
     purpose: Assessment of whether financial and operating expectations are likely to revise up, revise down, or remain unconfirmed.
     required_properties:

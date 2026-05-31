@@ -9,6 +9,10 @@ The report should read like one analyst explaining a stock to an investor:
 
 - the user-requested report language
 - clear thesis tension in the opening
+- outside thesis replay when outside articles shaped the research path
+- opportunity archetype routing before section emphasis
+- demand expansion, scaling difficulty, bottleneck scarcity, and
+  commercialization visibility for high-conviction theses
 - concrete numbers
 - inline arithmetic
 - visible source markers for material numbers
@@ -30,14 +34,22 @@ Founding year, headquarters, and listing venue belong after that sentence.
 
 Do not open with static corporate genealogy.
 
+If outside research or user notes motivated the ticker, the opening should say
+what market question those sources raised, then immediately separate verified
+facts from unverified narrative.
+
 ## Reference-Caliber Quality Bar
 
 A report is not complete merely because all headings exist. It must satisfy
 these quality tests:
 
 - the opening names the disputed repricing question, not a generic theme
+- outside thesis paths are verified, rejected, or blocked before use
+- the issuer is routed to a supported opportunity archetype or explicitly capped
 - the business model explains the customer pain, the product, the capture
   mechanism, the bottleneck, and the observable that proves the thesis
+- the opportunity test explains demand expansion, scaling difficulty,
+  bottleneck scarcity, and commercialization visibility
 - the operations section separates disclosed backlog from weaker order proxies
 - the financial section reconciles net income to operating cash flow and
   explains working-capital movement, capex quality, SBC-adjusted FCF, and FCF
@@ -58,6 +70,8 @@ Each layer must contain a judgment, not only a description:
 
 - Business layer: identify the structural bottleneck, value-capture mechanism,
   and falsification observable.
+- Opportunity layer: classify the archetype and identify what makes the stock
+  investable now.
 - Operations layer: connect capacity, utilization, capex, customer funding,
   delivery cadence, and margin at scale.
 - Customer/order layer: separate revenue, binding orders, funded reservations,
@@ -77,19 +91,24 @@ become independent checklists.
 
 ## Section Rhythm
 
-Use these sections in order:
+Use these default `full_report` sections in order:
 
-1. Company Overview
-2. Business Model Logic
-3. Operations, Customers, And Orders
-4. Financials, Assets, And Debt
-5. Valuation
-6. Short-Seller Risk
-7. Technical Analysis
-8. Risk Factors
-9. Trade Plan
+1. Core Conclusion
+2. Why This Stock Exists Now
+3. Industry Chain And Bottleneck
+4. Company Position In The Chain
+5. Business Model Logic
+6. Scarcity And Moat Assessment
+7. Customers, Orders, And Commercialization Path
+8. Operations, Capacity, And Execution Quality
+9. Financial Quality, Assets, Debt, And Dilution
+10. Valuation And Market-Implied Expectation
+11. Catalysts, Risks, And Falsification
+12. Technical Structure And Trade Plan
 
-Do not expose numbered part labels.
+Do not expose module labels. Older section aliases may be accepted by validators
+for legacy fixtures, but new full reports should use the mainline-driven
+structure.
 
 ## Business Logic Prose
 
@@ -100,6 +119,7 @@ Strong reports explain:
 - structural reason for transition
 - customer or policy evidence
 - operating bottleneck
+- opportunity archetype and four-part opportunity test result
 - 3-5 year end state
 
 Weak reports merely list products, markets, and catalysts.

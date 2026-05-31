@@ -9,6 +9,13 @@ from typing import Any
 
 REQUIRED_TOP_LEVEL = [
     "research_run",
+    "article_thesis_maps",
+    "thesis_path_replays",
+    "opportunity_archetypes",
+    "demand_expansion_assessments",
+    "scaling_difficulty_assessments",
+    "scarcity_bottleneck_assessments",
+    "commercialization_path_assessments",
     "source_snapshots",
     "source_partitions",
     "evidence_items",
@@ -18,6 +25,8 @@ REQUIRED_TOP_LEVEL = [
     "equity_bridges",
     "profit_cash_flow_quality_analyses",
     "technical_setups",
+    "falsification_patterns",
+    "position_sizing_rationales",
     "expectation_revision_assessments",
     "momentum_regime_assessments",
     "valuation_odds_assessments",
@@ -81,6 +90,13 @@ def main() -> None:
             fail(f"unsupported gate status: {obj.get('status')}")
 
     source_snapshot_ids = ids(require_list(root["source_snapshots"], "source_snapshots"), "source_snapshots")
+    article_map_ids = ids(require_list(root["article_thesis_maps"], "article_thesis_maps"), "article_thesis_maps")
+    thesis_path_ids = ids(require_list(root["thesis_path_replays"], "thesis_path_replays"), "thesis_path_replays")
+    opportunity_ids = ids(require_list(root["opportunity_archetypes"], "opportunity_archetypes"), "opportunity_archetypes")
+    demand_ids = ids(require_list(root["demand_expansion_assessments"], "demand_expansion_assessments"), "demand_expansion_assessments")
+    scaling_ids = ids(require_list(root["scaling_difficulty_assessments"], "scaling_difficulty_assessments"), "scaling_difficulty_assessments")
+    scarcity_ids = ids(require_list(root["scarcity_bottleneck_assessments"], "scarcity_bottleneck_assessments"), "scarcity_bottleneck_assessments")
+    commercialization_ids = ids(require_list(root["commercialization_path_assessments"], "commercialization_path_assessments"), "commercialization_path_assessments")
     source_partition_ids = ids(require_list(root["source_partitions"], "source_partitions"), "source_partitions")
     evidence_ids = ids(require_list(root["evidence_items"], "evidence_items"), "evidence_items")
     claim_ids = ids(require_list(root["claims"], "claims"), "claims")
@@ -89,12 +105,37 @@ def main() -> None:
     equity_bridge_ids = ids(require_list(root["equity_bridges"], "equity_bridges"), "equity_bridges")
     profit_cash_ids = ids(require_list(root["profit_cash_flow_quality_analyses"], "profit_cash_flow_quality_analyses"), "profit_cash_flow_quality_analyses")
     technical_ids = ids(require_list(root["technical_setups"], "technical_setups"), "technical_setups")
+    falsification_ids = ids(require_list(root["falsification_patterns"], "falsification_patterns"), "falsification_patterns")
+    position_size_ids = ids(require_list(root["position_sizing_rationales"], "position_sizing_rationales"), "position_sizing_rationales")
     expectation_ids = ids(require_list(root["expectation_revision_assessments"], "expectation_revision_assessments"), "expectation_revision_assessments")
     momentum_ids = ids(require_list(root["momentum_regime_assessments"], "momentum_regime_assessments"), "momentum_regime_assessments")
     valuation_odds_ids = ids(require_list(root["valuation_odds_assessments"], "valuation_odds_assessments"), "valuation_odds_assessments")
     risk_filter_ids = ids(require_list(root["risk_filter_assessments"], "risk_filter_assessments"), "risk_filter_assessments")
     decision_scorecard_ids = ids(require_list(root["decision_scorecards"], "decision_scorecards"), "decision_scorecards")
     short_ids = ids(require_list(root["short_seller_assessments"], "short_seller_assessments"), "short_seller_assessments")
+
+    for replay in require_list(root["thesis_path_replays"], "thesis_path_replays"):
+        obj = require_dict(replay, "thesis path replay")
+        if obj.get("article_thesis_map_id") not in article_map_ids:
+            fail(f"thesis path replay {obj.get('id')} lacks article thesis map")
+
+    for opportunity in require_list(root["opportunity_archetypes"], "opportunity_archetypes"):
+        obj = require_dict(opportunity, "opportunity archetype")
+        if obj.get("thesis_path_replay_id") not in thesis_path_ids:
+            fail(f"opportunity archetype {obj.get('id')} lacks thesis path replay")
+        if not obj.get("archetype"):
+            fail(f"opportunity archetype {obj.get('id')} lacks archetype")
+
+    for assessment_key, assessment_ids, label in [
+        ("demand_expansion_assessments", demand_ids, "demand expansion assessment"),
+        ("scaling_difficulty_assessments", scaling_ids, "scaling difficulty assessment"),
+        ("scarcity_bottleneck_assessments", scarcity_ids, "scarcity bottleneck assessment"),
+        ("commercialization_path_assessments", commercialization_ids, "commercialization path assessment"),
+    ]:
+        for assessment in require_list(root[assessment_key], assessment_key):
+            obj = require_dict(assessment, label)
+            if obj.get("opportunity_archetype_id") not in opportunity_ids:
+                fail(f"{label} {obj.get('id')} lacks opportunity archetype")
 
     for partition in require_list(root["source_partitions"], "source_partitions"):
         obj = require_dict(partition, "source partition")
@@ -168,6 +209,10 @@ def main() -> None:
             fail(f"trade plan {obj.get('id')} references unknown short assessment")
         if obj.get("decision_scorecard_id") not in decision_scorecard_ids:
             fail(f"trade plan {obj.get('id')} references unknown decision scorecard")
+        if obj.get("falsification_pattern_id") not in falsification_ids:
+            fail(f"trade plan {obj.get('id')} references unknown falsification pattern")
+        if obj.get("position_sizing_rationale_id") not in position_size_ids:
+            fail(f"trade plan {obj.get('id')} references unknown position sizing rationale")
 
     for assessment in require_list(root["short_seller_assessments"], "short_seller_assessments"):
         obj = require_dict(assessment, "short-seller assessment")

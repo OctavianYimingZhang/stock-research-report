@@ -22,6 +22,43 @@ workflow_gates:
       - required_settings_present
       - user_hypothesis_not_treated_as_evidence
       - output_view_selected
+  - name: ArticleMapGate
+    purpose: Outside thesis paths are extracted for discovery and independently verified before use.
+    required_objects:
+      - ArticleThesisMap
+      - ThesisPathReplay
+      - Claim
+      - EvidenceItem
+    pass_conditions:
+      - outside_sources_marked_as_context_not_evidence
+      - missing_evidence_listed_for_each_thesis
+      - material_article_claims_verified_or_rejected
+      - surviving_thesis_path_selected_or_blocked
+  - name: OpportunityArchetypeGate
+    purpose: Issuer opportunity route is supported before section emphasis and valuation method are selected.
+    required_objects:
+      - OpportunityArchetype
+      - Company
+      - Claim
+    pass_conditions:
+      - opportunity_archetype_selected_or_watchlist_capped
+      - route_evidence_present
+      - section_emphasis_matches_route
+      - valuation_method_implication_recorded
+  - name: FourPartOpportunityGate
+    purpose: High-conviction thesis tests demand expansion, scaling difficulty, bottleneck/scarcity, and commercialization visibility.
+    required_objects:
+      - DemandExpansionAssessment
+      - ScalingDifficultyAssessment
+      - ScarcityBottleneckAssessment
+      - CommercializationPathAssessment
+      - DecisionScorecard
+    pass_conditions:
+      - demand_expansion_supported_or_blocked
+      - scaling_difficulty_supported_or_blocked
+      - bottleneck_scarcity_supported_or_blocked
+      - commercialization_visibility_supported_or_blocked
+      - failed_part_caps_action_grade
   - name: LineageGate
     purpose: Material conclusions preserve source-to-report lineage.
     required_objects:

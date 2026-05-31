@@ -8,6 +8,39 @@
     "changed_sources": [],
     "gate_results": [
       {
+        "gate_name": "ArticleMapGate",
+        "status": "pass",
+        "reason": "outside thesis path is context only and verified separately",
+        "affected_objects": [
+          "thesis-replay-base"
+        ],
+        "blocked_conclusions": [],
+        "required_user_input": []
+      },
+      {
+        "gate_name": "OpportunityArchetypeGate",
+        "status": "pass",
+        "reason": "scarcity route has supporting evidence",
+        "affected_objects": [
+          "opportunity-scarcity"
+        ],
+        "blocked_conclusions": [],
+        "required_user_input": []
+      },
+      {
+        "gate_name": "FourPartOpportunityGate",
+        "status": "pass",
+        "reason": "demand, scaling, scarcity, and commercialization objects are present",
+        "affected_objects": [
+          "demand-base",
+          "scaling-base",
+          "scarcity-base",
+          "commercialization-base"
+        ],
+        "blocked_conclusions": [],
+        "required_user_input": []
+      },
+      {
         "gate_name": "EvidenceGate",
         "status": "pass",
         "reason": "material claims cite evidence",
@@ -47,6 +80,63 @@
       }
     ]
   },
+  "article_thesis_maps": [
+    {
+      "id": "article-map-base",
+      "verification_status": "partially_supported",
+      "evidence_missing": [
+        "customer confirmation"
+      ]
+    }
+  ],
+  "thesis_path_replays": [
+    {
+      "id": "thesis-replay-base",
+      "article_thesis_map_id": "article-map-base",
+      "confirmed_components": [
+        "demand"
+      ],
+      "rejected_components": [],
+      "unresolved_claims": [
+        "customer confirmation"
+      ]
+    }
+  ],
+  "opportunity_archetypes": [
+    {
+      "id": "opportunity-scarcity",
+      "thesis_path_replay_id": "thesis-replay-base",
+      "archetype": "scarcity_bottleneck"
+    }
+  ],
+  "demand_expansion_assessments": [
+    {
+      "id": "demand-base",
+      "opportunity_archetype_id": "opportunity-scarcity",
+      "evidence_status": "supported"
+    }
+  ],
+  "scaling_difficulty_assessments": [
+    {
+      "id": "scaling-base",
+      "opportunity_archetype_id": "opportunity-scarcity",
+      "evidence_status": "supported"
+    }
+  ],
+  "scarcity_bottleneck_assessments": [
+    {
+      "id": "scarcity-base",
+      "opportunity_archetype_id": "opportunity-scarcity",
+      "evidence_status": "supported"
+    }
+  ],
+  "commercialization_path_assessments": [
+    {
+      "id": "commercialization-base",
+      "opportunity_archetype_id": "opportunity-scarcity",
+      "valuation_usability": "medium"
+    }
+  ],
   "source_snapshots": [
     {
       "id": "snapshot-filing",
@@ -111,6 +201,19 @@
       "drives_trade_plan": true
     }
   ],
+  "falsification_patterns": [
+    {
+      "id": "falsification-base",
+      "failure_signal": "delayed order conversion"
+    }
+  ],
+  "position_sizing_rationales": [
+    {
+      "id": "position-size-base",
+      "evidence_quality": "medium",
+      "max_position_size_or_gap": "capped"
+    }
+  ],
   "expectation_revision_assessments": [
     {
       "id": "expectation-revision-base",
@@ -153,7 +256,9 @@
       "valuation_case_id": "valuation-base",
       "technical_setup_id": "technical-current",
       "short_seller_assessment_id": "short-assessment-base",
-      "decision_scorecard_id": "decision-scorecard-base"
+      "decision_scorecard_id": "decision-scorecard-base",
+      "falsification_pattern_id": "falsification-base",
+      "position_sizing_rationale_id": "position-size-base"
     }
   ],
   "short_seller_assessments": [
@@ -165,7 +270,28 @@
   ],
   "report_sections": [
     {
-      "section_name": "Company Overview",
+      "section_name": "Core Conclusion",
+      "claim_ids": [
+        "claim-revenue"
+      ],
+      "blocked_status": "clear"
+    },
+    {
+      "section_name": "Why This Stock Exists Now",
+      "claim_ids": [
+        "claim-revenue"
+      ],
+      "blocked_status": "clear"
+    },
+    {
+      "section_name": "Industry Chain And Bottleneck",
+      "claim_ids": [
+        "claim-revenue"
+      ],
+      "blocked_status": "clear"
+    },
+    {
+      "section_name": "Company Position In The Chain",
       "claim_ids": [
         "claim-revenue"
       ],
@@ -179,49 +305,49 @@
       "blocked_status": "clear"
     },
     {
-      "section_name": "Operations, Customers, And Orders",
+      "section_name": "Scarcity And Moat Assessment",
       "claim_ids": [
         "claim-revenue"
       ],
       "blocked_status": "clear"
     },
     {
-      "section_name": "Financials, Assets, And Debt",
+      "section_name": "Customers, Orders, And Commercialization Path",
       "claim_ids": [
         "claim-revenue"
       ],
       "blocked_status": "clear"
     },
     {
-      "section_name": "Valuation",
+      "section_name": "Operations, Capacity, And Execution Quality",
       "claim_ids": [
         "claim-revenue"
       ],
       "blocked_status": "clear"
     },
     {
-      "section_name": "Short-Seller Risk",
+      "section_name": "Financial Quality, Assets, Debt, And Dilution",
       "claim_ids": [
         "claim-revenue"
       ],
       "blocked_status": "clear"
     },
     {
-      "section_name": "Technical Analysis",
+      "section_name": "Valuation And Market-Implied Expectation",
       "claim_ids": [
         "claim-revenue"
       ],
       "blocked_status": "clear"
     },
     {
-      "section_name": "Risk Factors",
+      "section_name": "Catalysts, Risks, And Falsification",
       "claim_ids": [
         "claim-revenue"
       ],
       "blocked_status": "clear"
     },
     {
-      "section_name": "Trade Plan",
+      "section_name": "Technical Structure And Trade Plan",
       "claim_ids": [
         "claim-revenue"
       ],

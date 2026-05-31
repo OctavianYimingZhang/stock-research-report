@@ -9,6 +9,7 @@
     "output_view",
     "horizon",
     "source_policy",
+    "opportunity_policy",
     "valuation_policy",
     "short_risk_policy",
     "technical_policy",
@@ -56,6 +57,7 @@
         "mode",
         "primary_source_strictness",
         "secondary_research",
+        "outside_thesis_replay",
         "historical_reports",
         "freshness"
       ],
@@ -84,6 +86,14 @@
             "disallow"
           ]
         },
+        "outside_thesis_replay": {
+          "type": "string",
+          "enum": [
+            "required_when_available",
+            "optional",
+            "disabled"
+          ]
+        },
         "historical_reports": {
           "type": "string",
           "enum": [
@@ -97,6 +107,26 @@
             "user_supplied_date",
             "as_of_date"
           ]
+        }
+      }
+    },
+    "opportunity_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "require_archetype_routing",
+        "require_four_part_test",
+        "cap_if_no_company_specific_route"
+      ],
+      "properties": {
+        "require_archetype_routing": {
+          "type": "boolean"
+        },
+        "require_four_part_test": {
+          "type": "boolean"
+        },
+        "cap_if_no_company_specific_route": {
+          "type": "boolean"
         }
       }
     },
