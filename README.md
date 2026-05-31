@@ -1,19 +1,26 @@
-# Stock Research Report — Orchestration Skill
+# Stock Research Report — Compact Orchestration Skill
 
-An orchestration skill for Claude Code that produces analyst-style deep research reports by running four specialized analysis skills in parallel and synthesizing results into one cohesive narrative.
+Compact orchestration skill for analyst-style public-company deep research
+reports. It can still use specialized analysis skills, but the report contract
+now starts from the current repricing dispute, replays outside thesis paths,
+routes the opportunity archetype, tests demand/scaling/scarcity/commercialization,
+and ends with a concrete trade plan.
 
 ## What It Does
 
-Instead of outputting four separate reports (fundamentals → short-seller → technicals → valuation), this skill produces **one unified report** that matches the style of professional equity research analysts.
+Instead of outputting four separate reports, this skill produces **one unified
+causal memo** that matches the style of professional equity research analysts.
+Outside articles and user notes are research-path inputs only; material claims
+must be checked against primary or high-quality sources.
 
-## Sub-Skills Required
+## Core Additions
 
-This skill orchestrates these four skills (must be installed):
-
-1. **[Stock-Analysis-Skill](https://github.com/OctavianYimingZhang/Stock-Analysis-Skill)** — Fundamental analysis
-2. **[short-seller-risk-analysis](https://github.com/OctavianYimingZhang/short-seller-risk-analysis)** — Forensic risk assessment
-3. **[technical-analysis-patterns](https://github.com/OctavianYimingZhang/technical-analysis-patterns)** — Chart pattern recognition
-4. **[valuation-calculator](https://github.com/OctavianYimingZhang/valuation-calculator)** — Multi-model valuation
+- Outside thesis replay before drafting.
+- Opportunity archetype routing before valuation.
+- Four-part opportunity test: demand expansion, scaling difficulty,
+  bottleneck/scarcity, commercialization visibility.
+- One primary valuation method and current-market-implied bridge.
+- Position sizing tied to evidence quality, short risk, and stop distance.
 
 ## Usage
 
@@ -27,18 +34,20 @@ Optional parameters:
 
 ## Output Format
 
-Single .docx file with sections:
-1. 公司简介
-2. 业务运营
-3. 行业地位
-4. 业务逻辑重构 (core section)
-5. 客户结构
-6. 负债结构
-7. 财务数据
-8. 估值情况
-9. 技术分析
-10. 风险提示
-11. 总结 (with verdict, position sizing, targets)
+Single report or .docx file with default sections:
+
+1. Core Conclusion
+2. Why This Stock Exists Now
+3. Industry Chain And Bottleneck
+4. Company Position In The Chain
+5. Business Model Logic
+6. Scarcity And Moat Assessment
+7. Customers, Orders, And Commercialization Path
+8. Operations, Capacity, And Execution Quality
+9. Financial Quality, Assets, Debt, And Dilution
+10. Valuation And Market-Implied Expectation
+11. Catalysts, Risks, And Falsification
+12. Technical Structure And Trade Plan
 
 ## Key Design Principles
 

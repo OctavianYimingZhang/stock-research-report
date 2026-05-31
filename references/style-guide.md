@@ -8,6 +8,23 @@ This guide defines the voice, tone, and formatting that separates analyst-qualit
 
 An analyst's report reflects a POINT OF VIEW formed through research. A Claude-generated report reflects COMPREHENSIVE COVERAGE of all possible angles. The difference is clarity of judgment.
 
+## Mainline Discipline
+
+The report must start with the answer: why the stock is being repriced now.
+Corporate background comes after the repricing dispute.
+
+Before writing, verify:
+
+- outside thesis paths are mapped and independently checked
+- unsupported article claims are rejected, blocked, or labeled as assumptions
+- the opportunity archetype is named or the conclusion is capped as industry
+  beta/watchlist
+- demand expansion, scaling difficulty, bottleneck/scarcity, and
+  commercialization visibility are tested
+- order evidence is separated by legal strength and cash-conversion visibility
+- valuation begins with what the current price already implies
+- the final trade plan reflects evidence quality and stop distance
+
 ---
 
 ## Voice & Tone
