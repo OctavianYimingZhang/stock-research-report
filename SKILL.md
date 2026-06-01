@@ -1,12 +1,11 @@
 ---
 name: stock-research-report
 description: >
-  Orchestrates four specialized analysis skills in parallel to produce a single,
-  cohesive analyst-style deep research report. Dispatches fundamental analysis,
-  short-seller risk assessment, technical analysis, and valuation calculation
-  simultaneously, then synthesizes results into one narrative-driven report
-  matching the style of professional equity research analysts. Preserves full
-  sub-report content and ends with an opinionated trade plan.
+  Builds a single cohesive analyst-style deep research report from fundamental,
+  short-risk, technical, and valuation analysis. It can optionally dispatch
+  companion analysis skills, but remains self-contained when they are not
+  available. The final report follows a canonical mainline structure, preserves
+  material evidence, and ends with an opinionated trade plan.
 triggers:
   - 深度研究报告
   - 研究报告
@@ -20,7 +19,23 @@ triggers:
 
 ## Purpose
 
-Produce a single, cohesive deep research report that reads like it was written by **one analyst with conviction** — not four separate skills concatenated. This skill orchestrates `stock-analysis`, `risk-analysis`, `technical-analysis`, and `valuation-calculator` in parallel, then **WEAVES** their full outputs into one narrative-driven document with an opinionated trade plan at the end.
+Produce a single, cohesive deep research report that reads like it was written by **one analyst with conviction** — not four separate skills concatenated. This compact Skill can use `stock-analysis`, `risk-analysis`, `technical-analysis`, and `valuation-calculator` as optional accelerators, but it must still work without them. The final output is a unified, evidence-bounded memo with an opinionated trade plan at the end.
+
+## Canonical Contract
+
+The report is governed by the canonical 12-section mainline structure in
+`references/report-format.md`. Older companion Skills, local compact copies, and
+outside prompts are inputs to distill, not runtime authorities. Integrate their
+useful content as:
+
+- verified evidence
+- thesis-path replay
+- opportunity route
+- valuation bridge
+- short-risk blocker
+- technical/trade setup
+
+Do not paste or expose sub-skill report structures in the final memo.
 
 ## Core Philosophy (Read This First)
 
@@ -155,7 +170,11 @@ which are hypotheses, and which are blocked by missing evidence.
 
 ### Phase 1: Parallel Dispatch
 
-Launch ALL FOUR analysis skills **simultaneously** as parallel agents. Each agent works independently with the same ticker, user-provided context (Bloomberg screenshots, focus areas, etc.), and an explicit instruction to **OUTPUT EVERYTHING THEY FOUND** — do not pre-compress.
+If the companion analysis skills are installed and useful, launch all four
+analysis skills **simultaneously** as parallel agents. If they are unavailable,
+perform the same four analyses directly inside this Skill. Each analysis works
+from the same ticker, user-provided context, and source boundary, with an
+explicit instruction to **OUTPUT EVERYTHING MATERIAL** — do not pre-compress.
 
 Use the Agent tool with `subagent_type: "general-purpose"` for all four. Dispatch as one message with four tool calls.
 

@@ -21,6 +21,9 @@ must be checked against primary or high-quality sources.
   bottleneck/scarcity, commercialization visibility.
 - One primary valuation method and current-market-implied bridge.
 - Position sizing tied to evidence quality, short risk, and stop distance.
+- Optional companion skills may accelerate research, but the compact Skill is
+  self-contained and the final report must still follow the canonical
+  12-section contract.
 
 ## Usage
 
