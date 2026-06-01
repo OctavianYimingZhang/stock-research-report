@@ -20,14 +20,33 @@ Use this skill when the user asks for deep research on a listed company, ticker,
 
 1. Define scope: ticker/company, exchange, report date, time horizon, target audience, required depth, and whether the user wants a full report or a focused section.
 2. Apply `contracts/report_sections.yaml` and `contracts/gates.yaml` as the canonical report contract before drafting.
-3. Run the Alpha Discovery Phase and create one clear thesis spine before collecting section prose.
-4. Collect sources: latest annual/interim filings, earnings releases, transcripts, investor presentations, segment disclosures, balance-sheet data, peer data, price/volume data, and relevant industry sources.
-5. Build an evidence register: claim, source, date, metric period, extraction note, confidence level, and unresolved conflicts.
-6. Replay outside thesis paths only as hypotheses; verify or reject them against primary and high-quality sources.
-7. Route the opportunity archetype and mispricing archetype, then run the four-part opportunity test: demand expansion, scaling difficulty, bottleneck scarcity, and commercialization visibility.
-8. Analyze business logic, customer/order quality, operations, financial quality, valuation, short-risk, technical setup, and the decision scorecard in one causal sequence.
-9. Draft the report with citations beside the claims they support. Keep assumptions explicit.
-10. Run local validation scripts only when producing or changing repository artifacts.
+3. Run the Required Run-Level Workflow in `references/workflow-contract.md`; do not skip from source collection directly to prose.
+4. Run the Alpha Discovery Phase and create one clear thesis spine before collecting section prose.
+5. Collect sources: latest annual/interim filings, earnings releases, transcripts, investor presentations, segment disclosures, balance-sheet data, peer data, price/volume data, and relevant industry sources.
+6. Build an evidence register: claim, source, date, metric period, extraction note, confidence level, and unresolved conflicts.
+7. Replay outside thesis paths only as hypotheses; verify or reject them against primary and high-quality sources.
+8. Route the opportunity archetype and mispricing archetype, then run the four-part opportunity test: demand expansion, scaling difficulty, bottleneck scarcity, and commercialization visibility.
+9. Analyze business logic, customer/order quality, operations, financial quality, valuation, short-risk, technical setup, and the decision scorecard in one causal sequence.
+10. Draft the report with citations beside the claims they support. Keep assumptions explicit.
+11. Run local validation scripts only when producing or changing repository artifacts.
+
+## Required Run-Level Workflow
+
+Every full report run must create or explicitly block the same object chain:
+
+```text
+ResearchSettings -> SourcePreflight -> SourceSnapshot -> SourcePartition
+-> ArticleThesisMap -> ThesisPathReplay -> AlphaDiscovery -> ThesisSpine
+-> TechnicalMechanismPrimer -> OpportunityArchetype -> MispricingAssessment
+-> CompanyControlPointAssessment -> OperatingMachine -> DemandProxyMap
+-> ProfitCashFlowQualityAnalysis -> EarningsRevisionBridge -> ValuationCase
+-> ShortSellerAssessment -> EarlyWarningDashboard -> TechnicalSetup
+-> CatalystLinkedTradePlan -> DecisionScorecard -> FinalReport
+```
+
+The flow fails closed. A missing object does not disappear; it becomes a
+`DataGap`, gate warning, or blocker that caps valuation, position size, action
+grade, or trade levels.
 
 ## Alpha Discovery Phase
 
@@ -50,6 +69,36 @@ non-consensus variable -> industry bottleneck -> company control point
 ```
 
 If no alpha spine exists, classify the idea as watchlist or research-only.
+
+Required output objects:
+
+- `AlphaDiscovery`: market belief, non-consensus variable, proof path, and broken-thesis signal.
+- `MispricingAssessment`: suspected market error and correct valuation denominator.
+- `ThesisSpine`: causal path from bottleneck to trade action.
+- `CompanyControlPointAssessment`: why the issuer captures economics rather than industry beta.
+
+`AlphaDiscoveryGate` blocks a high-conviction conclusion when any of these are
+missing, unsupported, or contradicted by primary evidence.
+
+## Investor Memo Skeleton
+
+Before final prose, assemble this skeleton:
+
+```text
+opening investment dispute
+-> thesis spine / mispricing table
+-> technical or policy mechanism primer when needed
+-> value-chain control point
+-> demand proxy and order-quality ladder
+-> operating machine and operating leverage bridge
+-> EPS/EBITDA/FCF revision bridge
+-> current-price-implied valuation
+-> alpha/base/broken case set
+-> early warning dashboard
+-> catalyst-linked trade plan
+```
+
+Each section must end with a decision-useful judgment or a blocked conclusion.
 
 ## Report structure
 

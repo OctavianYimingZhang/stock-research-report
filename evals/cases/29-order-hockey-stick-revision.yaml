@@ -1,4 +1,5 @@
 id: order-hockey-stick-revision
+style_case: aehr_style_order_hockey_stick
 archetype: order_backlog_repricing
 mispricing_archetype: operating_leverage_under_modeled
 expected_primary_valuation: order_to_revenue_to_eps_revision
@@ -20,6 +21,15 @@ required_checks:
   - operating_leverage_bridge
   - demand_proxy_ladder
   - early_warning_dashboard
+must_include:
+  - test-left economics
+  - WLBI / PPBI technical mechanism
+  - equipment + consumables model
+  - effective backlog and order acceleration
+  - monopoly option valuation
+  - catalyst around next backlog update
+must_block:
+  - treating current losses as final conclusion without order bridge
 forbidden:
   - backlog_as_profit
   - missing_disconfirming_signal

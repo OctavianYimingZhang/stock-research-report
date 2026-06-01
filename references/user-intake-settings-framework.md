@@ -102,6 +102,22 @@ Typical blockers:
 The agent may continue with non-blocked sections, but blocked targets, trade
 levels, or high-conviction conclusions must remain blocked.
 
+## Intake Workflow
+
+Use the minimum-question intake:
+
+1. If ticker is supplied, resolve company, security, exchange, and listing
+   context automatically.
+2. If output view is not supplied, default to `full_report`.
+3. If the user provides an article, manual report, or note, treat it as an
+   outside thesis path until verified.
+4. If the user asks for a trade plan, require current chart data or mark trade
+   levels blocked.
+5. If the user asks for valuation target, require share count, net debt, senior
+   claims, and order quality, or block the target.
+6. Ask follow-up only when missing input blocks the requested output.
+7. Otherwise proceed and mark blockers explicitly in the report.
+
 ## Prompt Builder Contract
 
 When settings are supplied through UI or configuration, build a canonical prompt

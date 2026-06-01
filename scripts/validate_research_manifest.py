@@ -11,11 +11,17 @@ REQUIRED_TOP_LEVEL = [
     "research_run",
     "article_thesis_maps",
     "thesis_path_replays",
+    "alpha_discoveries",
+    "technical_mechanism_primers",
+    "mispricing_assessments",
+    "company_control_point_assessments",
     "opportunity_archetypes",
     "demand_expansion_assessments",
     "scaling_difficulty_assessments",
     "scarcity_bottleneck_assessments",
     "commercialization_path_assessments",
+    "operating_machines",
+    "demand_proxy_maps",
     "source_documents",
     "source_snapshots",
     "source_partitions",
@@ -23,11 +29,15 @@ REQUIRED_TOP_LEVEL = [
     "claims",
     "conflict_resolutions",
     "data_gaps",
+    "earnings_revision_bridges",
+    "alpha_case_sets",
+    "materiality_evidence_matrices",
     "valuation_cases",
     "equity_bridges",
     "profit_cash_flow_quality_analyses",
     "technical_setups",
     "falsification_patterns",
+    "early_warning_dashboards",
     "position_sizing_rationales",
     "expectation_revision_assessments",
     "momentum_regime_assessments",
@@ -35,6 +45,7 @@ REQUIRED_TOP_LEVEL = [
     "risk_filter_assessments",
     "decision_scorecards",
     "trade_plans",
+    "catalyst_linked_trade_plans",
     "short_seller_assessments",
     "report_sections",
 ]
@@ -95,27 +106,39 @@ def main() -> None:
     source_snapshot_ids = ids(require_list(root["source_snapshots"], "source_snapshots"), "source_snapshots")
     article_map_ids = ids(require_list(root["article_thesis_maps"], "article_thesis_maps"), "article_thesis_maps")
     thesis_path_ids = ids(require_list(root["thesis_path_replays"], "thesis_path_replays"), "thesis_path_replays")
+    alpha_ids = ids(require_list(root["alpha_discoveries"], "alpha_discoveries"), "alpha_discoveries")
+    mechanism_ids = ids(require_list(root["technical_mechanism_primers"], "technical_mechanism_primers"), "technical_mechanism_primers")
+    mispricing_ids = ids(require_list(root["mispricing_assessments"], "mispricing_assessments"), "mispricing_assessments")
+    control_point_ids = ids(require_list(root["company_control_point_assessments"], "company_control_point_assessments"), "company_control_point_assessments")
     opportunity_ids = ids(require_list(root["opportunity_archetypes"], "opportunity_archetypes"), "opportunity_archetypes")
     demand_ids = ids(require_list(root["demand_expansion_assessments"], "demand_expansion_assessments"), "demand_expansion_assessments")
     scaling_ids = ids(require_list(root["scaling_difficulty_assessments"], "scaling_difficulty_assessments"), "scaling_difficulty_assessments")
     scarcity_ids = ids(require_list(root["scarcity_bottleneck_assessments"], "scarcity_bottleneck_assessments"), "scarcity_bottleneck_assessments")
     commercialization_ids = ids(require_list(root["commercialization_path_assessments"], "commercialization_path_assessments"), "commercialization_path_assessments")
+    operating_machine_ids = ids(require_list(root["operating_machines"], "operating_machines"), "operating_machines")
+    demand_proxy_ids = ids(require_list(root["demand_proxy_maps"], "demand_proxy_maps"), "demand_proxy_maps")
     source_partition_ids = ids(require_list(root["source_partitions"], "source_partitions"), "source_partitions")
     evidence_ids = ids(require_list(root["evidence_items"], "evidence_items"), "evidence_items")
     claim_ids = ids(require_list(root["claims"], "claims"), "claims")
     conflict_resolution_ids = ids(require_list(root["conflict_resolutions"], "conflict_resolutions"), "conflict_resolutions")
     data_gap_ids = ids(require_list(root["data_gaps"], "data_gaps"), "data_gaps")
+    revision_bridge_ids = ids(require_list(root["earnings_revision_bridges"], "earnings_revision_bridges"), "earnings_revision_bridges")
+    alpha_case_ids = ids(require_list(root["alpha_case_sets"], "alpha_case_sets"), "alpha_case_sets")
+    materiality_matrix_ids = ids(require_list(root["materiality_evidence_matrices"], "materiality_evidence_matrices"), "materiality_evidence_matrices")
     valuation_ids = ids(require_list(root["valuation_cases"], "valuation_cases"), "valuation_cases")
     equity_bridge_ids = ids(require_list(root["equity_bridges"], "equity_bridges"), "equity_bridges")
     profit_cash_ids = ids(require_list(root["profit_cash_flow_quality_analyses"], "profit_cash_flow_quality_analyses"), "profit_cash_flow_quality_analyses")
     technical_ids = ids(require_list(root["technical_setups"], "technical_setups"), "technical_setups")
     falsification_ids = ids(require_list(root["falsification_patterns"], "falsification_patterns"), "falsification_patterns")
+    early_warning_ids = ids(require_list(root["early_warning_dashboards"], "early_warning_dashboards"), "early_warning_dashboards")
     position_size_ids = ids(require_list(root["position_sizing_rationales"], "position_sizing_rationales"), "position_sizing_rationales")
     expectation_ids = ids(require_list(root["expectation_revision_assessments"], "expectation_revision_assessments"), "expectation_revision_assessments")
     momentum_ids = ids(require_list(root["momentum_regime_assessments"], "momentum_regime_assessments"), "momentum_regime_assessments")
     valuation_odds_ids = ids(require_list(root["valuation_odds_assessments"], "valuation_odds_assessments"), "valuation_odds_assessments")
     risk_filter_ids = ids(require_list(root["risk_filter_assessments"], "risk_filter_assessments"), "risk_filter_assessments")
     decision_scorecard_ids = ids(require_list(root["decision_scorecards"], "decision_scorecards"), "decision_scorecards")
+    trade_plan_ids = ids(require_list(root["trade_plans"], "trade_plans"), "trade_plans")
+    catalyst_trade_plan_ids = ids(require_list(root["catalyst_linked_trade_plans"], "catalyst_linked_trade_plans"), "catalyst_linked_trade_plans")
     short_ids = ids(require_list(root["short_seller_assessments"], "short_seller_assessments"), "short_seller_assessments")
 
     for replay in require_list(root["thesis_path_replays"], "thesis_path_replays"):
@@ -130,6 +153,38 @@ def main() -> None:
         if not obj.get("archetype"):
             fail(f"opportunity archetype {obj.get('id')} lacks archetype")
 
+    for assessment in require_list(root["mispricing_assessments"], "mispricing_assessments"):
+        obj = require_dict(assessment, "mispricing assessment")
+        if obj.get("opportunity_archetype_id") not in opportunity_ids:
+            fail(f"mispricing assessment {obj.get('id')} lacks opportunity archetype")
+        if not obj.get("correct_denominator"):
+            fail(f"mispricing assessment {obj.get('id')} lacks correct denominator")
+
+    for assessment in require_list(root["company_control_point_assessments"], "company_control_point_assessments"):
+        obj = require_dict(assessment, "company control point assessment")
+        if obj.get("opportunity_archetype_id") not in opportunity_ids:
+            fail(f"company control point {obj.get('id')} lacks opportunity archetype")
+        if not obj.get("control_point_or_gap"):
+            fail(f"company control point {obj.get('id')} lacks control point or gap")
+
+    for discovery in require_list(root["alpha_discoveries"], "alpha_discoveries"):
+        obj = require_dict(discovery, "alpha discovery")
+        if obj.get("mispricing_assessment_id") not in mispricing_ids:
+            fail(f"alpha discovery {obj.get('id')} lacks mispricing assessment")
+        if obj.get("company_control_point_assessment_id") not in control_point_ids:
+            fail(f"alpha discovery {obj.get('id')} lacks company control point assessment")
+        if not obj.get("thesis_spine"):
+            fail(f"alpha discovery {obj.get('id')} lacks thesis spine")
+        if not obj.get("broken_thesis_signal"):
+            fail(f"alpha discovery {obj.get('id')} lacks broken thesis signal")
+
+    for primer in require_list(root["technical_mechanism_primers"], "technical_mechanism_primers"):
+        obj = require_dict(primer, "technical mechanism primer")
+        if obj.get("company_control_point_assessment_id") not in control_point_ids:
+            fail(f"technical mechanism primer {obj.get('id')} lacks company control point assessment")
+        if not obj.get("customer_pain_or_gap"):
+            fail(f"technical mechanism primer {obj.get('id')} lacks customer pain or gap")
+
     for assessment_key, assessment_ids, label in [
         ("demand_expansion_assessments", demand_ids, "demand expansion assessment"),
         ("scaling_difficulty_assessments", scaling_ids, "scaling difficulty assessment"),
@@ -140,6 +195,20 @@ def main() -> None:
             obj = require_dict(assessment, label)
             if obj.get("opportunity_archetype_id") not in opportunity_ids:
                 fail(f"{label} {obj.get('id')} lacks opportunity archetype")
+
+    for machine in require_list(root["operating_machines"], "operating_machines"):
+        obj = require_dict(machine, "operating machine")
+        if obj.get("company_control_point_assessment_id") not in control_point_ids:
+            fail(f"operating machine {obj.get('id')} lacks company control point assessment")
+        if not obj.get("failure_signal_or_gap"):
+            fail(f"operating machine {obj.get('id')} lacks failure signal or gap")
+
+    for demand_proxy in require_list(root["demand_proxy_maps"], "demand_proxy_maps"):
+        obj = require_dict(demand_proxy, "demand proxy map")
+        if obj.get("commercialization_path_assessment_id") not in commercialization_ids:
+            fail(f"demand proxy map {obj.get('id')} lacks commercialization path assessment")
+        if not obj.get("valuation_usability"):
+            fail(f"demand proxy map {obj.get('id')} lacks valuation usability")
 
     for snapshot in require_list(root["source_snapshots"], "source_snapshots"):
         obj = require_dict(snapshot, "source snapshot")
@@ -172,6 +241,14 @@ def main() -> None:
         if linked_conflict_resolution and linked_conflict_resolution not in conflict_resolution_ids:
             fail(f"claim {obj.get('id')} references unknown conflict resolution")
 
+    for matrix in require_list(root["materiality_evidence_matrices"], "materiality_evidence_matrices"):
+        obj = require_dict(matrix, "materiality evidence matrix")
+        linked_claims = set(obj.get("claim_ids") or [])
+        if linked_claims - claim_ids:
+            fail(f"materiality evidence matrix {obj.get('id')} references unknown claim")
+        if not obj.get("low_evidence_high_materiality_items"):
+            fail(f"materiality evidence matrix {obj.get('id')} lacks low-evidence high-materiality items")
+
     for bridge in require_list(root["equity_bridges"], "equity_bridges"):
         obj = require_dict(bridge, "equity bridge")
         if obj.get("valuation_case_id") not in valuation_ids:
@@ -185,6 +262,26 @@ def main() -> None:
         obj = require_dict(valuation, "valuation case")
         if obj.get("equity_bridge_id") not in equity_bridge_ids:
             fail(f"valuation case {obj.get('id')} lacks equity bridge")
+
+    for bridge in require_list(root["earnings_revision_bridges"], "earnings_revision_bridges"):
+        obj = require_dict(bridge, "earnings revision bridge")
+        if obj.get("alpha_discovery_id") not in alpha_ids:
+            fail(f"earnings revision bridge {obj.get('id')} lacks alpha discovery")
+        if obj.get("valuation_case_id") not in valuation_ids:
+            fail(f"earnings revision bridge {obj.get('id')} lacks valuation case")
+        if not obj.get("disconfirming_signal"):
+            fail(f"earnings revision bridge {obj.get('id')} lacks disconfirming signal")
+
+    for case_set in require_list(root["alpha_case_sets"], "alpha_case_sets"):
+        obj = require_dict(case_set, "alpha case set")
+        if obj.get("valuation_case_id") not in valuation_ids:
+            fail(f"alpha case set {obj.get('id')} lacks valuation case")
+        if obj.get("earnings_revision_bridge_id") not in revision_bridge_ids:
+            fail(f"alpha case set {obj.get('id')} lacks earnings revision bridge")
+        case_names = set(obj.get("cases") or [])
+        required_cases = {"current_market_implied", "base_proof", "alpha", "broken"}
+        if not required_cases.issubset(case_names):
+            fail(f"alpha case set {obj.get('id')} lacks current/base/alpha/broken cases")
 
     for analysis in require_list(root["profit_cash_flow_quality_analyses"], "profit_cash_flow_quality_analyses"):
         obj = require_dict(analysis, "profit cash-flow quality analysis")
@@ -211,6 +308,13 @@ def main() -> None:
         if obj.get("freshness_status") == "stale" and obj.get("drives_trade_plan") is True:
             fail(f"stale technical setup {obj.get('id')} drives trade plan")
 
+    for dashboard in require_list(root["early_warning_dashboards"], "early_warning_dashboards"):
+        obj = require_dict(dashboard, "early warning dashboard")
+        if obj.get("falsification_pattern_id") not in falsification_ids:
+            fail(f"early warning dashboard {obj.get('id')} lacks falsification pattern")
+        if not obj.get("monitoring_variables"):
+            fail(f"early warning dashboard {obj.get('id')} lacks monitoring variables")
+
     for plan in require_list(root["trade_plans"], "trade_plans"):
         obj = require_dict(plan, "trade plan")
         if obj.get("valuation_case_id") not in valuation_ids:
@@ -225,6 +329,17 @@ def main() -> None:
             fail(f"trade plan {obj.get('id')} references unknown falsification pattern")
         if obj.get("position_sizing_rationale_id") not in position_size_ids:
             fail(f"trade plan {obj.get('id')} references unknown position sizing rationale")
+
+    for plan in require_list(root["catalyst_linked_trade_plans"], "catalyst_linked_trade_plans"):
+        obj = require_dict(plan, "catalyst-linked trade plan")
+        if obj.get("trade_plan_id") not in trade_plan_ids:
+            fail(f"catalyst-linked trade plan {obj.get('id')} lacks trade plan")
+        if obj.get("technical_setup_id") not in technical_ids:
+            fail(f"catalyst-linked trade plan {obj.get('id')} lacks technical setup")
+        if obj.get("early_warning_dashboard_id") not in early_warning_ids:
+            fail(f"catalyst-linked trade plan {obj.get('id')} lacks early warning dashboard")
+        if not obj.get("catalyst_or_proof_event"):
+            fail(f"catalyst-linked trade plan {obj.get('id')} lacks catalyst or proof event")
 
     for assessment in require_list(root["short_seller_assessments"], "short_seller_assessments"):
         obj = require_dict(assessment, "short-seller assessment")

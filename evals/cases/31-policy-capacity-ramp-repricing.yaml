@@ -1,4 +1,5 @@
 id: policy-capacity-ramp-repricing
+style_case: t1_style_policy_capacity_ramp
 archetype: customer_funded_capacity_ramp
 mispricing_archetype: policy_protected_scarcity
 expected_primary_valuation: capacity_ramp_to_ebitda_with_policy_support
@@ -20,6 +21,15 @@ required_checks:
   - operating_machine_table
   - catalyst_linked_trade_plan
   - broken_thesis_case
+must_include:
+  - 45X / FEOC policy mechanism
+  - G1/G2 capacity ramp
+  - offtake / deferred revenue / customer deposit ladder
+  - funding bridge
+  - 2027 EBITDA valuation bridge
+  - policy and capex failure signals
+must_block:
+  - EBITDA target without capacity/funding/offtake proof
 forbidden:
   - capacity_without_customer_or_policy_proof
   - trade_plan_without_catalyst_link

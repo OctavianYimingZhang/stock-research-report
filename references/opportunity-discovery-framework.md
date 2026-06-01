@@ -72,6 +72,31 @@ Every full report must state the market's current belief, the suspected error,
 the correct denominator, the first metric that would revise if the report is
 right, and the first metric that would disprove it.
 
+## Mispricing Archetype Workflow
+
+Run this workflow before valuation:
+
+1. Reconstruct the market's current belief from price action, valuation
+   denominator, consensus language, guidance reaction, or peer bucket.
+2. State the suspected market error in one sentence.
+3. Select the correct denominator: EPS, EBITDA, FCF, revenue, backlog
+   conversion, asset value, unit economics, policy-adjusted capacity, or option value.
+4. Identify the first operating metric that will revise if the thesis is right.
+5. Identify the first metric or event that will disprove the thesis.
+6. Decide whether the error supports a base case, alpha case, short case, or no action.
+
+Archetype selection table:
+
+| Market error | Use when | Correct denominator | First proof metric | Usual cap |
+|---|---|---|---|---|
+| wrong_denominator | trailing numbers hide ramp economics | forward EPS/EBITDA/FCF or asset value | margin, utilization, or order conversion | target blocked until bridge reconciles |
+| wrong_identity | market classifies issuer in old bucket | new peer bucket or re-rating denominator | mix shift or customer proof | cap until transition evidence is visible |
+| hidden_order_book | demand appears before revenue | risk-adjusted backlog or capacity conversion | paid reservation, prepayment, or delivery | low-usability proxies cannot carry base case |
+| operating_leverage_under_modeled | fixed-cost absorption drives upside | incremental EBITDA/EPS | utilization or gross margin | cap if cash conversion lags |
+| policy_protected_scarcity | law or procurement changes demand/supply | policy-adjusted capacity, EBITDA, or asset value | award, certification, or funded demand | cap if policy claim is unsourced |
+| balance_sheet_optionality | assets, cash, or debt structure alters asymmetry | equity bridge or option value | funding, maturity, or dilution event | cap if senior claims are unresolved |
+| narrative_overpricing | price already discounts proof | downside case or current-implied bridge | failure to meet proof event | cap action grade before proof |
+
 ## Routing Rules
 
 Use `scarcity_bottleneck` when the thesis depends on unique capacity,

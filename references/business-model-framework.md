@@ -104,6 +104,54 @@ For AI infrastructure, advanced packaging, test equipment, power, energy,
 defense, resources, biotech, or other technical routes, connect the mechanism
 to customer economics rather than stopping at terminology.
 
+## Technical Mechanism Primer Workflow
+
+Use this workflow whenever the thesis depends on technology, policy, supply
+chain, resource processing, regulated procurement, or capacity architecture:
+
+1. State the legacy system in one or two sentences.
+2. Identify the physical, economic, regulatory, or customer bottleneck.
+3. Explain the new architecture, policy, or process that relieves the bottleneck.
+4. State the customer pain: cost, delay, yield loss, downtime, compliance risk,
+   funding risk, or revenue timing.
+5. Locate the issuer at the value-chain node that can relieve or monetize the pain.
+6. Translate the control point into denominator, margin, cash, or multiple effect.
+7. Name the first observable that proves the mechanism is being adopted.
+
+Required output:
+
+```text
+Technical mechanism primer:
+old system -> bottleneck -> new system -> why customer pays
+-> issuer control point -> economics -> proof observable
+```
+
+If the primer cannot identify why the customer pays, the thesis remains a theme,
+not a company-specific investment case.
+
+## Company Control Point Workflow
+
+Run this before calling the issuer company alpha:
+
+1. Name the scarce node in the value chain.
+2. Name the issuer asset, process, qualification, customer relationship, policy
+   position, channel, license, capacity, or balance-sheet feature tied to that node.
+3. Explain why competitors cannot replicate it quickly.
+4. Explain how the control point changes customer behavior or spending.
+5. Map the effect to revenue, gross margin, EBITDA, EPS, FCF, downside floor, or multiple.
+6. Name the source-backed proof already visible.
+7. Name the earliest disconfirming observable.
+
+Required table:
+
+```markdown
+| Value-chain node | Issuer control point | Customer pain relieved | Evidence | Economics | Disconfirming signal |
+|---|---|---|---|---|---|
+```
+
+If the issuer has no verified control point, classify the thesis as industry
+beta, scenario work, or watchlist-only.
+
 ## Layer Calibration Standard
 
 The strongest reports build an industry-to-company bridge before describing the
@@ -291,6 +339,28 @@ proof to economics:
 
 If a row is low-evidence but high-materiality, promote it into the monitoring
 variables in the risk and trade-plan sections.
+
+## Operating Machine Workflow
+
+Use this workflow for capacity, order, platform, facility, product-launch, or
+customer-deployment stories:
+
+1. Map assets, facilities, capacity, and current status.
+2. Map ramp date, bottleneck, qualification step, and customer deployment step.
+3. Map capex, grants, customer funding, debt funding, or equity funding.
+4. Convert available capacity and utilization into revenue denominator.
+5. Convert revenue into gross margin, EBITDA, EPS, and FCF path.
+6. Identify the first quarter or event when failure becomes visible.
+7. Label each link high, medium, or low evidence.
+8. Feed low-evidence/high-materiality links into the early warning dashboard.
+
+Required output:
+
+```text
+Operating machine:
+asset/capacity -> customer commitment -> utilization -> revenue
+-> margin -> cash conversion -> failure date -> valuation effect
+```
 
 ## Operating Proof Standard
 

@@ -15,6 +15,10 @@ non-consensus demand conversion -> bottleneck capacity -> company control point
 -> demand proxy -> EPS revision -> alpha case proof event -> broken thesis
 signal -> trade action.
 
+| Market belief | Mispricing | Correct denominator | First proof metric | Broken thesis signal |
+|---|---|---|---|---|
+| trailing revenue explains value | operating leverage is under-modeled | forward EBITDA / EPS | gross margin and customer deployment | orders without margin or OCF |
+
 ## Why This Stock Exists Now
 
 The outside thesis path raised a scarcity question, but the report treats that
@@ -27,13 +31,20 @@ structural demand driver from a cyclical rebound.
 The opportunity archetype is scarcity_bottleneck. Scaling difficulty comes from
 qualification, certification, and capex barriers, so supply cannot expand
 quickly. The bottleneck is a specific chain node rather than a broad industry
-label.
+label. Technical mechanism primer: old architecture could meet legacy demand,
+but the new bottleneck makes customer timing and yield more valuable; the
+customer pays because the scarce node lowers delay risk and converts into
+margin proof.
 
 ## Company Position In The Chain
 
 The company is treated as potential company alpha only if it controls or
 relieves the scarce node. Otherwise the conclusion is capped as industry beta or
 watchlist.
+
+| Value-chain node | Issuer control point | Customer pain relieved | Evidence | Economics | Disconfirming signal |
+|---|---|---|---|---|---|
+| scarce capacity node | issuer control point in qualification and ramp | customer delay and yield risk | synthetic verified source [filing] | revenue conversion and margin | no repeat deployment |
 
 If the report is right, the first proof should be customer deployment and margin
 improvement. If the report is wrong, the first disconfirming signal is order
@@ -99,6 +110,12 @@ working capital. Low-evidence high-materiality items, including margin on the
 new ramp and capacity reservation cancellation terms, are tracked as monitoring
 variables rather than ignored.
 
+| Revision variable | Current evidence | Market may under/over-model | P&L line | Timing | Disconfirming signal |
+|---|---|---|---|---|---|
+| customer deployment | medium evidence | under | revenue | next quarter | no repeat order |
+| gross margin | medium evidence | under | EPS | following quarter | margin stalls |
+| working capital | filing evidence [filing] | unknown | FCF | next filing | OCF drag worsens |
+
 ## Valuation And Market-Implied Expectation
 
 The current-market-implied bridge states that the market implies 10x EBITDA.
@@ -112,6 +129,13 @@ Alpha case: upside requires repeat customer conversion, operating leverage, and
 gross-margin proof. Broken thesis case: if orders convert without margin or cash
 conversion, the valuation denominator stays capped and the target remains a
 scenario rather than a base case.
+
+| Case | Revenue driver | Margin driver | Required proof | Failure response |
+|---|---|---|---|---|
+| current_market_implied | existing revenue | current margin | market already implies 10x EBITDA | observe |
+| base_proof | disclosed revenue plus verified conversion | moderate margin improvement | customer deployment and OCF bridge | keep size capped |
+| alpha | repeat order conversion | operating leverage | margin and EPS revision | add only after proof |
+| broken | no conversion | margin stalls | none | reduce or block target |
 
 ## Catalysts, Risks, And Falsification
 
@@ -145,3 +169,10 @@ that is not yet strong enough for maximum size.
 The trade plan is catalyst-linked: enter only before the catalyst with reduced
 size, add after proof plus retest, trim into resistance without proof, and
 invalidate the setup if price breaks while the evidence weakens.
+
+| Price level | Technical meaning | Fundamental/catalyst dependency | Action |
+|---|---|---|---|
+| 10 | entry zone | pre-catalyst setup with reduced evidence quality | start small |
+| 12 | TP1 resistance | trim unless margin proof arrives | trim |
+| 14 | TP2 resistance | add only after proof plus retest | hold or add |
+| 8 | invalidation | evidence weakens with price break | exit |

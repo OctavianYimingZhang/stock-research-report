@@ -1,4 +1,5 @@
 id: advanced-packaging-control-point
+style_case: amkr_style_advanced_packaging
 archetype: scarcity_bottleneck
 mispricing_archetype: wrong_identity
 expected_primary_valuation: forward_ev_ebitda_with_re_rating_bridge
@@ -20,6 +21,16 @@ required_checks:
   - company_control_point
   - operating_machine_table
   - eps_or_ebitda_revision_bridge
+must_include:
+  - technical mechanism primer for advanced packaging
+  - old system vs new system
+  - HBM / Chiplet / 2.5D / 3D bottleneck
+  - OSAT value-chain control point
+  - utilization-driven operating leverage
+  - capex and customer funding bridge
+  - EPS revision bridge
+must_block:
+  - generic "AI beneficiary" thesis without packaging mechanism
 forbidden:
   - generic_ai_beneficiary_label
   - valuation_without_control_point

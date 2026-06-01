@@ -1,4 +1,5 @@
 id: policy-protected-component-supplier
+style_case: umac_style_policy_protected_component_supplier
 archetype: policy_protected_supply_chain
 mispricing_archetype: policy_protected_scarcity
 expected_primary_valuation: policy_scarcity_with_evidence_cap
@@ -20,6 +21,15 @@ required_checks:
   - policy_rule_or_procurement_channel
   - demand_proxy_ladder
   - low_evidence_high_materiality_tracker
+must_include:
+  - policy protected market mechanism
+  - NDAA / Blue UAS / procurement channel
+  - product-customer-channel-certification map
+  - ABE/PBAS/SkyFoundry demand proxy ladder
+  - cash runway and dilution
+  - execution/policy warning dashboard
+must_block:
+  - treating potential government program as confirmed revenue
 forbidden:
   - unsourced_policy_claim
   - policy_narrative_as_base_case

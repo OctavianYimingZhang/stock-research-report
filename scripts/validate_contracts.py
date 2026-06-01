@@ -130,6 +130,11 @@ def check_eval_cases_use_canonical_sections(sections: list[str]) -> None:
         unknown = sorted(str(item) for item in required_sections if item not in canonical)
         if unknown:
             fail(f"{path.relative_to(ROOT)} contains non-canonical sections: {unknown}")
+        if path.stem[:2] in {"27", "28", "29", "30", "31"}:
+            for field in ("must_include", "must_block"):
+                values = data.get(field)
+                if not isinstance(values, list) or not values or not all(isinstance(item, str) for item in values):
+                    fail(f"{path.relative_to(ROOT)} missing {field} expected behavior list")
 
 
 def main() -> None:

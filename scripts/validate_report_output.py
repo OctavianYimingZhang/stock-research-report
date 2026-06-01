@@ -47,6 +47,17 @@ def require(pattern: str, text: str, message: str, flags: int = re.IGNORECASE) -
         fail(message)
 
 
+def require_table_columns(text: str, columns: list[str], message: str) -> None:
+    normalized_columns = [column.lower() for column in columns]
+    for line in text.splitlines():
+        stripped = line.strip().lower()
+        if not stripped.startswith("|"):
+            continue
+        if all(column in stripped for column in normalized_columns):
+            return
+    fail(message)
+
+
 def load_required_sections(view: str) -> list[str]:
     if not REPORT_SECTIONS_PATH.exists():
         fail(f"missing report section contract: {REPORT_SECTIONS_PATH.relative_to(ROOT)}")
@@ -138,6 +149,8 @@ def validate_full_report_content(path: Path, text: str, required_sections: list[
     require(r"investment dispute|re[- ]rating dispute|market debate|what the market is pricing", text, "missing opening investment dispute")
     require(r"market.*missing|mispricing|non[- ]consensus|市场.*低估|市场.*高估|非共识", text, "missing mispricing thesis")
     require(r"valuation denominator|correct denominator|估值分母|正确分母", text, "missing valuation denominator shift")
+    require(r"technical mechanism|old architecture|old system|legacy|旧方案|bottleneck.*customer.*pays", text, "missing technical mechanism primer")
+    require(r"company control point|issuer control point|控制点|value-chain control", text, "missing company control point")
     require(r"thesis spine|mispricing thesis|alpha spine|投资主线", text, "missing thesis spine or mispricing table")
     require(r"outside thesis|thesis path|ArticleThesisMap|external thesis", text, "missing outside thesis-path replay")
     require(r"opportunity archetype|scarcity_bottleneck|policy_protected_supply_chain|customer_funded_capacity_ramp|industry beta|watchlist", text, "missing opportunity archetype routing")
@@ -178,6 +191,47 @@ def validate_full_report_content(path: Path, text: str, required_sections: list[
     require(r"Decision Grade|action grade", text, "missing decision scorecard action grade")
     require(r"binding cap|cap reason", text, "missing scorecard binding cap reason")
     require(r"trim|add|partial profit|observe", text, "missing trim/add or observation logic")
+
+    require_table_columns(
+        text,
+        ["Market belief", "Mispricing", "Correct denominator"],
+        "missing thesis spine or mispricing table columns",
+    )
+    require_table_columns(
+        text,
+        ["Value-chain node", "Issuer control point", "Customer pain"],
+        "missing value-chain control table",
+    )
+    require_table_columns(
+        text,
+        ["Link", "Current status", "Next step", "Evidence grade", "Failure signal", "Valuation effect"],
+        "missing operating machine table columns",
+    )
+    require_table_columns(
+        text,
+        ["Signal", "Current evidence", "Valuation usability"],
+        "missing demand proxy or order quality table",
+    )
+    require_table_columns(
+        text,
+        ["Revision variable", "Current evidence", "P&L line", "Timing"],
+        "missing earnings revision bridge table",
+    )
+    require_table_columns(
+        text,
+        ["Case", "Revenue driver", "Margin driver", "Required proof", "Failure response"],
+        "missing alpha/base/broken case table",
+    )
+    require_table_columns(
+        text,
+        ["Failure signal", "Evidence to monitor", "Trade response"],
+        "missing early warning dashboard table",
+    )
+    require_table_columns(
+        text,
+        ["Price level", "Technical meaning", "Fundamental/catalyst dependency", "Action"],
+        "missing catalyst-linked trade table",
+    )
 
     validate_depth_and_readability(path, text, required_sections)
 

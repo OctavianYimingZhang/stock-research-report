@@ -15,6 +15,11 @@ gates:
       - no mispricing thesis for a high-conviction conclusion
       - no thesis spine connecting evidence to trade action
       - no broken-thesis signal
+  MechanismGate:
+    required_when: thesis_depends_on_technical_policy_or_supply_chain_mechanism
+    blocks:
+      - mechanism primer does not explain old system, bottleneck, customer pain, and issuer control point
+      - company control point is thematic and not issuer-specific
   FourPartOpportunityGate:
     required_when: high_conviction_conclusion
     checks:
@@ -65,3 +70,11 @@ gates:
       - revision_variable
       - timing
       - disconfirming_signal
+  CatalystLinkedTradeGate:
+    required_before:
+      - trade_plan
+    checks:
+      - catalyst_or_proof_event
+      - price_level
+      - action
+      - invalidation

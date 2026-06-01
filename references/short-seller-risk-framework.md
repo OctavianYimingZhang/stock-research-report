@@ -237,3 +237,26 @@ If the company is clean, the sentence should explain why that narrative is weak.
 
 Do not bury material red flags only in `Risk Factors`; place them where they affect
 business logic, order quality, debt safety, or valuation.
+
+## Short Attack Narrative Workflow
+
+Run this workflow even when the final short-risk grade is clean:
+
+1. Build the clean bull thesis in one sentence.
+2. Build the plausible short attack in one sentence.
+3. Separate verified fact, allegation, inference, and unanswered question.
+4. Test the attack against customer authenticity, revenue recognition, cash
+   conversion, debt/dilution, governance, and promotion/execution gap.
+5. Assign grade A/B/C/D/F.
+6. If grade is C, D, or F, force valuation haircut or position-size cap.
+7. Add early warning signals that would strengthen the short attack.
+
+Required output:
+
+```markdown
+Short-seller attack narrative:
+[One sentence]
+
+Verdict:
+[A/B/C/D/F] because [specific evidence], with [valuation/size effect].
+```

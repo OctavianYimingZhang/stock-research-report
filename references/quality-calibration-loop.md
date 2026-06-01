@@ -99,6 +99,56 @@ A passing draft has these features:
 - risks include a plausible short-seller attack narrative
 - the trade plan contains actual action logic, not only commentary
 
+## Manual Report Distillation Workflow
+
+When prior manual reports or outside examples are used for calibration, distill
+reusable logic rather than copying company content.
+
+Input:
+
+```yaml
+inputs:
+  - manual_report_file
+  - ticker_or_company_context
+  - report_type
+  - source snippets
+```
+
+Output object:
+
+```yaml
+ManualReportPattern:
+  industry_primer_pattern:
+  mispricing_pattern:
+  control_point_pattern:
+  operating_machine_pattern:
+  demand_proxy_pattern:
+  earnings_revision_pattern:
+  valuation_pattern:
+  risk_warning_pattern:
+  trade_action_pattern:
+  reusable_rules:
+  banned_copy_elements:
+```
+
+Workflow:
+
+1. Split the report into technical/policy/industry primer, business logic,
+   operations, customers/orders, financial quality, debt/cash, valuation, risk,
+   and technical/trade layers.
+2. Extract the investment spine: structural change -> company control point ->
+   orders/capacity/profit -> market revision.
+3. Extract the unique mechanism without preserving ticker-specific phrasing.
+4. Extract the financial bridge from business variable to revenue, margin,
+   EBITDA, EPS, FCF, and valuation.
+5. Extract trade behavior: starter position, wait-for-proof, add, trim, or stop.
+6. Convert each pattern into workflow, object, gate, validator, or eval rule.
+7. Remove non-reusable content: names, dates, company facts, and unsupported claims.
+
+Calibration passes only if it extracts mechanism primer pattern, mispricing
+archetype, control point, operating machine, order-quality ladder, earnings
+revision bridge, alpha/base/broken cases, and catalyst-linked trade plan.
+
 ## Anti-Checklist Reconstruction Pass
 
 Before final output, run this repair pass:

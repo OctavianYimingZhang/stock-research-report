@@ -102,6 +102,45 @@
       ]
     }
   ],
+  "mispricing_assessments": [
+    {
+      "id": "mispricing-base",
+      "opportunity_archetype_id": "opportunity-scarcity",
+      "market_belief": "trailing revenue explains value",
+      "suspected_error": "operating leverage is under-modeled",
+      "correct_denominator": "forward EBITDA or EPS after order conversion",
+      "first_proof_metric": "gross margin and customer deployment",
+      "first_disconfirming_metric": "orders without margin or OCF"
+    }
+  ],
+  "company_control_point_assessments": [
+    {
+      "id": "control-point-base",
+      "opportunity_archetype_id": "opportunity-scarcity",
+      "control_point_or_gap": "qualification and ramp control at the scarce node",
+      "economics": "revenue conversion and margin",
+      "disconfirming_signal": "no repeat deployment"
+    }
+  ],
+  "alpha_discoveries": [
+    {
+      "id": "alpha-discovery-base",
+      "mispricing_assessment_id": "mispricing-base",
+      "company_control_point_assessment_id": "control-point-base",
+      "thesis_spine": "non-consensus demand conversion -> bottleneck capacity -> control point -> EPS revision -> catalyst-linked trade action",
+      "broken_thesis_signal": "order conversion without margin or cash conversion"
+    }
+  ],
+  "technical_mechanism_primers": [
+    {
+      "id": "mechanism-primer-base",
+      "company_control_point_assessment_id": "control-point-base",
+      "old_system": "legacy capacity met legacy demand",
+      "bottleneck": "qualified scarce capacity",
+      "customer_pain_or_gap": "delay and yield risk",
+      "economics": "margin and timing"
+    }
+  ],
   "opportunity_archetypes": [
     {
       "id": "opportunity-scarcity",
@@ -135,6 +174,26 @@
       "id": "commercialization-base",
       "opportunity_archetype_id": "opportunity-scarcity",
       "valuation_usability": "medium"
+    }
+  ],
+  "operating_machines": [
+    {
+      "id": "operating-machine-base",
+      "company_control_point_assessment_id": "control-point-base",
+      "capacity_status": "funded expansion",
+      "customer_commitment": "medium-evidence deployment",
+      "revenue_conversion": "delivery cadence",
+      "margin_conversion": "operating leverage",
+      "failure_signal_or_gap": "capex delay or margin stall"
+    }
+  ],
+  "demand_proxy_maps": [
+    {
+      "id": "demand-proxy-base",
+      "commercialization_path_assessment_id": "commercialization-base",
+      "strongest_signal": "recognized revenue",
+      "valuation_usability": "medium",
+      "monitoring_trigger": "capacity reservation terms"
     }
   ],
   "source_documents": [
@@ -180,6 +239,18 @@
   ],
   "conflict_resolutions": [],
   "data_gaps": [],
+  "materiality_evidence_matrices": [
+    {
+      "id": "materiality-matrix-base",
+      "claim_ids": [
+        "claim-revenue"
+      ],
+      "low_evidence_high_materiality_items": [
+        "capacity reservation cancellation terms",
+        "new ramp margin"
+      ]
+    }
+  ],
   "valuation_cases": [
     {
       "id": "valuation-base",
@@ -193,6 +264,29 @@
       "valuation_case_id": "valuation-base",
       "target_price_or_blocker": "unblocked",
       "blocker_reason_or_gap": "none"
+    }
+  ],
+  "earnings_revision_bridges": [
+    {
+      "id": "revision-bridge-base",
+      "alpha_discovery_id": "alpha-discovery-base",
+      "valuation_case_id": "valuation-base",
+      "revision_variable": "gross margin and order conversion",
+      "timing": "next two quarters",
+      "disconfirming_signal": "orders without margin or cash conversion"
+    }
+  ],
+  "alpha_case_sets": [
+    {
+      "id": "alpha-case-set-base",
+      "valuation_case_id": "valuation-base",
+      "earnings_revision_bridge_id": "revision-bridge-base",
+      "cases": [
+        "current_market_implied",
+        "base_proof",
+        "alpha",
+        "broken"
+      ]
     }
   ],
   "profit_cash_flow_quality_analyses": [
@@ -213,6 +307,16 @@
     {
       "id": "falsification-base",
       "failure_signal": "delayed order conversion"
+    }
+  ],
+  "early_warning_dashboards": [
+    {
+      "id": "early-warning-base",
+      "falsification_pattern_id": "falsification-base",
+      "monitoring_variables": [
+        "gross margin and OCF",
+        "repeat customer order"
+      ]
     }
   ],
   "position_sizing_rationales": [
@@ -267,6 +371,15 @@
       "decision_scorecard_id": "decision-scorecard-base",
       "falsification_pattern_id": "falsification-base",
       "position_sizing_rationale_id": "position-size-base"
+    }
+  ],
+  "catalyst_linked_trade_plans": [
+    {
+      "id": "catalyst-trade-plan-base",
+      "trade_plan_id": "trade-plan-base",
+      "technical_setup_id": "technical-current",
+      "early_warning_dashboard_id": "early-warning-base",
+      "catalyst_or_proof_event": "operating update with margin proof"
     }
   ],
   "short_seller_assessments": [

@@ -1,4 +1,5 @@
 id: sipho-capacity-reservation
+style_case: tsem_style_sipho_capacity_reservation
 archetype: customer_funded_capacity_ramp
 mispricing_archetype: hidden_order_book
 expected_primary_valuation: capacity_ramp_to_ebitda
@@ -20,6 +21,15 @@ required_checks:
   - customer_prepayment_or_cancellation_terms
   - operating_machine_table
   - alpha_case_proof_conditions
+must_include:
+  - SiPho mechanism primer
+  - RF Infrastructure as revenue container
+  - 5x capacity expansion
+  - capacity reservation and customer prepayment classification
+  - 2028 model bridge
+  - scenario case with proof conditions
+must_block:
+  - capacity expansion used as revenue without utilization/customer proof
 forbidden:
   - treating_capacity_reservation_as_revenue
   - target_without_margin_cash_bridge

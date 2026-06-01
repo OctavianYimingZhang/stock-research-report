@@ -124,6 +124,28 @@ maturity risk.
 High-evidence but low-materiality items should not consume the most prose simply
 because they are easy to cite.
 
+## Materiality-Weighted Evidence Workflow
+
+Use this workflow after evidence extraction and before report assembly:
+
+1. List the thesis variables that drive valuation, action grade, or trade plan.
+2. Assign each variable a materiality level: high, medium, or low.
+3. Assign each variable an evidence level: high, medium, low, stale, or conflicting.
+4. Put every variable into a materiality/evidence matrix.
+5. Promote low-evidence/high-materiality variables into the early warning
+   dashboard and trade-plan conditions.
+6. Demote high-evidence/low-materiality details unless they explain the control
+   point, valuation denominator, or blocker.
+7. Block target price, position size, or action grade when a high-materiality
+   variable is unsupported and central to the conclusion.
+
+Required table:
+
+```markdown
+| Thesis variable | Materiality | Evidence level | Current source | Report use | Monitoring trigger |
+|---|---|---|---|---|---|
+```
+
 ## Report Implication
 
 Every report section should be traceable to the partitions it used. This makes

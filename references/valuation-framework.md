@@ -50,6 +50,32 @@ Reverse-engineer what the market is pricing before selecting the model:
 The primary valuation method must match both company economics and the market's
 actual pricing mechanism.
 
+## Valuation Denominator Selection Workflow
+
+Select the denominator before choosing a target:
+
+1. Identify the current market denominator: trailing EPS, forward EPS, EBITDA,
+   revenue, backlog, book value, NAV, commodity spread, policy capacity, or
+   option value.
+2. Identify the economic denominator that actually changes owner value.
+3. Compare current price-implied expectation with the report's base proof case.
+4. Decide whether the thesis is a denominator shift, multiple shift, numerator
+   revision, or no valuation edge.
+5. Reject methods that do not match cash-flow maturity, order quality, or asset
+   status.
+6. Use one primary method and one sanity check; do not average methods.
+7. Block target price when share count, net debt, senior claims, or order
+   quality cannot be reconciled.
+
+Required output:
+
+```text
+Valuation denominator:
+market currently prices [denominator]; the report uses [denominator] because
+[company-specific mechanism and verified proof]. The denominator changes only if
+[proof event]; it fails if [disconfirming signal].
+```
+
 ## Re-Rating Bridge
 
 Reference-caliber reports explain why the market might change the multiple, not

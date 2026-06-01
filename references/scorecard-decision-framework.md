@@ -123,6 +123,36 @@ short-risk filter -> momentum state -> action grade
 The `binding_cap_reason` must be the first issue that prevents a higher action
 grade. Do not let a compelling industry narrative override a weak cap reason.
 
+## Action Grade Workflow
+
+Apply caps in this order:
+
+1. Start from thesis quality and company-specific control point.
+2. Apply evidence quality cap.
+3. Apply order quality cap.
+4. Apply operating proof cap.
+5. Apply cash-flow quality cap.
+6. Apply valuation cap.
+7. Apply short-risk cap.
+8. Apply technical setup cap.
+9. Set final grade to the lowest decision-critical cap.
+10. State binding cap reason and trade-plan effect.
+
+Grade cap matrix:
+
+| Blocker | Max grade |
+|---|---|
+| no company-specific control point | C |
+| weak order evidence drives valuation | C |
+| target blocked by share count, net debt, or senior claims | C |
+| negative cash conversion unexplained | C |
+| high short-risk D/F | D/F |
+| stale chart drives trade plan | D |
+| valuation already prices alpha case | C+ / B- |
+
+The scorecard must make the cap visible. A strong narrative cannot override a
+missing evidence bridge.
+
 ## Position-Size Translation
 
 Translate grade into action:

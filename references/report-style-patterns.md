@@ -154,6 +154,36 @@ memo:
 - the trade plan converts the thesis into size, entry, stop, trim, and
   invalidation
 
+## Report Assembly Workflow
+
+Assemble the final report only after the object graph exists or is blocked:
+
+1. Write the opening investment dispute in one sentence.
+2. Insert the thesis spine or mispricing table.
+3. Add technical or policy mechanism primer only if needed to understand the
+   bottleneck.
+4. Move from value-chain control point to demand proxy, order quality, and
+   operating machine.
+5. Bridge operating proof to EPS, EBITDA, FCF, current-market-implied valuation,
+   and alpha/base/broken cases.
+6. Tie risks to early warnings, short attack narrative, valuation haircut, or
+   position-size cap.
+7. Tie technical levels to catalyst-linked trade action.
+8. End each major section with a decision-useful judgment or blocker.
+9. Run the Conviction Style Pass.
+10. Run the Anti-Checklist Reconstruction Pass.
+
+Investor memo skeleton:
+
+```text
+investment dispute -> market belief -> mispricing thesis
+-> mechanism primer -> company control point -> demand proxy/order quality
+-> operating machine -> revision bridge -> current-implied valuation
+-> alpha/base/broken cases -> early warnings -> catalyst-linked trade plan
+```
+
+The report fails assembly if it has complete headings but no causal spine.
+
 ## Industry Primer Rule
 
 Add a compact industry primer when the thesis depends on technical context,

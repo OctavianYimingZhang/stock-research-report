@@ -40,6 +40,30 @@ An `IncrementalRefreshPlan` must state:
 If affected objects cannot be isolated, fall back to a full research rerun and
 record why.
 
+## Dependency Refresh Workflow
+
+Use this workflow when a new source arrives:
+
+1. Identify the changed source and source class.
+2. Identify affected claims and source partitions.
+3. Identify affected objects:
+   - `AlphaDiscovery`
+   - `OpportunityArchetype`
+   - `TechnicalMechanismPrimer`
+   - `OperatingMachine`
+   - `DemandProxyMap`
+   - `EarningsRevisionBridge`
+   - `ValuationCase`
+   - `EarlyWarningDashboard`
+   - `CatalystLinkedTradePlan`
+4. Mark stale objects and stale claims.
+5. Recompute dependent objects or explicitly block them.
+6. Preserve unchanged sections with valid lineage.
+7. If a high-materiality claim changes, rerun the full report.
+8. If only price/chart changed, refresh current-implied valuation and trade plan.
+9. If only a new order appears, refresh demand proxy, operating machine,
+   revision bridge, valuation, catalyst, and trade plan.
+
 ## Stale Object Handling
 
 When a source supersedes an older source:

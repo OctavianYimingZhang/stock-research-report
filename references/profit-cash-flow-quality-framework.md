@@ -62,6 +62,29 @@ The object reads from `MetricObservation`, `FinancialQualityAssessment`,
 It writes a verdict that can support or block `ValuationCase`,
 `ShortSellerAssessment`, `RiskFilterAssessment`, and `TradePlan`.
 
+## Profit-To-Cash Workflow
+
+Run this before valuation and short-risk grading:
+
+1. Build a financial trend table for revenue, gross margin, EBITDA, net income,
+   OCF, capex, FCF, working capital, SBC, diluted shares, cash, and debt.
+2. Reconcile net income to OCF.
+3. Reconcile EBITDA to OCF and then FCF.
+4. Identify working-capital drivers: receivables, inventory, payables, contract
+   assets, deferred revenue, and customer prepayments.
+5. Separate maintenance capex, growth capex, catch-up capex, and speculative capex.
+6. Compute owner FCF after maintenance capex and economically recurring SBC.
+7. Compute owner FCF per diluted or pro-forma share.
+8. Decide valuation effect: mature cash flow, transitional cash flow, or unreliable cash flow.
+9. Decide short-risk effect: clean, monitor, red flag, or blocked.
+
+Required table:
+
+```markdown
+| Metric | Latest period | Prior period | TTM | Judgment |
+|---|---:|---:|---:|---|
+```
+
 ## Interpretation Rules
 
 Positive quality signals:

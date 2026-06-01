@@ -188,3 +188,21 @@ State:
 
 When a catalyst is the main proof event, connect TP1, TP2, stop, and position
 size to the catalyst outcome.
+
+## Catalyst-Linked Trade Workflow
+
+Use this workflow before writing final trade instructions:
+
+1. Identify the proof catalyst or evidence event.
+2. Decide whether action is allowed before proof or only after proof.
+3. Map entry, stop, TP1, TP2, add, and trim to both price level and evidence condition.
+4. Reduce size when the proof event is binary, evidence quality is low, or stop
+   distance is wide.
+5. Invalidate the trade when price breaks and the underlying evidence weakens.
+
+Required table:
+
+```markdown
+| Price level | Technical meaning | Fundamental/catalyst dependency | Action |
+|---|---|---|---|
+```
