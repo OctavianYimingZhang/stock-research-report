@@ -16,10 +16,12 @@ REQUIRED_TOP_LEVEL = [
     "scaling_difficulty_assessments",
     "scarcity_bottleneck_assessments",
     "commercialization_path_assessments",
+    "source_documents",
     "source_snapshots",
     "source_partitions",
     "evidence_items",
     "claims",
+    "conflict_resolutions",
     "data_gaps",
     "valuation_cases",
     "equity_bridges",
@@ -89,6 +91,7 @@ def main() -> None:
         if obj.get("status") not in allowed_gate_status:
             fail(f"unsupported gate status: {obj.get('status')}")
 
+    source_document_ids = ids(require_list(root["source_documents"], "source_documents"), "source_documents")
     source_snapshot_ids = ids(require_list(root["source_snapshots"], "source_snapshots"), "source_snapshots")
     article_map_ids = ids(require_list(root["article_thesis_maps"], "article_thesis_maps"), "article_thesis_maps")
     thesis_path_ids = ids(require_list(root["thesis_path_replays"], "thesis_path_replays"), "thesis_path_replays")
@@ -100,6 +103,7 @@ def main() -> None:
     source_partition_ids = ids(require_list(root["source_partitions"], "source_partitions"), "source_partitions")
     evidence_ids = ids(require_list(root["evidence_items"], "evidence_items"), "evidence_items")
     claim_ids = ids(require_list(root["claims"], "claims"), "claims")
+    conflict_resolution_ids = ids(require_list(root["conflict_resolutions"], "conflict_resolutions"), "conflict_resolutions")
     data_gap_ids = ids(require_list(root["data_gaps"], "data_gaps"), "data_gaps")
     valuation_ids = ids(require_list(root["valuation_cases"], "valuation_cases"), "valuation_cases")
     equity_bridge_ids = ids(require_list(root["equity_bridges"], "equity_bridges"), "equity_bridges")
@@ -137,6 +141,11 @@ def main() -> None:
             if obj.get("opportunity_archetype_id") not in opportunity_ids:
                 fail(f"{label} {obj.get('id')} lacks opportunity archetype")
 
+    for snapshot in require_list(root["source_snapshots"], "source_snapshots"):
+        obj = require_dict(snapshot, "source snapshot")
+        if obj.get("source_document_id") not in source_document_ids:
+            fail(f"source snapshot {obj.get('id')} lacks source document lineage")
+
     for partition in require_list(root["source_partitions"], "source_partitions"):
         obj = require_dict(partition, "source partition")
         if obj.get("source_snapshot_id") not in source_snapshot_ids:
@@ -153,12 +162,15 @@ def main() -> None:
         obj = require_dict(claim, "claim")
         linked_evidence = set(obj.get("evidence_ids") or [])
         linked_gaps = set(obj.get("data_gap_ids") or [])
+        linked_conflict_resolution = obj.get("conflict_resolution_id")
         if obj.get("materiality") == "high" and not linked_evidence and not linked_gaps:
             fail(f"high-materiality claim {obj.get('id')} lacks evidence or data gap")
         if linked_evidence - evidence_ids:
             fail(f"claim {obj.get('id')} references unknown evidence")
         if linked_gaps - data_gap_ids:
             fail(f"claim {obj.get('id')} references unknown data gap")
+        if linked_conflict_resolution and linked_conflict_resolution not in conflict_resolution_ids:
+            fail(f"claim {obj.get('id')} references unknown conflict resolution")
 
     for bridge in require_list(root["equity_bridges"], "equity_bridges"):
         obj = require_dict(bridge, "equity bridge")

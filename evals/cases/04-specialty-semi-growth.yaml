@@ -2,15 +2,18 @@ id: specialty-semi-growth
 archetype: specialty_semiconductor_growth
 expected_primary_valuation: forward_ev_ebitda_with_rerating_catalyst
 required_sections:
-  - Company Overview
+  - Core Conclusion
+  - Why This Stock Exists Now
+  - Industry Chain And Bottleneck
+  - Company Position In The Chain
   - Business Model Logic
-  - Operations, Customers, And Orders
-  - Financials, Assets, And Debt
-  - Valuation
-  - Short-Seller Risk
-  - Technical Analysis
-  - Risk Factors
-  - Trade Plan
+  - Scarcity And Moat Assessment
+  - Customers, Orders, And Commercialization Path
+  - Operations, Capacity, And Execution Quality
+  - Financial Quality, Assets, Debt, And Dilution
+  - Valuation And Market-Implied Expectation
+  - Catalysts, Risks, And Falsification
+  - Technical Structure And Trade Plan
 required_checks:
   - business_logic_old_to_new_driver
   - capacity_reservation_or_customer_commitment

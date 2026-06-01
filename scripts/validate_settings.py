@@ -72,6 +72,13 @@ def validate_onboarding(path: Path, schema: dict[str, Any]) -> None:
     presets = data.get("presets")
     if not isinstance(presets, list) or len(presets) < 6:
         fail("onboarding flow must define six presets")
+    required_inputs = data.get("required_inputs")
+    if not isinstance(required_inputs, list):
+        fail("onboarding flow must define required_inputs")
+    allowed_inputs = set((schema.get("properties") or {}).keys()) | {"ticker_or_company_identifier"}
+    unsupported_inputs = sorted(str(item) for item in required_inputs if item not in allowed_inputs)
+    if unsupported_inputs:
+        fail(f"onboarding required_inputs are not schema-backed: {unsupported_inputs}")
     mode_enum = set(schema["properties"]["research_mode"]["enum"])
     view_enum = set(schema["properties"]["output_view"]["enum"])
     seen_ids: set[str] = set()

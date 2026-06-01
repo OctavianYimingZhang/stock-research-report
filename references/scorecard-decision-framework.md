@@ -139,9 +139,9 @@ profit-taking even if the business thesis remains intact.
 
 ## Report Placement
 
-Do not add a tenth default report section. Place the compact scorecard summary
-in `Company Overview` when it helps frame the report, and place the final action
-grade in `Trade Plan`.
+Do not add a separate default scorecard section. Place the compact scorecard
+summary in `Core Conclusion` when it helps frame the report, and place the final
+action grade and position-size effect in `Technical Structure And Trade Plan`.
 
 The trade plan must state:
 
@@ -153,4 +153,5 @@ The trade plan must state:
 - catalyst and invalidation
 
 The scorecard can support a separate `scorecard_summary` output view, but the
-default `full_report` remains the fixed nine-section report.
+default `full_report` remains the canonical 12-section report defined in
+`contracts/report_sections.yaml`.

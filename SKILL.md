@@ -19,34 +19,40 @@ Use this skill when the user asks for deep research on a listed company, ticker,
 ## Workflow
 
 1. Define scope: ticker/company, exchange, report date, time horizon, target audience, required depth, and whether the user wants a full report or a focused section.
-2. Collect sources: latest annual/interim filings, earnings releases, transcripts, investor presentations, segment disclosures, balance-sheet data, peer data, price/volume data, and relevant industry sources.
-3. Build an evidence register: claim, source, date, metric period, extraction note, confidence level, and unresolved conflicts.
-4. Analyze the business: revenue model, segments, customers, supply chain, competitive position, unit economics, cyclicality, regulation, and capital intensity.
-5. Analyze financial quality: revenue durability, gross margin, operating leverage, cash conversion, working capital, capital allocation, leverage, dilution, and accounting risks.
-6. Analyze valuation: market capitalization, enterprise value, share count, net debt/cash, peer multiples, historical range, scenario assumptions, and sensitivity drivers.
-7. Analyze risks and catalysts: earnings inflections, order backlog, customer concentration, policy changes, refinancing, litigation, technological displacement, short-interest context, and market positioning.
+2. Apply `contracts/report_sections.yaml` and `contracts/gates.yaml` as the canonical report contract before drafting.
+3. Collect sources: latest annual/interim filings, earnings releases, transcripts, investor presentations, segment disclosures, balance-sheet data, peer data, price/volume data, and relevant industry sources.
+4. Build an evidence register: claim, source, date, metric period, extraction note, confidence level, and unresolved conflicts.
+5. Replay outside thesis paths only as hypotheses; verify or reject them against primary and high-quality sources.
+6. Route the opportunity archetype and run the four-part opportunity test: demand expansion, scaling difficulty, bottleneck scarcity, and commercialization visibility.
+7. Analyze business logic, customer/order quality, operations, financial quality, valuation, short-risk, technical setup, and the decision scorecard in one causal sequence.
 8. Draft the report with citations beside the claims they support. Keep assumptions explicit.
 9. Run local validation scripts only when producing or changing repository artifacts.
 
 ## Report structure
 
-Use this order unless the user requests a narrower output:
+Use this canonical `full_report` order unless the user requests a narrower output view:
 
-1. Scope and data cutoff
-2. Executive view
-3. Company profile
-4. Business model and segment economics
-5. Industry and competitive position
-6. Financial quality
-7. Valuation and scenarios
-8. Technical and positioning context, if requested
-9. Risks, catalysts, and watch items
-10. Source log and unresolved evidence gaps
+1. Core Conclusion
+2. Why This Stock Exists Now
+3. Industry Chain And Bottleneck
+4. Company Position In The Chain
+5. Business Model Logic
+6. Scarcity And Moat Assessment
+7. Customers, Orders, And Commercialization Path
+8. Operations, Capacity, And Execution Quality
+9. Financial Quality, Assets, Debt, And Dilution
+10. Valuation And Market-Implied Expectation
+11. Catalysts, Risks, And Falsification
+12. Technical Structure And Trade Plan
 
 ## Repository resources
 
 Read only the files needed for the user request:
 
+- `contracts/report_sections.yaml`: canonical output-view section contracts.
+- `contracts/gates.yaml`: gate requirements and blocker rules.
+- `references/workflow-contract.md`: canonical run order and module boundaries.
+- `references/skill-merge-policy.md`: rules for integrating older, compacted, or outside Skill material.
 - `references/business-model-framework.md`: business model and segment analysis.
 - `references/evidence-indexing-framework.md`: evidence register and source traceability.
 - `references/incremental-refresh-framework.md`: updating an existing report with new filings or market data.
@@ -65,6 +71,7 @@ Read only the files needed for the user request:
 
 - `python3 scripts/validate.py`: repository sanity check.
 - `python3 scripts/validate_settings.py`: settings schema/profile check.
-- `python3 scripts/validate_report_output.py <report.md>`: report format check.
+- `python3 scripts/validate_contracts.py`: contract consistency check.
+- `python3 scripts/validate_report_output.py --view full_report <report.md>`: report format check.
 - `python3 scripts/validate_research_manifest.py <manifest.json>`: source-manifest check.
 - `python3 scripts/validate_report_against_manifest.py <report.md> <manifest.json>`: report-to-source consistency check.

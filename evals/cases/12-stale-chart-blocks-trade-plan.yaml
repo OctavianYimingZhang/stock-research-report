@@ -2,15 +2,18 @@ id: stale-chart-blocks-trade-plan
 archetype: stale_chart_blocks_trade_plan
 expected_primary_valuation: selected_from_fundamentals_with_trade_plan_blocked
 required_sections:
-  - Company Overview
+  - Core Conclusion
+  - Why This Stock Exists Now
+  - Industry Chain And Bottleneck
+  - Company Position In The Chain
   - Business Model Logic
-  - Operations, Customers, And Orders
-  - Financials, Assets, And Debt
-  - Valuation
-  - Short-Seller Risk
-  - Technical Analysis
-  - Risk Factors
-  - Trade Plan
+  - Scarcity And Moat Assessment
+  - Customers, Orders, And Commercialization Path
+  - Operations, Capacity, And Execution Quality
+  - Financial Quality, Assets, Debt, And Dilution
+  - Valuation And Market-Implied Expectation
+  - Catalysts, Risks, And Falsification
+  - Technical Structure And Trade Plan
 required_checks:
   - current_market_implied_expectation
   - debt_cash_share_count_bridge

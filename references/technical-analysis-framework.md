@@ -89,10 +89,11 @@ For each pattern, determine:
 
 ## Final Output Contract
 
-The technical section must include:
+The technical projection must use the canonical section heading inside a
+`full_report`:
 
 ```markdown
-## Technical Analysis
+## Technical Structure And Trade Plan
 
 [One compact paragraph.]
 
@@ -124,6 +125,9 @@ If the setup is not actionable:
 ```text
 No clear entry point is available. The condition that would change the view is [price/catalyst].
 ```
+
+For the `trade_plan_only` output view, use the focused headings defined in
+`contracts/report_sections.yaml`.
 
 ## Optional Sequence-Model Tooling Idea
 

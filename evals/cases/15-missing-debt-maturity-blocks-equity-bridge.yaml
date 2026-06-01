@@ -2,15 +2,18 @@ id: missing-debt-maturity-blocks-equity-bridge
 archetype: missing_debt_maturity_blocks_equity_bridge
 expected_primary_valuation: target_blocked_until_debt_maturity_reconciles
 required_sections:
-  - Company Overview
+  - Core Conclusion
+  - Why This Stock Exists Now
+  - Industry Chain And Bottleneck
+  - Company Position In The Chain
   - Business Model Logic
-  - Operations, Customers, And Orders
-  - Financials, Assets, And Debt
-  - Valuation
-  - Short-Seller Risk
-  - Technical Analysis
-  - Risk Factors
-  - Trade Plan
+  - Scarcity And Moat Assessment
+  - Customers, Orders, And Commercialization Path
+  - Operations, Capacity, And Execution Quality
+  - Financial Quality, Assets, Debt, And Dilution
+  - Valuation And Market-Implied Expectation
+  - Catalysts, Risks, And Falsification
+  - Technical Structure And Trade Plan
 required_checks:
   - debt_maturity_schedule_required
   - equity_bridge_present_or_blocked

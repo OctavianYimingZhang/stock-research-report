@@ -137,6 +137,13 @@
       "valuation_usability": "medium"
     }
   ],
+  "source_documents": [
+    {
+      "id": "source-filing",
+      "source_type": "filing",
+      "date_or_gap": "synthetic"
+    }
+  ],
   "source_snapshots": [
     {
       "id": "snapshot-filing",
@@ -171,6 +178,7 @@
       "data_gap_ids": []
     }
   ],
+  "conflict_resolutions": [],
   "data_gaps": [],
   "valuation_cases": [
     {

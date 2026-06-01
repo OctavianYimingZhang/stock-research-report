@@ -40,9 +40,10 @@ only when a missing input blocks a required conclusion.
 - `research_mode`
 - `output_view`
 - `source_policy`
-- `valuation_strictness`
-- `short_risk_threshold`
-- `technical_requirement`
+- `opportunity_policy`
+- `valuation_policy`
+- `short_risk_policy`
+- `technical_policy`
 - `incremental_refresh_mode`
 - `user_risk_budget_or_gap`
 - `citation_detail_level`
@@ -52,10 +53,11 @@ Default settings:
 
 - source policy: primary public sources first
 - historical reports: style only
-- valuation strictness: block target if share count, net debt, senior claims,
+- opportunity policy: route the archetype and run the four-part opportunity test
+- valuation policy: block target if share count, net debt, senior claims,
   debt maturity, or order quality cannot be reconciled
-- short-risk threshold: expand if grade is C or worse
-- technical requirement: current chart data with chart date and adjusted status
+- short-risk policy: expand if grade is C or worse
+- technical policy: current chart data with chart date and adjusted status
 - interaction level: ask only for blocking gaps
 
 ## Output Views
@@ -111,9 +113,10 @@ with these fields:
 - output view
 - horizon
 - source policy
-- valuation strictness
-- short-risk threshold
-- technical requirement
+- opportunity policy
+- valuation policy
+- short-risk policy
+- technical policy
 - interaction level
 - user focus areas
 

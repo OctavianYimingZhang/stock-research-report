@@ -1,0 +1,60 @@
+version: 1
+views:
+  full_report:
+    required_sections:
+      - Core Conclusion
+      - Why This Stock Exists Now
+      - Industry Chain And Bottleneck
+      - Company Position In The Chain
+      - Business Model Logic
+      - Scarcity And Moat Assessment
+      - Customers, Orders, And Commercialization Path
+      - Operations, Capacity, And Execution Quality
+      - Financial Quality, Assets, Debt, And Dilution
+      - Valuation And Market-Implied Expectation
+      - Catalysts, Risks, And Falsification
+      - Technical Structure And Trade Plan
+  valuation_memo:
+    required_sections:
+      - Scope And Data Cutoff
+      - Current-Market-Implied Expectation
+      - Valuation Method Selection
+      - Equity Bridge
+      - Scenarios And Blockers
+  short_seller_attack_memo:
+    required_sections:
+      - Scope And Evidence Boundary
+      - Attack Narrative
+      - Verified Facts
+      - Inferences And Unanswered Questions
+      - Valuation Or Position-Size Effect
+  trade_plan_only:
+    required_sections:
+      - Chart Freshness
+      - Technical Structure
+      - Trade Plan
+      - Invalidation
+  scorecard_summary:
+    required_sections:
+      - Evidence Boundary
+      - Decision Scorecard
+      - Binding Cap Reason
+      - Trade Plan Effect
+  evidence_gap_report:
+    required_sections:
+      - Scope
+      - Blocking Gaps
+      - Non-Blocking Gaps
+      - Required Sources
+  source_conflict_report:
+    required_sections:
+      - Scope
+      - Conflicting Sources
+      - Conflict Resolution
+      - Blocked Conclusions
+  incremental_refresh_summary:
+    required_sections:
+      - New Sources
+      - Changed Claims
+      - Unchanged Claims
+      - Revised Conclusions

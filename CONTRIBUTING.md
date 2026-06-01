@@ -27,3 +27,5 @@ Contributions are welcome. Please follow these guidelines:
 - Keep GitHub-facing text in English.
 - Keep source, valuation, short-risk, and technical-analysis rules enforceable
   through validation wherever practical.
+- Do not paste full external or older Skills into `SKILL.md`. Distill them into
+  reference rules, manifest objects, gates, validators, fixtures, or eval cases.

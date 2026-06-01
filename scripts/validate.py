@@ -15,6 +15,9 @@ REQUIRED_FILES = [
     'requirements.txt',
     'config/settings.schema.json',
     'config/profiles/default.json',
+    'contracts/report_sections.yaml',
+    'contracts/gates.yaml',
+    'references/article-thesis-distillation-framework.md',
     'references/business-model-framework.md',
     'references/evidence-indexing-framework.md',
     'references/incremental-refresh-framework.md',
@@ -27,6 +30,10 @@ REQUIRED_FILES = [
     'references/technical-analysis-framework.md',
     'references/user-intake-settings-framework.md',
     'references/valuation-framework.md',
+    'references/workflow-contract.md',
+    'references/skill-merge-policy.md',
+    'evals/cases/index.yaml',
+    'scripts/validate_contracts.py',
     'scripts/validate_report_output.py',
     'scripts/validate_research_manifest.py',
     'scripts/validate_report_against_manifest.py',
@@ -35,6 +42,7 @@ REQUIRED_FILES = [
 REQUIRED_SKILL_PHRASES = [
     'source-backed public-company',
     'evidence register',
+    'canonical report contract',
     'Do not provide personalized financial advice',
     'Separate verified facts, calculations, estimates, and interpretation',
 ]

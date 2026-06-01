@@ -33,8 +33,9 @@ required_inputs:
   - output_view
   - source_policy
   - opportunity_policy
-  - valuation_strictness
-  - technical_requirement
+  - valuation_policy
+  - short_risk_policy
+  - technical_policy
 preflight_actions:
   - resolve_security
   - map_required_source_classes

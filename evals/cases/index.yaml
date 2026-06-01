@@ -1,0 +1,54 @@
+version: 1
+cases:
+  - id: 01-semiconductor-cyclical
+    category: archetype
+  - id: 02-frontier-order-quality
+    category: order_quality
+  - id: 03-resource-policy
+    category: policy
+  - id: 04-specialty-semi-growth
+    category: archetype
+  - id: 05-equipment-order-inflection
+    category: order_quality
+  - id: 06-advanced-packaging-assets
+    category: asset_quality
+  - id: 07-policy-linked-manufacturing
+    category: policy
+  - id: 08-fresh-outside-reference
+    category: outside_thesis
+  - id: 09-lineage-incremental-refresh
+    category: incremental_refresh
+  - id: 10-unreconciled-share-count-blocks-target
+    category: blocker
+  - id: 11-weak-order-signal-blocks-valuation
+    category: blocker
+  - id: 12-stale-chart-blocks-trade-plan
+    category: technical
+  - id: 13-short-risk-c-grade-reduces-position-size
+    category: short_risk
+  - id: 14-conflicting-source-priority-resolution
+    category: source_conflict
+  - id: 15-missing-debt-maturity-blocks-equity-bridge
+    category: blocker
+  - id: 16-cash-conversion-quality
+    category: cash_flow
+  - id: 17-sbc-dilution-owner-fcf-cap
+    category: cash_flow
+  - id: 18-working-capital-deterioration
+    category: cash_flow
+  - id: 19-rule-of-40-not-applicable
+    category: valuation
+  - id: 20-valuation-stretch-scorecard-cap
+    category: scorecard
+  - id: 21-momentum-overextension-scorecard-cap
+    category: technical
+  - id: 22-unresolved-evidence-blocks-scorecard
+    category: blocker
+  - id: 23-business-transition-layer-depth
+    category: business_model
+  - id: 24-order-to-revenue-ramp-bridge
+    category: order_quality
+  - id: 25-re-rating-and-funding-bridge
+    category: valuation
+  - id: 26-falsification-lens-trim-plan
+    category: falsification

@@ -1,25 +1,20 @@
 #!/usr/bin/env python3
 from __future__ import annotations
 
+import argparse
 import re
 import sys
 from pathlib import Path
 
+try:
+    import yaml  # type: ignore
+except ImportError as exc:  # pragma: no cover - exercised by environment
+    print(f"ERROR: PyYAML is required to validate reports: {exc}", file=sys.stderr)
+    sys.exit(1)
 
-REQUIRED_SECTIONS = [
-    "Core Conclusion",
-    "Why This Stock Exists Now",
-    "Industry Chain And Bottleneck",
-    "Company Position In The Chain",
-    "Business Model Logic",
-    "Scarcity And Moat Assessment",
-    "Customers, Orders, And Commercialization Path",
-    "Operations, Capacity, And Execution Quality",
-    "Financial Quality, Assets, Debt, And Dilution",
-    "Valuation And Market-Implied Expectation",
-    "Catalysts, Risks, And Falsification",
-    "Technical Structure And Trade Plan",
-]
+
+ROOT = Path(__file__).resolve().parents[1]
+REPORT_SECTIONS_PATH = ROOT / "contracts" / "report_sections.yaml"
 
 SOURCE_MARKERS = [
     "filing",
@@ -52,6 +47,24 @@ def require(pattern: str, text: str, message: str, flags: int = re.IGNORECASE) -
         fail(message)
 
 
+def load_required_sections(view: str) -> list[str]:
+    if not REPORT_SECTIONS_PATH.exists():
+        fail(f"missing report section contract: {REPORT_SECTIONS_PATH.relative_to(ROOT)}")
+    data = yaml.safe_load(REPORT_SECTIONS_PATH.read_text(encoding="utf-8"))
+    if not isinstance(data, dict):
+        fail("report section contract must be a mapping")
+    views = data.get("views")
+    if not isinstance(views, dict) or view not in views:
+        fail(f"unsupported output view: {view}")
+    view_contract = views[view]
+    if not isinstance(view_contract, dict):
+        fail(f"report section contract for {view} must be a mapping")
+    sections = view_contract.get("required_sections")
+    if not isinstance(sections, list) or not all(isinstance(item, str) for item in sections):
+        fail(f"report section contract for {view} must define required_sections")
+    return sections
+
+
 def is_contract_fixture(path: Path) -> bool:
     return path.name == "report-contract-fixture.md"
 
@@ -78,7 +91,7 @@ def paragraph_count(section_text: str) -> int:
     return len(prose_blocks)
 
 
-def validate_depth_and_readability(path: Path, text: str) -> None:
+def validate_depth_and_readability(path: Path, text: str, required_sections: list[str]) -> None:
     if is_contract_fixture(path):
         return
 
@@ -88,7 +101,7 @@ def validate_depth_and_readability(path: Path, text: str) -> None:
             f"expected at least {MIN_FULL_REPORT_CHARS} unless the report is explicitly source-blocked"
         )
 
-    for section in REQUIRED_SECTIONS:
+    for section in required_sections:
         body = section_body(text, section)
         count = paragraph_count(body)
         if count < MIN_SECTION_PARAGRAPHS:
@@ -102,7 +115,7 @@ def validate_depth_and_readability(path: Path, text: str) -> None:
         )
 
     one_line_sections = []
-    for section in REQUIRED_SECTIONS:
+    for section in required_sections:
         body = section_body(text, section)
         body_lines = [line for line in body.splitlines() if line.strip() and not line.strip().startswith("|")]
         if len(" ".join(body_lines).split()) < 90:
@@ -111,18 +124,14 @@ def validate_depth_and_readability(path: Path, text: str) -> None:
         fail(f"sections lack explanatory prose depth: {one_line_sections}")
 
 
-def main() -> None:
-    if len(sys.argv) != 2:
-        fail("usage: validate_report_output.py <report.md>")
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser(description="Validate stock research report output.")
+    parser.add_argument("--view", default="full_report", help="Output view contract to validate")
+    parser.add_argument("report", help="Markdown report file")
+    return parser.parse_args()
 
-    path = Path(sys.argv[1])
-    if not path.exists():
-        fail(f"missing report file: {path}")
-    text = path.read_text(encoding="utf-8")
 
-    for section in REQUIRED_SECTIONS:
-        require(rf"^##\s+{re.escape(section)}\s*$", text, f"missing section: {section}", re.MULTILINE)
-
+def validate_full_report_content(path: Path, text: str, required_sections: list[str]) -> None:
     if not any(f"[{marker}]" in text for marker in SOURCE_MARKERS):
         fail("report must include source markers for material numbers")
 
@@ -158,12 +167,38 @@ def main() -> None:
     require(r"binding cap|cap reason", text, "missing scorecard binding cap reason")
     require(r"trim|add|partial profit|observe", text, "missing trim/add or observation logic")
 
-    validate_depth_and_readability(path, text)
+    validate_depth_and_readability(path, text, required_sections)
 
     if re.search(r"probability-weighted|method average|average of.*DCF.*P/E", text, re.IGNORECASE | re.DOTALL):
         fail("report appears to average valuation methods")
 
-    print("OK: report output validation passed")
+
+def validate_projection_content(text: str) -> None:
+    if not any(f"[{marker}]" in text for marker in SOURCE_MARKERS) and not re.search(
+        r"no material numbers|no numeric claims|no material factual claims",
+        text,
+        re.IGNORECASE,
+    ):
+        fail("report must include source markers for material numbers or explicitly state no material numbers are used")
+
+
+def main() -> None:
+    args = parse_args()
+    path = Path(args.report)
+    if not path.exists():
+        fail(f"missing report file: {path}")
+    text = path.read_text(encoding="utf-8")
+    required_sections = load_required_sections(args.view)
+
+    for section in required_sections:
+        require(rf"^##\s+{re.escape(section)}\s*$", text, f"missing section: {section}", re.MULTILINE)
+
+    if args.view == "full_report":
+        validate_full_report_content(path, text, required_sections)
+    else:
+        validate_projection_content(text)
+
+    print(f"OK: {args.view} report output validation passed")
 
 
 if __name__ == "__main__":

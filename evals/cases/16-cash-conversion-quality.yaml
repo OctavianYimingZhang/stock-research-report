@@ -2,15 +2,18 @@ id: cash-conversion-quality
 archetype: cash_conversion_quality
 expected_primary_valuation: cash_flow_multiple_allowed_only_after_owner_fcf_bridge
 required_sections:
-  - Company Overview
+  - Core Conclusion
+  - Why This Stock Exists Now
+  - Industry Chain And Bottleneck
+  - Company Position In The Chain
   - Business Model Logic
-  - Operations, Customers, And Orders
-  - Financials, Assets, And Debt
-  - Valuation
-  - Short-Seller Risk
-  - Technical Analysis
-  - Risk Factors
-  - Trade Plan
+  - Scarcity And Moat Assessment
+  - Customers, Orders, And Commercialization Path
+  - Operations, Capacity, And Execution Quality
+  - Financial Quality, Assets, Debt, And Dilution
+  - Valuation And Market-Implied Expectation
+  - Catalysts, Risks, And Falsification
+  - Technical Structure And Trade Plan
 required_checks:
   - profit_cash_flow_quality_analysis
   - ebitda_to_ocf_to_fcf_bridge

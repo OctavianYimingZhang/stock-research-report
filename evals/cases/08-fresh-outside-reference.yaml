@@ -2,15 +2,18 @@ id: fresh-outside-reference
 archetype: fresh_outside_reference
 expected_primary_valuation: selected_from_market_pricing_mechanism
 required_sections:
-  - Company Overview
+  - Core Conclusion
+  - Why This Stock Exists Now
+  - Industry Chain And Bottleneck
+  - Company Position In The Chain
   - Business Model Logic
-  - Operations, Customers, And Orders
-  - Financials, Assets, And Debt
-  - Valuation
-  - Short-Seller Risk
-  - Technical Analysis
-  - Risk Factors
-  - Trade Plan
+  - Scarcity And Moat Assessment
+  - Customers, Orders, And Commercialization Path
+  - Operations, Capacity, And Execution Quality
+  - Financial Quality, Assets, Debt, And Dilution
+  - Valuation And Market-Implied Expectation
+  - Catalysts, Risks, And Falsification
+  - Technical Structure And Trade Plan
 required_checks:
   - current_rerating_dispute
   - source_markers_for_material_numbers

@@ -1,0 +1,54 @@
+version: 1
+gates:
+  ArticleMapGate:
+    required_when: source_policy.outside_thesis_replay != disabled
+    blocks:
+      - unsupported outside thesis used as fact
+      - outside thesis has no missing-evidence list
+  OpportunityRouteGate:
+    required_when: output_view != source_conflict_report
+    blocks:
+      - no company-specific route for a high-conviction conclusion
+  FourPartOpportunityGate:
+    required_when: high_conviction_conclusion
+    checks:
+      - demand_expansion
+      - scaling_difficulty
+      - scarcity_bottleneck
+      - commercialization_visibility
+  SourcePriorityGate:
+    required_when: always
+    blocks:
+      - secondary commentary overrides primary source
+      - material claim lacks evidence or explicit data gap
+  EquityBridgeGate:
+    required_before:
+      - target price
+      - price target
+    blocks:
+      - unresolved share count
+      - unresolved net debt
+      - unresolved senior claims
+  CashFlowQualityGate:
+    required_before:
+      - valuation_case
+      - action_grade
+    checks:
+      - EBITDA_to_OCF_to_FCF
+      - working_capital
+      - capex
+      - SBC_adjusted_FCF
+      - FCF_per_share
+  TechnicalFreshnessGate:
+    required_before:
+      - trade_plan
+    blocks:
+      - stale chart drives entry stop or take-profit levels
+      - adjusted status missing when adjustment matters
+  DecisionScorecardGate:
+    required_before:
+      - final_action_grade
+    checks:
+      - action_grade
+      - binding_cap_reason
+      - position_size_effect

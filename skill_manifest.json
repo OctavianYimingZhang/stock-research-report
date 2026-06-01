@@ -7,7 +7,15 @@
   "health_commands": [
     "python3 scripts/validate.py",
     "python3 scripts/validate_settings.py",
-    "python3 scripts/validate_report_output.py evals/fixtures/report-contract-fixture.md",
+    "python3 scripts/validate_contracts.py",
+    "python3 scripts/validate_report_output.py --view full_report evals/fixtures/report-contract-fixture.md",
+    "python3 scripts/validate_report_output.py --view valuation_memo evals/fixtures/valuation_memo.md",
+    "python3 scripts/validate_report_output.py --view short_seller_attack_memo evals/fixtures/short_seller_attack_memo.md",
+    "python3 scripts/validate_report_output.py --view trade_plan_only evals/fixtures/trade_plan_only.md",
+    "python3 scripts/validate_report_output.py --view scorecard_summary evals/fixtures/scorecard_summary.md",
+    "python3 scripts/validate_report_output.py --view evidence_gap_report evals/fixtures/evidence_gap_report.md",
+    "python3 scripts/validate_report_output.py --view source_conflict_report evals/fixtures/source_conflict_report.md",
+    "python3 scripts/validate_report_output.py --view incremental_refresh_summary evals/fixtures/incremental_refresh_summary.md",
     "python3 scripts/validate_research_manifest.py evals/fixtures/report-contract-fixture.manifest.json",
     "python3 scripts/validate_report_against_manifest.py evals/fixtures/report-contract-fixture.md evals/fixtures/report-contract-fixture.manifest.json"
   ],
