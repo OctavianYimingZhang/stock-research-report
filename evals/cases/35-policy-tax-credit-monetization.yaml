@@ -1,0 +1,26 @@
+id: policy-tax-credit-monetization
+category: policy_finance
+adapter: policy_monetization
+required_sections:
+  - Core Conclusion
+  - Why This Stock Exists Now
+  - Industry Chain And Bottleneck
+  - Company Position In The Chain
+  - Business Model Logic
+  - Scarcity And Moat Assessment
+  - Customers, Orders, And Commercialization Path
+  - Operations, Capacity, And Execution Quality
+  - Financial Quality, Assets, Debt, And Dilution
+  - Valuation And Market-Implied Expectation
+  - Catalysts, Risks, And Falsification
+  - Technical Structure And Trade Plan
+must_include:
+  - policy source
+  - eligibility condition
+  - monetization channel
+  - cash timing
+  - policy reversal / buyer appetite risk
+must_block:
+  - treating accrued credit as cash
+  - treating policy existence as demand proof
+

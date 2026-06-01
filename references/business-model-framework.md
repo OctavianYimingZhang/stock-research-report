@@ -362,6 +362,96 @@ asset/capacity -> customer commitment -> utilization -> revenue
 -> margin -> cash conversion -> failure date -> valuation effect
 ```
 
+## Asset-Financing Platform Workflow
+
+Use this workflow when value is driven by long-term contracts, subscription
+fleets, tax equity, ITC transfer, non-recourse debt, securitization, contracted
+net earning assets, cash generation, VIE/NCI, or recourse versus non-recourse
+debt.
+
+1. Decide whether revenue fails to represent equity-owner cash flow because
+   assets, tax credits, VIEs, NCI, or project finance control economics.
+2. Map the financing flywheel:
+
+```text
+customer origination -> asset creation -> tax credit generation
+-> tax credit monetization -> tax equity / ITC buyer funding
+-> non-recourse debt / securitization -> retained asset cash flow
+-> cash generation -> recourse debt reduction -> equity value per share
+```
+
+3. For each link, classify proof status: occurred, management claim, delayed,
+   blocked, or requires next-quarter proof.
+4. Build an asset-value waterfall:
+
+```text
+gross subscriber or contract value
+- tax equity, NCI, redeemable NCI, or partner claims
+- non-recourse debt
+- parent recourse debt
++ unrestricted cash
++ retained or transferable tax credits
+= equity-relevant net asset value
+/ diluted shares
+= per-share asset value
+```
+
+5. Build a cash-generation conversion bridge:
+
+```text
+subscriber or contract value -> monetized value -> cash generation
+-> parent cash -> recourse deleveraging -> residual equity value
+```
+
+6. Select the valuation denominator:
+   - repeatable cash generation: recurring cash generation and contracted net
+     earning assets per share can drive base case.
+   - timing-dependent or unproven cash generation: use discounted asset value
+     and cap action grade.
+   - unreconciled asset value: block target price and high grade.
+7. Output upgrade and downgrade triggers: financing close, recurring positive
+   cash generation, recourse debt trend, subscriber/customer growth, attach
+   rate, creation cost, and asset monetization.
+
+Required objects:
+
+- `AssetFinancingPlatform`
+- `AssetFinancingFlywheel`
+- `ContractedAssetValueWaterfall`
+- `CashGenerationBridge`
+
+If a report uses subscription value or contracted asset value without this
+workflow, it has not explained the company's money machine.
+
+## Financing Cadence Ledger Workflow
+
+Use this workflow when project finance, tax equity, securitization, warehouse
+funding, or delayed financing is thesis-critical:
+
+1. Collect every financing transaction: tax equity fund, ITC transfer,
+   non-recourse asset-level debt, securitization, warehouse facility, recourse
+   debt, convertible, preferred, equity raise, and delayed transaction.
+2. For each transaction, record amount, expected close date, actual close date,
+   spread or rate, maturity, collateral, recourse status, parent-cash effect,
+   use of proceeds, and refinancing risk.
+3. Determine cadence: spread widening or narrowing, deal size improving or
+   deteriorating, closes slipping or recovering, recourse exposure rising or
+   falling, and cash conversion recurring or timing-dependent.
+4. Translate cadence into business effect: whether subscriber/customer growth is
+   funded, asset value is monetized, cash generation is positive, recourse debt
+   is reduced, or equity dilution is avoided.
+5. Translate cadence into valuation:
+   - improving cadence lowers discount rate or raises confidence
+   - delayed cadence requires valuation haircut
+   - closed financing market blocks the growth case
+
+Required table:
+
+```markdown
+| Transaction | Amount | Expected close | Actual close | Cost/spread | Recourse status | Parent-cash effect | Valuation effect |
+|---|---:|---|---|---:|---|---|---|
+```
+
 ## Operating Proof Standard
 
 The operating section must prove whether the issuer can deliver the demand it

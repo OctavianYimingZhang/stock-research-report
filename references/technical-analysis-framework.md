@@ -206,3 +206,26 @@ Required table:
 | Price level | Technical meaning | Fundamental/catalyst dependency | Action |
 |---|---|---|---|
 ```
+
+## Action Trigger Matrix Workflow
+
+Use this workflow when the report says wait, start small, add, trim, or stop.
+Vague "wait for proof" language is insufficient.
+
+1. Identify the three to five variables that determine action grade.
+2. Convert variables into conditional rules:
+   - proof passes but price is extended: wait for retest
+   - proof passes and price confirms: add
+   - price reaches resistance before proof: trim
+   - proof fails and price breaks: stop or downgrade
+   - proof is absent but risk/reward improves: starter size only
+3. Separate price stop, thesis stop, and catalyst/event stop.
+4. Tie position size to evidence quality, stop distance, volatility, and
+   financing or event risk.
+
+Required table:
+
+```markdown
+| Condition | Evidence trigger | Price trigger | Action | Grade effect | Position size |
+|---|---|---|---|---|---|
+```

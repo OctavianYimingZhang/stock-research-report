@@ -70,6 +70,29 @@ gates:
       - revision_variable
       - timing
       - disconfirming_signal
+  AssetFinancingPlatformGate:
+    required_when: thesis_depends_on_subscription_fleet_tax_credit_or_project_finance
+    blocks:
+      - management asset value is used without waterfall
+      - management cash generation is used without GAAP or cash bridge
+      - non-recourse debt and parent recourse exposure are mixed
+      - valuation relies on subscription value without monetization path
+  ManagementMetricGate:
+    required_when: decision_critical_management_metric
+    blocks:
+      - management metric is used as valuation denominator without reconciliation
+      - common-stockholder EPS differs materially from consolidated economics and is not explained
+      - cash generation is negative but treated as timing without next proof date
+  FinancingCadenceGate:
+    required_when: financing_recovery_or_project_finance_timing_is_thesis_critical
+    blocks:
+      - financing recovery thesis exists but no transaction ledger
+      - delayed project finance is described as timing without next proof event
+  PolicyMonetizationGate:
+    required_when: policy_credit_or_tax_credit_monetization_drives_value
+    blocks:
+      - policy credit is treated as cash without monetization proof
+      - policy-protected demand is assumed without procurement, eligibility, funding, or transfer mechanism
   CatalystLinkedTradeGate:
     required_before:
       - trade_plan
@@ -78,3 +101,10 @@ gates:
       - price_level
       - action
       - invalidation
+  ActionTriggerGate:
+    required_before:
+      - final_trade_plan
+    blocks:
+      - trade plan says wait but no add trim stop trigger
+      - price levels exist without catalyst linkage
+      - position size is not linked to evidence quality

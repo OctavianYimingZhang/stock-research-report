@@ -260,3 +260,32 @@ Short-seller attack narrative:
 Verdict:
 [A/B/C/D/F] because [specific evidence], with [valuation/size effect].
 ```
+
+## Accounting Optics Expansion Mode
+
+Use expanded mode when reported optics differ from economic ownership,
+especially for VIEs, NCI, redeemable NCI, consolidated losses, common-stockholder
+income, non-recourse debt, tax equity claims, management-defined asset values,
+or project-finance timing explanations.
+
+1. Name the optical issue: for example, common-stockholder EPS positive while
+   consolidated economics are weak, or management asset value depends on
+   partner/NCI allocation.
+2. Separate verified fact, management explanation, inference, unanswered
+   question, and plausible short attack.
+3. Identify whether the issue affects valuation denominator, position size, or
+   only monitoring.
+4. State what evidence would weaken or strengthen the short attack.
+
+Required object:
+
+```yaml
+AccountingOpticsRisk:
+  accounting_issue:
+  verified_fact:
+  possible_short_attack:
+  management_explanation:
+  unresolved_question:
+  valuation_effect:
+  position_size_effect:
+```

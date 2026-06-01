@@ -48,6 +48,13 @@ The flow fails closed. A missing object does not disappear; it becomes a
 `DataGap`, gate warning, or blocker that caps valuation, position size, action
 grade, or trade levels.
 
+If the company is an asset-financing, subscription-fleet, tax-credit, or
+project-finance platform, add these objects before valuation:
+`AssetFinancingPlatform`, `AssetFinancingFlywheel`,
+`ContractedAssetValueWaterfall`, `CashGenerationBridge`,
+`ManagementMetricReconciliation`, `FinancingCadenceLedger`,
+`PolicyMonetizationMap`, and `ActionTriggerMatrix`.
+
 ## Alpha Discovery Phase
 
 Before drafting, identify the investment mispricing path:
@@ -96,6 +103,7 @@ opening investment dispute
 -> alpha/base/broken case set
 -> early warning dashboard
 -> catalyst-linked trade plan
+-> action trigger matrix
 ```
 
 Each section must end with a decision-useful judgment or a blocked conclusion.

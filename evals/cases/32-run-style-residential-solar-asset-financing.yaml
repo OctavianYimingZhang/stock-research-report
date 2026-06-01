@@ -1,0 +1,30 @@
+id: run-style-residential-solar-asset-financing
+category: business_model_specific
+adapter: asset_financing_platform
+prompt: Analyze a residential solar subscription company with contracted asset value, tax equity, non-recourse debt, VIEs, and management cash-generation guidance.
+required_sections:
+  - Core Conclusion
+  - Why This Stock Exists Now
+  - Industry Chain And Bottleneck
+  - Company Position In The Chain
+  - Business Model Logic
+  - Scarcity And Moat Assessment
+  - Customers, Orders, And Commercialization Path
+  - Operations, Capacity, And Execution Quality
+  - Financial Quality, Assets, Debt, And Dilution
+  - Valuation And Market-Implied Expectation
+  - Catalysts, Risks, And Falsification
+  - Technical Structure And Trade Plan
+must_include:
+  - asset-financing flywheel
+  - contracted asset value waterfall
+  - management Cash Generation to GAAP cash bridge
+  - recourse vs non-recourse debt separation
+  - tax equity / ITC transfer monetization path
+  - current price vs CNEA per share decomposition
+  - financing cadence proof trigger
+must_block:
+  - valuing the company on GAAP EPS alone
+  - using contracted asset value without waterfall
+  - treating delayed project finance as proven timing without next-quarter proof
+

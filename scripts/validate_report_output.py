@@ -58,6 +58,10 @@ def require_table_columns(text: str, columns: list[str], message: str) -> None:
     fail(message)
 
 
+def has_any(patterns: list[str], text: str) -> bool:
+    return any(re.search(pattern, text, re.IGNORECASE) for pattern in patterns)
+
+
 def load_required_sections(view: str) -> list[str]:
     if not REPORT_SECTIONS_PATH.exists():
         fail(f"missing report section contract: {REPORT_SECTIONS_PATH.relative_to(ROOT)}")
@@ -232,6 +236,87 @@ def validate_full_report_content(path: Path, text: str, required_sections: list[
         ["Price level", "Technical meaning", "Fundamental/catalyst dependency", "Action"],
         "missing catalyst-linked trade table",
     )
+    require_table_columns(
+        text,
+        ["Condition", "Evidence trigger", "Price trigger", "Action"],
+        "missing action trigger matrix table",
+    )
+
+    asset_financing_patterns = [
+        r"asset[- ]financing",
+        r"subscription fleet",
+        r"contracted net earning assets",
+        r"\bCNEA\b",
+        r"tax equity",
+        r"ITC transfer",
+        r"non[- ]recourse",
+        r"securitization",
+        r"\bVIE\b",
+        r"\bNCI\b",
+        r"Cash Generation",
+        r"资产融资",
+        r"税收权益",
+    ]
+    if has_any(asset_financing_patterns, text):
+        require(r"asset[- ]financing|融资平台|subscription fleet|资产融资", text, "missing asset-financing platform framing")
+        require(r"cash generation.*bridge|现金生成.*桥|management.*cash generation", text, "missing cash generation bridge")
+        require(r"recourse.*non[- ]recourse|non[- ]recourse.*recourse|追索.*非追索", text, "missing recourse/non-recourse debt separation")
+        require(r"contracted net earning assets|CNEA|净收益资产", text, "missing contracted asset value discussion")
+        require(r"waterfall|瀑布|NCI|noncontrolling interest|VIE", text, "missing asset value waterfall / NCI / VIE treatment")
+        require_table_columns(
+            text,
+            ["Waterfall item", "Amount", "Claim seniority", "Equity relevance"],
+            "missing asset value waterfall table",
+        )
+
+    management_metric_patterns = [
+        r"management[- ]defined",
+        r"management metric",
+        r"Cash Generation",
+        r"Contracted Net",
+        r"Aggregate Subscriber Value",
+        r"adjusted EBITDA",
+        r"管理层.*指标",
+    ]
+    if has_any(management_metric_patterns, text):
+        require(r"management.*metric|管理层.*指标|Cash Generation|Contracted Net", text, "missing management metric identification")
+        require(r"reconcile|桥|bridge|GAAP|OCF|operating cash flow", text, "missing management metric reconciliation")
+        require(r"NCI|noncontrolling|redeemable|VIE|非控制性权益", text, "missing NCI/VIE accounting allocation treatment")
+        require(r"valuation use|估值可用性|base case|alpha case|monitoring", text, "missing valuation-use classification for management metric")
+
+    financing_cadence_patterns = [
+        r"project finance",
+        r"tax equity",
+        r"securitization",
+        r"warehouse facility",
+        r"financing cadence",
+        r"delayed financing",
+        r"融资节奏",
+    ]
+    if has_any(financing_cadence_patterns, text):
+        require(r"financing cadence|融资节奏|project finance|tax equity|securitization|资产级债务", text, "missing financing cadence discussion")
+        require(r"spread|bps|利差|close date|closing|到期|maturity", text, "missing financing transaction economics")
+        require(r"delayed|slip|推迟|移到Q2|timing", text, "missing delayed-financing tracking when financing timing is thesis-critical")
+        require_table_columns(
+            text,
+            ["Transaction", "Amount", "Expected close", "Actual close", "Recourse status", "Valuation effect"],
+            "missing financing cadence ledger table",
+        )
+
+    policy_monetization_patterns = [
+        r"tax credit",
+        r"\bITC\b",
+        r"\b45X\b",
+        r"\bFEOC\b",
+        r"tax equity",
+        r"safe harbor",
+        r"policy credit",
+        r"税收权益",
+    ]
+    if has_any(policy_monetization_patterns, text):
+        require(r"policy|政策|tax credit|ITC|45X|FEOC|tax equity|税收权益", text, "missing policy/tax-credit mechanism")
+        require(r"monetization|转让|transfer|buyer|tax equity investor|现金化", text, "missing tax-credit monetization path")
+        require(r"eligibility|资格|safe harbor|domestic content|合规", text, "missing policy eligibility condition")
 
     validate_depth_and_readability(path, text, required_sections)
 

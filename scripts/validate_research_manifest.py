@@ -22,6 +22,14 @@ REQUIRED_TOP_LEVEL = [
     "commercialization_path_assessments",
     "operating_machines",
     "demand_proxy_maps",
+    "asset_financing_platforms",
+    "asset_financing_flywheels",
+    "contracted_asset_value_waterfalls",
+    "cash_generation_bridges",
+    "management_metric_reconciliations",
+    "financing_transactions",
+    "financing_cadence_ledgers",
+    "policy_monetization_maps",
     "source_documents",
     "source_snapshots",
     "source_partitions",
@@ -46,6 +54,7 @@ REQUIRED_TOP_LEVEL = [
     "decision_scorecards",
     "trade_plans",
     "catalyst_linked_trade_plans",
+    "action_trigger_matrices",
     "short_seller_assessments",
     "report_sections",
 ]
@@ -117,6 +126,14 @@ def main() -> None:
     commercialization_ids = ids(require_list(root["commercialization_path_assessments"], "commercialization_path_assessments"), "commercialization_path_assessments")
     operating_machine_ids = ids(require_list(root["operating_machines"], "operating_machines"), "operating_machines")
     demand_proxy_ids = ids(require_list(root["demand_proxy_maps"], "demand_proxy_maps"), "demand_proxy_maps")
+    asset_financing_platform_ids = ids(require_list(root["asset_financing_platforms"], "asset_financing_platforms"), "asset_financing_platforms")
+    asset_financing_flywheel_ids = ids(require_list(root["asset_financing_flywheels"], "asset_financing_flywheels"), "asset_financing_flywheels")
+    asset_value_waterfall_ids = ids(require_list(root["contracted_asset_value_waterfalls"], "contracted_asset_value_waterfalls"), "contracted_asset_value_waterfalls")
+    cash_generation_bridge_ids = ids(require_list(root["cash_generation_bridges"], "cash_generation_bridges"), "cash_generation_bridges")
+    management_metric_ids = ids(require_list(root["management_metric_reconciliations"], "management_metric_reconciliations"), "management_metric_reconciliations")
+    financing_transaction_ids = ids(require_list(root["financing_transactions"], "financing_transactions"), "financing_transactions")
+    financing_cadence_ids = ids(require_list(root["financing_cadence_ledgers"], "financing_cadence_ledgers"), "financing_cadence_ledgers")
+    policy_monetization_ids = ids(require_list(root["policy_monetization_maps"], "policy_monetization_maps"), "policy_monetization_maps")
     source_partition_ids = ids(require_list(root["source_partitions"], "source_partitions"), "source_partitions")
     evidence_ids = ids(require_list(root["evidence_items"], "evidence_items"), "evidence_items")
     claim_ids = ids(require_list(root["claims"], "claims"), "claims")
@@ -139,6 +156,7 @@ def main() -> None:
     decision_scorecard_ids = ids(require_list(root["decision_scorecards"], "decision_scorecards"), "decision_scorecards")
     trade_plan_ids = ids(require_list(root["trade_plans"], "trade_plans"), "trade_plans")
     catalyst_trade_plan_ids = ids(require_list(root["catalyst_linked_trade_plans"], "catalyst_linked_trade_plans"), "catalyst_linked_trade_plans")
+    action_trigger_ids = ids(require_list(root["action_trigger_matrices"], "action_trigger_matrices"), "action_trigger_matrices")
     short_ids = ids(require_list(root["short_seller_assessments"], "short_seller_assessments"), "short_seller_assessments")
 
     for replay in require_list(root["thesis_path_replays"], "thesis_path_replays"):
@@ -209,6 +227,61 @@ def main() -> None:
             fail(f"demand proxy map {obj.get('id')} lacks commercialization path assessment")
         if not obj.get("valuation_usability"):
             fail(f"demand proxy map {obj.get('id')} lacks valuation usability")
+
+    for platform in require_list(root["asset_financing_platforms"], "asset_financing_platforms"):
+        obj = require_dict(platform, "asset financing platform")
+        if obj.get("company_control_point_assessment_id") not in control_point_ids:
+            fail(f"asset financing platform {obj.get('id')} lacks company control point assessment")
+        if not obj.get("monetization_channels"):
+            fail(f"asset financing platform {obj.get('id')} lacks monetization channels")
+
+    for flywheel in require_list(root["asset_financing_flywheels"], "asset_financing_flywheels"):
+        obj = require_dict(flywheel, "asset financing flywheel")
+        if obj.get("asset_financing_platform_id") not in asset_financing_platform_ids:
+            fail(f"asset financing flywheel {obj.get('id')} lacks platform")
+        if not obj.get("equity_value_creation"):
+            fail(f"asset financing flywheel {obj.get('id')} lacks equity value creation")
+
+    for waterfall in require_list(root["contracted_asset_value_waterfalls"], "contracted_asset_value_waterfalls"):
+        obj = require_dict(waterfall, "contracted asset value waterfall")
+        if obj.get("asset_financing_platform_id") not in asset_financing_platform_ids:
+            fail(f"contracted asset value waterfall {obj.get('id')} lacks platform")
+        if obj.get("per_share_value_or_blocker") in (None, ""):
+            fail(f"contracted asset value waterfall {obj.get('id')} lacks per-share value or blocker")
+
+    for bridge in require_list(root["cash_generation_bridges"], "cash_generation_bridges"):
+        obj = require_dict(bridge, "cash generation bridge")
+        if obj.get("asset_financing_platform_id") not in asset_financing_platform_ids:
+            fail(f"cash generation bridge {obj.get('id')} lacks platform")
+        if not obj.get("recurring_or_timing_dependent"):
+            fail(f"cash generation bridge {obj.get('id')} lacks recurring/timing classification")
+
+    for reconciliation in require_list(root["management_metric_reconciliations"], "management_metric_reconciliations"):
+        obj = require_dict(reconciliation, "management metric reconciliation")
+        if not obj.get("metric_name"):
+            fail(f"management metric reconciliation {obj.get('id')} lacks metric name")
+        if not obj.get("valuation_use"):
+            fail(f"management metric reconciliation {obj.get('id')} lacks valuation use")
+
+    for transaction in require_list(root["financing_transactions"], "financing_transactions"):
+        obj = require_dict(transaction, "financing transaction")
+        if not obj.get("type") or not obj.get("recourse_status"):
+            fail(f"financing transaction {obj.get('id')} lacks type or recourse status")
+
+    for ledger in require_list(root["financing_cadence_ledgers"], "financing_cadence_ledgers"):
+        obj = require_dict(ledger, "financing cadence ledger")
+        linked_transactions = set(obj.get("financing_transaction_ids") or [])
+        if linked_transactions - financing_transaction_ids:
+            fail(f"financing cadence ledger {obj.get('id')} references unknown transaction")
+        if not obj.get("upcoming_proof_events"):
+            fail(f"financing cadence ledger {obj.get('id')} lacks upcoming proof events")
+
+    for policy_map in require_list(root["policy_monetization_maps"], "policy_monetization_maps"):
+        obj = require_dict(policy_map, "policy monetization map")
+        if not obj.get("policy_name") or not obj.get("monetization_channel"):
+            fail(f"policy monetization map {obj.get('id')} lacks policy name or channel")
+        if not obj.get("valuation_use"):
+            fail(f"policy monetization map {obj.get('id')} lacks valuation use")
 
     for snapshot in require_list(root["source_snapshots"], "source_snapshots"):
         obj = require_dict(snapshot, "source snapshot")
@@ -340,6 +413,14 @@ def main() -> None:
             fail(f"catalyst-linked trade plan {obj.get('id')} lacks early warning dashboard")
         if not obj.get("catalyst_or_proof_event"):
             fail(f"catalyst-linked trade plan {obj.get('id')} lacks catalyst or proof event")
+
+    for matrix in require_list(root["action_trigger_matrices"], "action_trigger_matrices"):
+        obj = require_dict(matrix, "action trigger matrix")
+        if obj.get("trade_plan_id") not in trade_plan_ids:
+            fail(f"action trigger matrix {obj.get('id')} lacks trade plan")
+        for key in ["trigger_variables", "wait_conditions", "add_conditions", "trim_conditions", "stop_or_downgrade_conditions"]:
+            if not obj.get(key):
+                fail(f"action trigger matrix {obj.get('id')} lacks {key}")
 
     for assessment in require_list(root["short_seller_assessments"], "short_seller_assessments"):
         obj = require_dict(assessment, "short-seller assessment")

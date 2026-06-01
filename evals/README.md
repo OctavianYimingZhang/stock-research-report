@@ -9,3 +9,7 @@ The fixtures are synthetic and do not assert live market facts. Alpha-oriented
 cases cover mispricing thesis, company control point, demand proxy ladder,
 operating machine, revision bridge, catalyst-linked trade plan, and broken
 thesis evidence.
+
+Asset-financing cases cover subscription-fleet value, management metric
+reconciliation, project-finance cadence, tax-credit monetization, and
+conditional buy/wait/add/trim/stop action matrices.

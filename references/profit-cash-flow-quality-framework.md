@@ -85,6 +85,57 @@ Required table:
 |---|---:|---:|---:|---|
 ```
 
+## Management Metric Reconciliation Workflow
+
+Use this workflow whenever a management-defined metric drives action grade,
+valuation denominator, upside case, downside case, or position size.
+
+Common metrics include Cash Generation, Contracted Net Earning Assets,
+Aggregate Subscriber Value, Contracted Net Value Creation, Net Earning Assets
+per share, adjusted EBITDA, recurring cash flow, and management-defined FCF.
+
+1. Identify the management metric, period, definition, reported value, and
+   source.
+2. Decide whether the report conclusion depends on the metric. If yes,
+   reconciliation is mandatory.
+3. Build the GAAP and cash bridge:
+
+```text
+management metric -> GAAP revenue -> consolidated net income/loss
+-> common-stockholder net income -> NCI / redeemable NCI allocation
+-> operating cash flow -> investing cash flow -> financing cash flow
+-> parent cash / unrestricted cash -> equity-owner cash
+```
+
+4. Classify the metric quality: clean recurring, timing-dependent,
+   financing-dependent, accounting-allocation-dependent, non-cash, or low
+   valuation usability.
+5. Classify report use: base case, alpha case, monitoring variable, or blocked
+   valuation.
+
+Required object:
+
+```yaml
+ManagementMetricReconciliation:
+  metric_name:
+  management_definition:
+  period:
+  reported_value:
+  GAAP_anchor:
+  cash_flow_anchor:
+  equity_owner_anchor:
+  adjustments:
+  NCI_or_VIE_effect:
+  timing_dependency:
+  recurring_quality:
+  valuation_use:
+  blocker_reason:
+```
+
+If common-stockholder EPS diverges materially from consolidated economics, or
+cash generation is negative but called timing, the report must state the next
+proof date before using the metric in valuation.
+
 ## Interpretation Rules
 
 Positive quality signals:

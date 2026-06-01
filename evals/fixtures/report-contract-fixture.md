@@ -176,3 +176,11 @@ invalidate the setup if price breaks while the evidence weakens.
 | 12 | TP1 resistance | trim unless margin proof arrives | trim |
 | 14 | TP2 resistance | add only after proof plus retest | hold or add |
 | 8 | invalidation | evidence weakens with price break | exit |
+
+Action Trigger Matrix:
+
+| Condition | Evidence trigger | Price trigger | Action | Grade effect | Position size |
+|---|---|---|---|---|---|
+| proof improves and retest holds | margin and OCF proof | retest above entry | add | raise toward B+ | increase within cap |
+| proof absent but price reaches resistance | no margin proof | TP1 resistance | trim | keep B cap | reduce |
+| evidence weakens and price breaks | OCF weakens | stop level | exit | downgrade | zero |

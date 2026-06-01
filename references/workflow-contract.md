@@ -53,6 +53,11 @@ Actions: map assets, facilities, capacity, ramp date, capex, funding, customer
 commitment, revenue conversion, margin conversion, cash conversion, and failure date.
 Output: OperatingMachine, CapacityRampBridge, FundingBridge.
 
+If the company is an asset-financing, subscription-fleet, tax-credit, or
+project-finance platform, add AssetFinancingPlatform, AssetFinancingFlywheel,
+ContractedAssetValueWaterfall, CashGenerationBridge, FinancingCadenceLedger,
+ManagementMetricReconciliation, and PolicyMonetizationMap before valuation.
+
 PHASE 8 - Demand Proxy And Orders
 Actions: collect demand signals, classify order evidence, identify customer and
 legal strength, build conversion path, assign valuation use, and define trigger.
@@ -89,7 +94,8 @@ PHASE 13 - Technical And Trade
 Actions: load current OHLCV or chart screenshot, record chart date and adjusted
 status, identify monthly/weekly/daily structure, support/resistance, catalyst
 links, entry, stop, TP1, TP2, add/trim, and evidence/stop-based size.
-Output: TechnicalSetup, CatalystLinkedTradePlan, PositionSizingRationale.
+Output: TechnicalSetup, CatalystLinkedTradePlan, ActionTriggerMatrix,
+PositionSizingRationale.
 
 PHASE 14 - Decision Scorecard
 Actions: start from thesis quality, then apply operating proof, order proof,
@@ -132,6 +138,14 @@ Before final prose, create or block:
 - `BrokenThesisCase`
 - `EarlyWarningDashboard`
 - `CatalystLinkedTradePlan`
+- `AssetFinancingPlatform`
+- `AssetFinancingFlywheel`
+- `ContractedAssetValueWaterfall`
+- `CashGenerationBridge`
+- `ManagementMetricReconciliation`
+- `FinancingCadenceLedger`
+- `PolicyMonetizationMap`
+- `ActionTriggerMatrix`
 
 ## Investor Memo Skeleton
 

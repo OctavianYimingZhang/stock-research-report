@@ -62,3 +62,13 @@ cases:
     category: policy
   - id: 31-policy-capacity-ramp-repricing
     category: capacity_ramp
+  - id: 32-run-style-residential-solar-asset-financing
+    category: business_model_specific
+  - id: 33-management-metric-reconciliation
+    category: financial_quality
+  - id: 34-project-finance-cadence
+    category: asset_financing
+  - id: 35-policy-tax-credit-monetization
+    category: policy_finance
+  - id: 36-action-trigger-matrix
+    category: trade_plan

@@ -97,6 +97,44 @@ Archetype selection table:
 | balance_sheet_optionality | assets, cash, or debt structure alters asymmetry | equity bridge or option value | funding, maturity, or dilution event | cap if senior claims are unresolved |
 | narrative_overpricing | price already discounts proof | downside case or current-implied bridge | failure to meet proof event | cap action grade before proof |
 
+## Policy / Tax Credit Monetization Workflow
+
+Use this workflow when policy credits, tax credits, subsidies, domestic-content
+rules, tariffs, procurement rules, or transferable credits affect valuation.
+
+1. Identify the policy source: IRA, ITC, PTC, 45X, FEOC, state incentive,
+   tariff, procurement rule, subsidy, or government program.
+2. Identify eligibility: company eligibility, project eligibility, domestic
+   content, placed-in-service timing, safe-harbor status, transferability, and
+   counterparty qualification.
+3. Identify monetization channel: retained tax benefit, tax equity investor,
+   ITC transfer buyer, customer prepayment, government grant, credit sale, or
+   production credit monetization.
+4. Identify cash timing: credit accrued, credit transferred, tax equity funded,
+   proceeds received, and parent cash retained.
+5. Identify policy risk: law change, guidance change, buyer appetite,
+   safe-harbor expiry, audit or clawback, and tax-equity market capacity.
+6. Classify valuation use:
+   - proven and monetized: may support base case
+   - accrued but not monetized: asset or monitoring item
+   - uncertain eligibility: scenario only
+
+Required object:
+
+```yaml
+PolicyMonetizationMap:
+  policy_name:
+  eligibility_condition:
+  credit_or_subsidy_type:
+  monetization_channel:
+  cash_timing:
+  counterparty:
+  evidence_status:
+  policy_change_risk:
+  valuation_use:
+  blocker:
+```
+
 ## Routing Rules
 
 Use `scarcity_bottleneck` when the thesis depends on unique capacity,

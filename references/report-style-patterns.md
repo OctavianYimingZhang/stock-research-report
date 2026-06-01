@@ -374,11 +374,15 @@ would change that answer.
 The final report should include the investor-facing artifacts when material:
 
 - mispricing thesis or thesis-spine table
+- business-model adapter or company-type-specific workflow output
 - operating machine table
 - demand proxy ladder or order-quality ladder
 - EPS or EBITDA revision bridge
+- asset-financing flywheel, cash-generation bridge, and financing cadence ledger for subscription-fleet or project-finance companies
+- management-metric reconciliation when management-defined metrics drive valuation
 - catalyst calendar tied to proof events
 - early warning dashboard
+- action trigger matrix with buy, wait, add, trim, and stop conditions
 
 ## Inline Arithmetic
 

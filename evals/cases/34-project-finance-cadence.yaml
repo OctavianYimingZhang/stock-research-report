@@ -1,0 +1,25 @@
+id: project-finance-cadence
+category: asset_financing
+adapter: financing_cadence
+required_sections:
+  - Core Conclusion
+  - Why This Stock Exists Now
+  - Industry Chain And Bottleneck
+  - Company Position In The Chain
+  - Business Model Logic
+  - Scarcity And Moat Assessment
+  - Customers, Orders, And Commercialization Path
+  - Operations, Capacity, And Execution Quality
+  - Financial Quality, Assets, Debt, And Dilution
+  - Valuation And Market-Implied Expectation
+  - Catalysts, Risks, And Falsification
+  - Technical Structure And Trade Plan
+must_include:
+  - financing transaction ledger
+  - delayed financing tracker
+  - spread/cost trend
+  - recourse/non-recourse split
+  - valuation impact
+must_block:
+  - calling financing delay harmless without next-quarter close proof
+

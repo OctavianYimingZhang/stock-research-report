@@ -196,6 +196,132 @@
       "monitoring_trigger": "capacity reservation terms"
     }
   ],
+  "asset_financing_platforms": [
+    {
+      "id": "asset-financing-platform-base",
+      "company_control_point_assessment_id": "control-point-base",
+      "asset_type": "not_applicable_fixture",
+      "customer_contract_type": "not_applicable_fixture",
+      "monetization_channels": [
+        "not_applicable"
+      ],
+      "retained_economics": "not_applicable",
+      "parent_company_cash_exposure": "not_applicable",
+      "recourse_debt_exposure": "not_applicable",
+      "key_proof_period": "not_applicable"
+    }
+  ],
+  "asset_financing_flywheels": [
+    {
+      "id": "asset-financing-flywheel-base",
+      "asset_financing_platform_id": "asset-financing-platform-base",
+      "origination": "not_applicable",
+      "installation_or_asset_creation": "not_applicable",
+      "tax_credit_generation": "not_applicable",
+      "tax_credit_monetization": "not_applicable",
+      "non_recourse_financing": "not_applicable",
+      "securitization": "not_applicable",
+      "retained_cash_flow": "not_applicable",
+      "parent_cash_generation": "not_applicable",
+      "recourse_deleveraging": "not_applicable",
+      "equity_value_creation": "not_applicable"
+    }
+  ],
+  "contracted_asset_value_waterfalls": [
+    {
+      "id": "contracted-asset-waterfall-base",
+      "asset_financing_platform_id": "asset-financing-platform-base",
+      "gross_asset_value": "not_applicable",
+      "contracted_net_earning_assets": "not_applicable",
+      "cash": "not_applicable",
+      "restricted_cash": "not_applicable",
+      "recourse_debt": "not_applicable",
+      "non_recourse_debt": "not_applicable",
+      "NCI_or_redeemable_NCI": "not_applicable",
+      "tax_equity_claims": "not_applicable",
+      "diluted_shares": "not_applicable",
+      "per_share_value_or_blocker": "not_applicable",
+      "unresolved_items": []
+    }
+  ],
+  "cash_generation_bridges": [
+    {
+      "id": "cash-generation-bridge-base",
+      "asset_financing_platform_id": "asset-financing-platform-base",
+      "management_cash_generation": "not_applicable",
+      "safe_harbor_adjustment": "not_applicable",
+      "project_finance_timing_adjustment": "not_applicable",
+      "operating_cash_flow": "not_applicable",
+      "investing_cash_flow": "not_applicable",
+      "parent_cash_movement": "not_applicable",
+      "recurring_or_timing_dependent": "not_applicable",
+      "bridge_verdict": "not_applicable"
+    }
+  ],
+  "management_metric_reconciliations": [
+    {
+      "id": "management-metric-base",
+      "metric_name": "fixture_metric",
+      "management_definition": "not_applicable",
+      "period": "synthetic",
+      "reported_value": "not_applicable",
+      "GAAP_anchor": "not_applicable",
+      "cash_flow_anchor": "not_applicable",
+      "equity_owner_anchor": "not_applicable",
+      "adjustments": [],
+      "NCI_or_VIE_effect": "not_applicable",
+      "timing_dependency": "not_applicable",
+      "recurring_quality": "not_applicable",
+      "valuation_use": "not_applicable",
+      "blocker_reason": "not_applicable"
+    }
+  ],
+  "financing_transactions": [
+    {
+      "id": "financing-transaction-base",
+      "type": "not_applicable",
+      "amount": "not_applicable",
+      "expected_close_date": "not_applicable",
+      "actual_close_date": "not_applicable",
+      "spread_or_cost": "not_applicable",
+      "maturity": "not_applicable",
+      "recourse_status": "not_applicable",
+      "collateral": "not_applicable",
+      "parent_cash_effect": "not_applicable",
+      "source": "synthetic",
+      "confidence": "not_applicable"
+    }
+  ],
+  "financing_cadence_ledgers": [
+    {
+      "id": "financing-cadence-base",
+      "financing_transaction_ids": [
+        "financing-transaction-base"
+      ],
+      "latest_trend": "not_applicable",
+      "delayed_items": [],
+      "upcoming_proof_events": [
+        "not_applicable"
+      ],
+      "valuation_effect": "not_applicable",
+      "action_grade_effect": "not_applicable"
+    }
+  ],
+  "policy_monetization_maps": [
+    {
+      "id": "policy-monetization-base",
+      "policy_name": "not_applicable",
+      "eligibility_condition": "not_applicable",
+      "credit_or_subsidy_type": "not_applicable",
+      "monetization_channel": "not_applicable",
+      "cash_timing": "not_applicable",
+      "counterparty": "not_applicable",
+      "evidence_status": "not_applicable",
+      "policy_change_risk": "not_applicable",
+      "valuation_use": "not_applicable",
+      "blocker": "not_applicable"
+    }
+  ],
   "source_documents": [
     {
       "id": "source-filing",
@@ -380,6 +506,32 @@
       "technical_setup_id": "technical-current",
       "early_warning_dashboard_id": "early-warning-base",
       "catalyst_or_proof_event": "operating update with margin proof"
+    }
+  ],
+  "action_trigger_matrices": [
+    {
+      "id": "action-trigger-base",
+      "trade_plan_id": "trade-plan-base",
+      "trigger_variables": [
+        "margin proof",
+        "OCF proof",
+        "price retest"
+      ],
+      "wait_conditions": [
+        "proof absent"
+      ],
+      "add_conditions": [
+        "proof improves and retest holds"
+      ],
+      "trim_conditions": [
+        "price reaches resistance before proof"
+      ],
+      "stop_or_downgrade_conditions": [
+        "evidence weakens and price breaks"
+      ],
+      "price_stop": "stop level",
+      "thesis_stop": "OCF weakens",
+      "catalyst_stop": "operating update fails"
     }
   ],
   "short_seller_assessments": [

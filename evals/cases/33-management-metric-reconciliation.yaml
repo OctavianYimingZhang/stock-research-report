@@ -1,0 +1,26 @@
+id: management-metric-reconciliation
+category: financial_quality
+adapter: management_metric_reconciliation
+required_sections:
+  - Core Conclusion
+  - Why This Stock Exists Now
+  - Industry Chain And Bottleneck
+  - Company Position In The Chain
+  - Business Model Logic
+  - Scarcity And Moat Assessment
+  - Customers, Orders, And Commercialization Path
+  - Operations, Capacity, And Execution Quality
+  - Financial Quality, Assets, Debt, And Dilution
+  - Valuation And Market-Implied Expectation
+  - Catalysts, Risks, And Falsification
+  - Technical Structure And Trade Plan
+must_include:
+  - management metric definition
+  - GAAP anchor
+  - cash-flow anchor
+  - equity-owner anchor
+  - valuation-use classification
+must_block:
+  - using common-stockholder EPS as anchor when consolidated loss and NCI allocation dominate
+  - using management cash generation without OCF/investing/financing bridge
+

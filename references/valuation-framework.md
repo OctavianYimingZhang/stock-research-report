@@ -76,6 +76,58 @@ market currently prices [denominator]; the report uses [denominator] because
 [proof event]; it fails if [disconfirming signal].
 ```
 
+## Asset-Financing Valuation Workflow
+
+For asset-financing, subscription-fleet, tax-credit, or project-finance
+companies, use asset and cash mechanics before P/E, revenue multiple, or generic
+EV/EBITDA.
+
+1. Build `ContractedAssetValueWaterfall`.
+2. Build `CashGenerationBridge`.
+3. Reconcile recourse debt, non-recourse debt, restricted cash, unrestricted
+   cash, tax equity claims, NCI, redeemable NCI, and diluted shares.
+4. Decide whether contracted net earning assets, recurring cash generation, or
+   discounted asset value is the correct denominator.
+5. Compare current price with:
+   - existing asset value
+   - implied growth recovery
+   - implied optionality
+   - implied financing normalization
+6. Use recurring cash generation only when it is repeatable and tied to parent
+   cash or equity-owner cash. Otherwise keep it in alpha case or monitoring.
+7. Block high-conviction targets when management asset value cannot be
+   reconciled through the waterfall.
+
+Required output:
+
+```markdown
+| Waterfall item | Amount | Claim seniority | Source | Equity relevance |
+|---|---:|---|---|---|
+```
+
+## Current Price Decomposition Workflow
+
+Reverse-engineer the current market price into asset value and optionality:
+
+```text
+market cap
+- cash or net cash adjustment
++ recourse debt
+= adjusted operating equity value
+```
+
+Then compare it with CNEA, book value, retained cash flow, NAV, replacement
+value, or liquidation value. State whether the market already reflects existing
+asset base, growth recovery, grid-services or platform optionality, financing
+normalization, policy support, or multiple expansion.
+
+Classify the setup:
+
+- price below asset value: cheap asset but proof may still be needed
+- price near asset value: wait for proof before adding
+- price above asset value but below alpha case: catalyst-dependent
+- price already discounts alpha case: cap grade or trim into strength
+
 ## Re-Rating Bridge
 
 Reference-caliber reports explain why the market might change the multiple, not

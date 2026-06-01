@@ -1,0 +1,25 @@
+id: action-trigger-matrix
+category: trade_plan
+adapter: action_trigger_matrix
+required_sections:
+  - Core Conclusion
+  - Why This Stock Exists Now
+  - Industry Chain And Bottleneck
+  - Company Position In The Chain
+  - Business Model Logic
+  - Scarcity And Moat Assessment
+  - Customers, Orders, And Commercialization Path
+  - Operations, Capacity, And Execution Quality
+  - Financial Quality, Assets, Debt, And Dilution
+  - Valuation And Market-Implied Expectation
+  - Catalysts, Risks, And Falsification
+  - Technical Structure And Trade Plan
+must_include:
+  - buy/wait/add/trim/stop matrix
+  - event-linked trigger
+  - thesis stop
+  - price stop
+  - position size rule
+must_block:
+  - vague "wait for proof" without specific proof-action mapping
+

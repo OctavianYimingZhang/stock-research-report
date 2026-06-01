@@ -153,6 +153,26 @@ Grade cap matrix:
 The scorecard must make the cap visible. A strong narrative cannot override a
 missing evidence bridge.
 
+## Action Trigger Matrix Integration
+
+After the action grade is set, translate it into an `ActionTriggerMatrix`.
+The matrix must show what changes the grade and what changes position size.
+
+Required fields:
+
+- `trigger_variables`
+- `buy_or_start_conditions`
+- `wait_conditions`
+- `add_conditions`
+- `trim_conditions`
+- `stop_or_downgrade_conditions`
+- `price_stop`
+- `thesis_stop`
+- `catalyst_stop`
+
+The scorecard should not end with a static letter grade. It should show the
+next evidence event that would raise, lower, or keep the grade capped.
+
 ## Position-Size Translation
 
 Translate grade into action:
