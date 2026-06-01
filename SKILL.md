@@ -29,13 +29,33 @@ outside prompts are inputs to distill, not runtime authorities. Integrate their
 useful content as:
 
 - verified evidence
+- alpha discovery / mispricing thesis
+- thesis spine
 - thesis-path replay
 - opportunity route
+- demand proxy ladder
+- operating machine table
+- EPS/EBITDA revision bridge
+- alpha case and broken thesis case
 - valuation bridge
 - short-risk blocker
 - technical/trade setup
 
 Do not paste or expose sub-skill report structures in the final memo.
+
+## Alpha Discovery Phase
+
+Before drafting, force one clear alpha path:
+
+```text
+market belief -> market error -> correct valuation denominator
+-> company control point -> order/capacity/customer proof
+-> EPS/EBITDA/FCF revision path -> proof catalyst
+-> broken thesis signal -> trade action
+```
+
+If that path cannot be supported, classify the idea as watchlist/research-only
+instead of writing a confident trade memo.
 
 ## Core Philosophy (Read This First)
 
@@ -102,6 +122,10 @@ These rules override the older generic company-profile flow.
    stock exists now, where the chain bottleneck sits, why the company captures
    value, how orders convert into revenue and cash, what the current price
    already implies, and how the trade should be executed.
+6. **Write as an alpha thesis, not only a defensive report.** State market
+   belief, non-consensus variable, company control point, demand proxy,
+   operating machine, revision bridge, alpha case, broken thesis case, and
+   early warning signals.
 
 ## COMPANION SKILLS (Optional Extensions)
 

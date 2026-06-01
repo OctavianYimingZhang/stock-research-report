@@ -36,6 +36,33 @@ Use this structure for new full reports:
 
 Chinese output can translate these headings, but keep the order and logic.
 
+## Alpha Thesis Overlay
+
+Before filling sections, build this compact spine:
+
+```text
+market belief -> mispricing thesis -> correct valuation denominator
+-> company control point -> demand proxy or order quality
+-> operating machine -> EPS/EBITDA/FCF revision bridge
+-> alpha case proof event -> broken thesis signal -> trade action
+```
+
+The final report must answer:
+
+- what the market is missing or overpaying for
+- why the company is not merely thematic beta
+- how demand enters revenue, margin, EPS/EBITDA, and FCF
+- which proof event would force a re-rating
+- which early warning signal would disprove the thesis
+
+Use compact tables when material:
+
+- operating machine table
+- demand proxy ladder
+- EPS or EBITDA revision bridge
+- catalyst calendar
+- early warning dashboard
+
 ## Core Conclusion
 
 Open with the current repricing dispute, then state action stance, position-size

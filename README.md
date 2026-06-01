@@ -24,6 +24,9 @@ must be checked against primary or high-quality sources.
 - Optional companion skills may accelerate research, but the compact Skill is
   self-contained and the final report must still follow the canonical
   12-section contract.
+- Alpha-thesis overlay: mispricing thesis, correct valuation denominator,
+  company control point, demand proxy ladder, operating machine, revision
+  bridge, proof catalyst, broken-thesis signal, and trade action.
 
 ## Usage
 
