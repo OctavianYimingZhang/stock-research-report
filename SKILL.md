@@ -83,6 +83,20 @@ investment dispute -> market belief -> mispricing thesis
 -> alpha/base/broken cases -> early warnings -> catalyst-linked trade plan
 ```
 
+For asset-financing, subscription-fleet, tax-credit, or project-finance names,
+also require:
+
+```text
+AssetFinancingPlatform -> AssetFinancingFlywheel
+-> ContractedAssetValueWaterfall -> CashGenerationBridge
+-> ManagementMetricReconciliation -> FinancingCadenceLedger
+-> PolicyMonetizationMap -> ActionTriggerMatrix
+```
+
+Do not value these companies on headline revenue, GAAP EPS, or management asset
+value until the waterfall, GAAP/cash bridge, recourse split, monetization path,
+and next proof event are visible.
+
 ## Core Philosophy (Read This First)
 
 The output must be an **opinionated trade memo**, not a forensic audit. Six principles govern this:
@@ -157,6 +171,11 @@ These rules override the older generic company-profile flow.
    demand proxy ladder; for valuation, select the correct denominator before a
    target; for risk, write the plausible short attack and its size/valuation
    effect; for technicals, link price levels to catalysts.
+8. **Use company-type adapters.** If a company is a subscription fleet,
+   asset-financing platform, tax-credit monetization vehicle, or project-finance
+   story, build the financing flywheel, asset-value waterfall, cash-generation
+   bridge, management-metric reconciliation, financing cadence ledger, policy
+   monetization map, and buy/wait/add/trim/stop action matrix.
 
 ## COMPANION SKILLS (Optional Extensions)
 

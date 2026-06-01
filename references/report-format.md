@@ -88,6 +88,34 @@ Build the report in this order:
 Each major section must end with a decision-useful judgment or an explicit
 blocker.
 
+## Asset-Financing Adapter
+
+Use this adapter when value depends on long-term contracts, subscription fleet,
+tax equity, ITC transfer, non-recourse debt, securitization, contracted net
+earning assets, cash generation, VIE/NCI, or recourse/non-recourse debt.
+
+Required outputs:
+
+- asset-financing flywheel: origination -> asset creation -> tax credit ->
+  tax equity/ITC buyer -> non-recourse financing -> retained cash flow ->
+  cash generation -> recourse deleveraging -> equity value per share
+- contracted asset value waterfall: gross value minus tax equity/NCI/redeemable
+  NCI, non-recourse debt, recourse debt, plus unrestricted cash and retained
+  credits, divided by diluted shares
+- management metric reconciliation: management metric -> GAAP revenue ->
+  consolidated income/loss -> NCI/redeemable NCI -> OCF -> investing cash flow
+  -> financing cash flow -> parent cash -> equity-owner cash
+- financing cadence ledger: transaction, amount, close date, spread/rate,
+  maturity, collateral, recourse status, parent-cash effect, valuation effect
+- policy monetization map: source, eligibility, monetization channel, cash
+  timing, counterparty, policy risk, valuation use
+- action trigger matrix: condition, evidence trigger, price trigger, action,
+  grade effect, position size
+
+Block high-conviction valuation if the report uses management asset value
+without waterfall, management cash generation without GAAP/cash bridge, delayed
+financing without next proof event, or policy credit without monetization proof.
+
 ## Core Conclusion
 
 Open with the current repricing dispute, then state action stance, position-size

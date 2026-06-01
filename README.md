@@ -31,6 +31,9 @@ must be checked against primary or high-quality sources.
   mechanism primer, control point, operating machine, demand proxy, revision
   bridge, alpha/base/broken cases, short attack, early warnings, catalyst-linked
   trade plan, and action-grade cap.
+- Asset-financing adapter: subscription fleet, CNEA/NAV waterfall, management
+  metric reconciliation, tax-credit monetization, project-finance cadence, and
+  buy/wait/add/trim/stop action matrix.
 
 ## Usage
 
