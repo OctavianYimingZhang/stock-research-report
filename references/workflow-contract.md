@@ -7,6 +7,7 @@ domain rules; this file defines how those rules are sequenced.
 
 ```text
 intake/settings
+-> alpha discovery and thesis spine
 -> source preflight
 -> source partitions
 -> evidence extraction
@@ -22,6 +23,20 @@ intake/settings
 -> report projection
 -> validation
 ```
+
+## Alpha Discovery Objects
+
+Before final prose, create or block:
+
+- `MispricingThesis`
+- `ThesisSpine`
+- `CompanyControlPoint`
+- `DemandProxyLadder`
+- `OperatingMachineTable`
+- `RevisionBridge`
+- `AlphaCase`
+- `BrokenThesisCase`
+- `EarlyWarningDashboard`
 
 ## Source Priority
 

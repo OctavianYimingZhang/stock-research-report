@@ -79,6 +79,31 @@ The primer must stay narrow:
 The primer should end by locating the issuer at the scarce node. It should not
 become a broad industry essay.
 
+## Technical Mechanism Primer
+
+For technical companies, explain the mechanism before describing the company.
+The report should make the investment mechanism legible to an investor who does
+not already know the industry.
+
+Required chain:
+
+```text
+old architecture -> bottleneck -> new architecture -> customer pain
+-> company control point -> monetization denominator -> margin mechanism
+```
+
+The primer must answer:
+
+- what breaks in the old system
+- why the break matters now
+- why the customer pays
+- why this company is not interchangeable
+- what metric proves adoption
+
+For AI infrastructure, advanced packaging, test equipment, power, energy,
+defense, resources, biotech, or other technical routes, connect the mechanism
+to customer economics rather than stopping at terminology.
+
 ## Layer Calibration Standard
 
 The strongest reports build an industry-to-company bridge before describing the
@@ -248,6 +273,24 @@ commitment -> revenue conversion -> margin at scale -> cash funding need
 
 For asset-heavy companies, name whether capex is speculative, customer-backed,
 policy-funded, internally funded, or debt-funded.
+
+## Operating Machine Table
+
+For ramp, platform, capacity, or customer-deployment theses, add an operating
+machine table before valuation. The table must show how the story moves from
+proof to economics:
+
+| Link | Current status | Next step | Evidence grade | Failure signal | Valuation effect |
+|---|---|---|---|---|---|
+| sample / qualification | filled or gap | filled or gap | high / medium / low | filled or gap | revenue / margin / multiple |
+| capacity / supply chain | filled or gap | filled or gap | high / medium / low | filled or gap | revenue / margin / multiple |
+| customer deployment | filled or gap | filled or gap | high / medium / low | filled or gap | revenue / margin / multiple |
+| revenue recognition | filled or gap | filled or gap | high / medium / low | filled or gap | revenue / margin / multiple |
+| gross margin | filled or gap | filled or gap | high / medium / low | filled or gap | margin / EPS |
+| cash flow | filled or gap | filled or gap | high / medium / low | filled or gap | FCF / position size |
+
+If a row is low-evidence but high-materiality, promote it into the monitoring
+variables in the risk and trade-plan sections.
 
 ## Operating Proof Standard
 

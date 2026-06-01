@@ -52,3 +52,13 @@ cases:
     category: valuation
   - id: 26-falsification-lens-trim-plan
     category: falsification
+  - id: 27-advanced-packaging-control-point
+    category: alpha_thesis
+  - id: 28-sipho-capacity-reservation
+    category: demand_proxy
+  - id: 29-order-hockey-stick-revision
+    category: revision_bridge
+  - id: 30-policy-protected-component-supplier
+    category: policy
+  - id: 31-policy-capacity-ramp-repricing
+    category: capacity_ramp

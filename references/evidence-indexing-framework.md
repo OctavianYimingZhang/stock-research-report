@@ -103,6 +103,27 @@ Do not load all source text by default. Load:
 If the needed partition does not exist, create a `DataGap` rather than filling
 the missing fact from narrative memory.
 
+## Materiality-Weighted Evidence Rule
+
+Do not allocate depth by source availability alone. Allocate depth by investment
+materiality.
+
+For each major thesis variable, classify evidence:
+
+- high-evidence / high-materiality
+- low-evidence / high-materiality
+- high-evidence / low-materiality
+- low-evidence / low-materiality
+
+Low-evidence but high-materiality items must become explicit monitoring
+variables, not disappear. Examples include undisclosed ASP, gross margin on a
+new platform, order conversion timing, capacity reservation cancellation terms,
+customer concentration behind a revenue guide, share-count dilution, and debt
+maturity risk.
+
+High-evidence but low-materiality items should not consume the most prose simply
+because they are easy to cite.
+
 ## Report Implication
 
 Every report section should be traceable to the partitions it used. This makes

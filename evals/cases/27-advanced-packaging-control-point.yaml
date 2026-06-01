@@ -1,0 +1,25 @@
+id: advanced-packaging-control-point
+archetype: scarcity_bottleneck
+mispricing_archetype: wrong_identity
+expected_primary_valuation: forward_ev_ebitda_with_re_rating_bridge
+required_sections:
+  - Core Conclusion
+  - Why This Stock Exists Now
+  - Industry Chain And Bottleneck
+  - Company Position In The Chain
+  - Business Model Logic
+  - Scarcity And Moat Assessment
+  - Customers, Orders, And Commercialization Path
+  - Operations, Capacity, And Execution Quality
+  - Financial Quality, Assets, Debt, And Dilution
+  - Valuation And Market-Implied Expectation
+  - Catalysts, Risks, And Falsification
+  - Technical Structure And Trade Plan
+required_checks:
+  - technical_mechanism_primer
+  - company_control_point
+  - operating_machine_table
+  - eps_or_ebitda_revision_bridge
+forbidden:
+  - generic_ai_beneficiary_label
+  - valuation_without_control_point

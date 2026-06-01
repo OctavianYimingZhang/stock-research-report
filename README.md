@@ -7,6 +7,7 @@ A Codex Skill for source-backed public-company research reports.
 - Builds company research reports from filings, transcripts, presentations, market data, and cited evidence.
 - Separates verified facts, calculations, assumptions, and interpretation.
 - Supports business-model analysis, financial-quality review, valuation scenarios, short-risk review, and technical context.
+- Forces an alpha-thesis spine: market mispricing, company control point, demand proxy, revision bridge, proof event, broken-thesis signal, and trade action.
 - Maintains a source log so report claims can be traced to evidence.
 
 ## Skill entrypoint

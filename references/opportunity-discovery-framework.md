@@ -43,6 +43,35 @@ If no archetype is supported, classify the issuer as `industry_beta` or
 `watchlist_only` and cap the action grade until a company-specific mechanism is
 verified.
 
+## Mispricing Archetype
+
+Create a `MispricingArchetype` beside the opportunity archetype. The opportunity
+archetype says what kind of business route exists. The mispricing archetype says
+what the market may be getting wrong.
+
+Classify the market error:
+
+- `wrong_denominator`: market uses the wrong valuation denominator; EPS,
+  EBITDA, FCF, backlog conversion, or asset value is the real driver.
+- `wrong_identity`: market sees a cyclical supplier, commodity vehicle, or
+  low-margin operator while the company is becoming strategic infrastructure,
+  policy-protected supply, or a higher-value platform.
+- `hidden_order_book`: demand appears through customer prepayment, capacity
+  reservation, qualification, inventory commitments, or customer capex before
+  recognized revenue.
+- `operating_leverage_under_modeled`: a small revenue or utilization change can
+  create a large EPS, EBITDA, or FCF revision.
+- `policy_protected_scarcity`: law, funding, tariffs, sourcing rules, or public
+  procurement creates demand or excludes supply.
+- `balance_sheet_optionality`: cash, assets, funding, or debt structure changes
+  downside or upside asymmetry.
+- `narrative_overpricing`: the current price already discounts the upside
+  before proof arrives.
+
+Every full report must state the market's current belief, the suspected error,
+the correct denominator, the first metric that would revise if the report is
+right, and the first metric that would disprove it.
+
 ## Routing Rules
 
 Use `scarcity_bottleneck` when the thesis depends on unique capacity,
@@ -176,6 +205,27 @@ Base-case valuation normally requires recognized revenue, binding purchase
 orders, firm backlog, paid reservations, customer prepayment, or customer-funded
 capacity. Weaker evidence can support upside optionality, but it must receive a
 haircut and cannot carry the action grade by itself.
+
+## Demand Proxy Ladder
+
+When formal order data is weak or absent, use a demand proxy ladder instead of
+stopping at "cannot calculate". Each proxy must be labelled for valuation
+usability:
+
+| Signal | Valuation usability | How to write it |
+|---|---|---|
+| recognized revenue | high | may enter base case if current and recurring enough |
+| binding purchase order / backlog | high to medium | convert through delivery, margin, working capital, and cash |
+| customer prepayment | medium to high | strong lock-in only if payment and cancellation terms are clear |
+| capacity reservation | medium | use as demand lock-in only with disclosed terms |
+| capex or inventory commitment | medium | supply commitment, not customer demand unless tied to customer proof |
+| customer qualification / sample | medium to low | upside or monitoring variable |
+| framework, MOU, LOI, IDIQ | low | scenario input only unless conversion history exists |
+| management pipeline | low | narrative only |
+
+Base-case valuation cannot rest on low-usability proxies. Low-usability but
+high-materiality proxies become monitoring variables and may support an alpha
+case, not a target.
 
 ## Section Emphasis
 

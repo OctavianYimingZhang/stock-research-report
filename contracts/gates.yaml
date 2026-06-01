@@ -9,6 +9,12 @@ gates:
     required_when: output_view != source_conflict_report
     blocks:
       - no company-specific route for a high-conviction conclusion
+  AlphaDiscoveryGate:
+    required_when: output_view == full_report
+    blocks:
+      - no mispricing thesis for a high-conviction conclusion
+      - no thesis spine connecting evidence to trade action
+      - no broken-thesis signal
   FourPartOpportunityGate:
     required_when: high_conviction_conclusion
     checks:
@@ -52,3 +58,10 @@ gates:
       - action_grade
       - binding_cap_reason
       - position_size_effect
+  RevisionBridgeGate:
+    required_when: thesis_depends_on_revenue_EPS_EBITDA_or_FCF_revision
+    checks:
+      - current_market_implied_or_consensus_baseline
+      - revision_variable
+      - timing
+      - disconfirming_signal

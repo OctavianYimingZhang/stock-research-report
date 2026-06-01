@@ -172,3 +172,19 @@ attractive but volatile stock. Apply this sequence:
 For speculative or high-volatility names, the default trade plan should favor
 smaller initial size, partial profit-taking at TP1, and adding only after a
 confirmed retest or catalyst.
+
+## Catalyst-Linked Trade Plan
+
+A trade plan must connect price levels with evidence events. Do not let the
+technical section become a detached chart note.
+
+State:
+
+- entry before catalyst, if the setup justifies taking event risk
+- entry after proof, if evidence is required before sizing
+- trim into resistance without proof
+- add only after proof plus retest
+- invalidate if price breaks and the evidence weakens
+
+When a catalyst is the main proof event, connect TP1, TP2, stop, and position
+size to the catalyst outcome.

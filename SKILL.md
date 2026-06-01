@@ -20,13 +20,36 @@ Use this skill when the user asks for deep research on a listed company, ticker,
 
 1. Define scope: ticker/company, exchange, report date, time horizon, target audience, required depth, and whether the user wants a full report or a focused section.
 2. Apply `contracts/report_sections.yaml` and `contracts/gates.yaml` as the canonical report contract before drafting.
-3. Collect sources: latest annual/interim filings, earnings releases, transcripts, investor presentations, segment disclosures, balance-sheet data, peer data, price/volume data, and relevant industry sources.
-4. Build an evidence register: claim, source, date, metric period, extraction note, confidence level, and unresolved conflicts.
-5. Replay outside thesis paths only as hypotheses; verify or reject them against primary and high-quality sources.
-6. Route the opportunity archetype and run the four-part opportunity test: demand expansion, scaling difficulty, bottleneck scarcity, and commercialization visibility.
-7. Analyze business logic, customer/order quality, operations, financial quality, valuation, short-risk, technical setup, and the decision scorecard in one causal sequence.
-8. Draft the report with citations beside the claims they support. Keep assumptions explicit.
-9. Run local validation scripts only when producing or changing repository artifacts.
+3. Run the Alpha Discovery Phase and create one clear thesis spine before collecting section prose.
+4. Collect sources: latest annual/interim filings, earnings releases, transcripts, investor presentations, segment disclosures, balance-sheet data, peer data, price/volume data, and relevant industry sources.
+5. Build an evidence register: claim, source, date, metric period, extraction note, confidence level, and unresolved conflicts.
+6. Replay outside thesis paths only as hypotheses; verify or reject them against primary and high-quality sources.
+7. Route the opportunity archetype and mispricing archetype, then run the four-part opportunity test: demand expansion, scaling difficulty, bottleneck scarcity, and commercialization visibility.
+8. Analyze business logic, customer/order quality, operations, financial quality, valuation, short-risk, technical setup, and the decision scorecard in one causal sequence.
+9. Draft the report with citations beside the claims they support. Keep assumptions explicit.
+10. Run local validation scripts only when producing or changing repository artifacts.
+
+## Alpha Discovery Phase
+
+Before drafting, identify the investment mispricing path:
+
+1. What does the market currently believe?
+2. What is the non-consensus or under-modeled variable?
+3. What value-chain bottleneck makes the company relevant now?
+4. What company-specific control point converts the bottleneck into economics?
+5. Which operating metric will revise first: revenue, gross margin, EBITDA, EPS, FCF, orders, or multiple?
+6. What would prove the thesis wrong within 1-4 quarters?
+
+Do not proceed to final prose until the report has one clear thesis spine:
+
+```text
+non-consensus variable -> industry bottleneck -> company control point
+-> order, capacity, or customer evidence -> revenue, margin, or cash-flow path
+-> valuation denominator change -> catalyst -> disconfirming evidence
+-> trade action
+```
+
+If no alpha spine exists, classify the idea as watchlist or research-only.
 
 ## Report structure
 

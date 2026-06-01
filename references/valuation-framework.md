@@ -73,6 +73,29 @@ The bridge must answer:
 - whether current price already discounts the new identity
 - what would prevent the multiple from expanding
 
+## Alpha Case Construction
+
+When a target price is blocked or current valuation already discounts much of
+the upside, still build a research-grade alpha case. The alpha case is not a
+target unless evidence supports it.
+
+Use four cases:
+
+- `current_market_implied_case`: what the current price already assumes.
+- `base_proof_case`: what verified evidence can support today.
+- `alpha_case`: what upside looks like if the non-consensus variable is proven.
+- `broken_thesis_case`: what happens if the key proof event fails.
+
+Each case must show:
+
+```text
+revenue driver -> margin driver -> share count -> valuation denominator
+-> implied EV or price range -> required proof event -> failure response
+```
+
+Do not present the alpha case as a target unless share count, net debt, senior
+claims, order quality, and cash-flow quality are reconciled.
+
 ## Current-Price-Implied Bridge
 
 Before giving an analyst target, state what the current share price already
@@ -147,6 +170,33 @@ future EPS x justified P/E = future share value
 The P/E must be tied to growth durability, cycle position, peer set, and rate
 environment. Do not use historical average P/E without explaining why the future
 business mix deserves that multiple.
+
+## EPS Or EBITDA Revision Bridge
+
+For stocks where alpha depends on earnings revision, show the revision bridge
+explicitly:
+
+```text
+current consensus or market-implied EPS/EBITDA
+-> management guidance
+-> order, capacity, price, cost, utilization, or mix variables
+-> next-quarter revision trigger
+-> 12-24 month revision trigger
+-> multiple expansion or compression condition
+```
+
+Use a table when material:
+
+| Revision variable | Current evidence | Market may under/over-model | P&L line | Timing | Disconfirming signal |
+|---|---|---|---|---|---|
+| revenue | filled or gap | under / over / unknown | revenue | Q or FY | filled or gap |
+| gross margin | filled or gap | under / over / unknown | GM / EPS | Q or FY | filled or gap |
+| orders | filled or gap | under / over / unknown | future revenue | Q or FY | filled or gap |
+| share count | filled or gap | under / over / unknown | EPS | Q or FY | filled or gap |
+| capex / working capital | filled or gap | under / over / unknown | FCF | Q or FY | filled or gap |
+
+If no revision path exists, state that the report is a quality or valuation
+monitor, not an alpha thesis.
 
 ## Profit And Cash-Flow Quality Before Method Selection
 

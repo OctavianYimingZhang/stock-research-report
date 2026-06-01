@@ -1,0 +1,25 @@
+id: policy-protected-component-supplier
+archetype: policy_protected_supply_chain
+mispricing_archetype: policy_protected_scarcity
+expected_primary_valuation: policy_scarcity_with_evidence_cap
+required_sections:
+  - Core Conclusion
+  - Why This Stock Exists Now
+  - Industry Chain And Bottleneck
+  - Company Position In The Chain
+  - Business Model Logic
+  - Scarcity And Moat Assessment
+  - Customers, Orders, And Commercialization Path
+  - Operations, Capacity, And Execution Quality
+  - Financial Quality, Assets, Debt, And Dilution
+  - Valuation And Market-Implied Expectation
+  - Catalysts, Risks, And Falsification
+  - Technical Structure And Trade Plan
+required_checks:
+  - mispricing_thesis
+  - policy_rule_or_procurement_channel
+  - demand_proxy_ladder
+  - low_evidence_high_materiality_tracker
+forbidden:
+  - unsourced_policy_claim
+  - policy_narrative_as_base_case

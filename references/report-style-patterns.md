@@ -127,6 +127,14 @@ repricing dispute -> demand shock -> industry constraint -> scarce node
 -> current-implied expectation -> action grade cap -> trade execution
 ```
 
+For alpha-oriented reports, also create a thesis spine:
+
+```text
+mispricing thesis -> correct valuation denominator -> company control point
+-> demand proxy or operating proof -> EPS/EBITDA/FCF revision path
+-> alpha case proof event -> broken thesis signal -> trade action
+```
+
 The kernel controls paragraph order. A section may contain background only when
 that background makes the next link in the chain understandable. Background that
 does not change demand, scarcity, order conversion, cash flow, valuation, or
@@ -318,6 +326,29 @@ After a draft exists, run this repair pass before final output:
    blocked conclusion.
 
 A report that still reads like headings filled with facts has failed this pass.
+
+## Conviction Style Pass
+
+Before final output, rewrite the opening and conclusion so they answer:
+
+- What is the one thing the investor must understand?
+- What is the market missing or overpaying for?
+- What makes this company-specific rather than thematic?
+- What has to happen next?
+- What action follows from the evidence?
+
+Avoid only saying "balanced view". A useful report must state where conviction
+exists and where it is capped. If the best answer is no action, say which proof
+would change that answer.
+
+The final report should include the investor-facing artifacts when material:
+
+- mispricing thesis or thesis-spine table
+- operating machine table
+- demand proxy ladder or order-quality ladder
+- EPS or EBITDA revision bridge
+- catalyst calendar tied to proof events
+- early warning dashboard
 
 ## Inline Arithmetic
 

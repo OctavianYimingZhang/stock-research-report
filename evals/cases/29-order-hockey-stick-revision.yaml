@@ -1,0 +1,25 @@
+id: order-hockey-stick-revision
+archetype: order_backlog_repricing
+mispricing_archetype: operating_leverage_under_modeled
+expected_primary_valuation: order_to_revenue_to_eps_revision
+required_sections:
+  - Core Conclusion
+  - Why This Stock Exists Now
+  - Industry Chain And Bottleneck
+  - Company Position In The Chain
+  - Business Model Logic
+  - Scarcity And Moat Assessment
+  - Customers, Orders, And Commercialization Path
+  - Operations, Capacity, And Execution Quality
+  - Financial Quality, Assets, Debt, And Dilution
+  - Valuation And Market-Implied Expectation
+  - Catalysts, Risks, And Falsification
+  - Technical Structure And Trade Plan
+required_checks:
+  - eps_or_ebitda_revision_bridge
+  - operating_leverage_bridge
+  - demand_proxy_ladder
+  - early_warning_dashboard
+forbidden:
+  - backlog_as_profit
+  - missing_disconfirming_signal

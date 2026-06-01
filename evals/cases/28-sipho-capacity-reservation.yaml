@@ -1,0 +1,25 @@
+id: sipho-capacity-reservation
+archetype: customer_funded_capacity_ramp
+mispricing_archetype: hidden_order_book
+expected_primary_valuation: capacity_ramp_to_ebitda
+required_sections:
+  - Core Conclusion
+  - Why This Stock Exists Now
+  - Industry Chain And Bottleneck
+  - Company Position In The Chain
+  - Business Model Logic
+  - Scarcity And Moat Assessment
+  - Customers, Orders, And Commercialization Path
+  - Operations, Capacity, And Execution Quality
+  - Financial Quality, Assets, Debt, And Dilution
+  - Valuation And Market-Implied Expectation
+  - Catalysts, Risks, And Falsification
+  - Technical Structure And Trade Plan
+required_checks:
+  - demand_proxy_ladder
+  - customer_prepayment_or_cancellation_terms
+  - operating_machine_table
+  - alpha_case_proof_conditions
+forbidden:
+  - treating_capacity_reservation_as_revenue
+  - target_without_margin_cash_bridge
