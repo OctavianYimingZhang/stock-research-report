@@ -57,6 +57,32 @@ market belief -> market error -> correct valuation denominator
 If that path cannot be supported, classify the idea as watchlist/research-only
 instead of writing a confident trade memo.
 
+## Required Run-Level Workflow
+
+Every full report run must create or block this object chain before final prose:
+
+```text
+intake -> source preflight -> outside thesis replay -> alpha discovery
+-> mechanism primer -> opportunity route -> company control point
+-> operating machine -> demand proxy/order ladder -> profit-to-cash quality
+-> EPS/EBITDA/FCF revision bridge -> valuation denominator and case set
+-> short attack narrative -> early warning dashboard
+-> catalyst-linked trade plan -> action grade
+```
+
+Missing objects do not disappear. They become explicit blockers that cap
+valuation, position size, action grade, or trade levels.
+
+Required investor memo skeleton:
+
+```text
+investment dispute -> market belief -> mispricing thesis
+-> correct valuation denominator -> mechanism primer
+-> company control point -> demand proxy/order quality
+-> operating machine -> revision bridge -> current-implied valuation
+-> alpha/base/broken cases -> early warnings -> catalyst-linked trade plan
+```
+
 ## Core Philosophy (Read This First)
 
 The output must be an **opinionated trade memo**, not a forensic audit. Six principles govern this:
@@ -126,6 +152,11 @@ These rules override the older generic company-profile flow.
    belief, non-consensus variable, company control point, demand proxy,
    operating machine, revision bridge, alpha case, broken thesis case, and
    early warning signals.
+7. **Make every concept executable.** For technical or policy names, write a
+   mechanism primer; for capacity/order stories, write an operating machine and
+   demand proxy ladder; for valuation, select the correct denominator before a
+   target; for risk, write the plausible short attack and its size/valuation
+   effect; for technicals, link price levels to catalysts.
 
 ## COMPANION SKILLS (Optional Extensions)
 

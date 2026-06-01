@@ -27,6 +27,10 @@ must be checked against primary or high-quality sources.
 - Alpha-thesis overlay: mispricing thesis, correct valuation denominator,
   company control point, demand proxy ladder, operating machine, revision
   bridge, proof catalyst, broken-thesis signal, and trade action.
+- Run-level workflow: source preflight, outside thesis replay, alpha discovery,
+  mechanism primer, control point, operating machine, demand proxy, revision
+  bridge, alpha/base/broken cases, short attack, early warnings, catalyst-linked
+  trade plan, and action-grade cap.
 
 ## Usage
 

@@ -57,11 +57,36 @@ The final report must answer:
 
 Use compact tables when material:
 
+- thesis spine / mispricing table
+- value-chain control table
 - operating machine table
 - demand proxy ladder
 - EPS or EBITDA revision bridge
+- alpha/base/broken case table
 - catalyst calendar
 - early warning dashboard
+- catalyst-linked trade table
+
+## Run-Level Assembly Workflow
+
+Build the report in this order:
+
+1. Resolve company/security, output view, horizon, and blocking data gaps.
+2. Replay outside article or user thesis paths as hypotheses only.
+3. Identify market belief, mispricing, correct denominator, proof path, and
+   broken-thesis signal.
+4. Explain technical, policy, or supply-chain mechanism before company prose
+   when the mechanism drives the thesis.
+5. Prove company control point; otherwise cap as industry beta.
+6. Grade demand proxies and order quality before using them in valuation.
+7. Build operating machine: capacity, funding, customer proof, revenue, margin,
+   cash conversion, and failure date.
+8. Build EPS/EBITDA/FCF revision bridge and alpha/base/broken case set.
+9. Build short attack narrative, early warning dashboard, and valuation or size effect.
+10. Link trade action to both price levels and proof catalysts.
+
+Each major section must end with a decision-useful judgment or an explicit
+blocker.
 
 ## Core Conclusion
 
